@@ -1,0 +1,33 @@
+.container{
+    width:calc(100vw - 17px);
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    position: relative;
+}
+.content{
+    width:1000px;
+    height: 500px;
+    display: flex;
+}
+.image{
+    margin-top: 90px;
+    position: relative;
+    height:360px;
+    width:270px;
+}
+.description{
+    width:650px;
+    margin-left: 50px;
+    margin-top: 90px;
+}
+.h2{
+    position: absolute;
+    top:50px;
+    left:50px;
+    font-size: 50px;
+    margin:0;
+    font-weight: 700;
+}

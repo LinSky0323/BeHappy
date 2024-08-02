@@ -1,0 +1,16 @@
+.container{
+    box-shadow: 0.5px 0.5px;
+    width: 200px;
+    border:0.5px solid gray;
+}
+.image{
+    width:200px;
+    height:200px;
+    position: relative;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
