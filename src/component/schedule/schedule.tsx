@@ -1,13 +1,16 @@
 "use client"
+import { useAppDispatch } from "@/lib/store/hooks"
 import styles from "./schedule.module.css"
 import { useState } from "react"
+import { setbookingListTime } from "@/lib/store/features/slices"
 export default function Schedule(){
 
     const Day = new Date()
     const [thisMonth,setThisMonth] = useState(Day.getMonth()+1)
     const [thisYear,setThisYear] = useState(Day.getFullYear())
+    const dispatch = useAppDispatch()
     const listYear = Day.getFullYear()
-    const firstWeek = (new Date(`${thisYear}-${thisMonth}-01`)).getDay()
+    const firstWeek = (new Date(thisYear,thisMonth,1)).getDay()
     const months:string[] = [
         "一月", "二月", "三月", "四月", "五月", "六月",
         "七月", "八月", "九月", "十月", "十一月", "十二月"
@@ -34,6 +37,7 @@ export default function Schedule(){
     }
     const handleClick=(e:React.MouseEvent<HTMLDivElement>)=>{
         const target = e.target as HTMLDivElement;
+        dispatch(setbookingListTime([thisYear,thisMonth,parseInt(target.innerText)]))
         
     }
 

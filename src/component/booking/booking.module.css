@@ -1,9 +1,6 @@
 .container{
     height: 600px;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .title{
     display: flex;
@@ -14,4 +11,37 @@
     z-index: 10;
     font-size: 50px;
     font-weight: 700;
+}
+.bookingList{
+    border: 0.5px solid black;
+    width:200px;
+    position: absolute;
+    top:150px;
+    left:50px;
+    padding: 10px;
+    border-radius: 10px;
+    height: 330px;
+}
+.form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+.price{
+    position: absolute;
+    bottom: 35px;
+    right:10px;
+}
+.time{
+    position: absolute;
+    bottom: 55px;
+    right:10px;
+}
+.btn{
+    position: absolute;
+    bottom: 10px;
+    right:10px;
+}
+.h1{
+    margin-top: 0;
 }

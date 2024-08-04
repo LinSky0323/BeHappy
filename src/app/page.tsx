@@ -7,7 +7,9 @@ import Introduce from "@/component/introduce/introduce";
 import DisplayBlock from "@/component/displayblock/displayblock";
 import Booking from "@/component/booking/booking";
 
+
 export default function Home() {
+
   return (
     <main>
       <Header title="我老婆最正" username="by.陳聖鎧"/>
