@@ -1,0 +1,22 @@
+.container{
+    margin: 10px;
+    display: flex;
+}
+.list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.table{
+
+    height: 50px;
+}
+.td{
+    font-size: 12px;
+    border: 1px solid black;
+    height:21.3px;
+    width: 50px;
+    user-select: none;
+}
+.choose{
+    background-color: yellow;
+}

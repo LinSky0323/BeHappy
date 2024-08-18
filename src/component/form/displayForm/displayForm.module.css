@@ -1,0 +1,194 @@
+.cardContainer{
+    display: flex;
+}
+.form{
+    display:flex;
+    gap:20px;
+    margin-top: 30px;
+    margin-left: 50px;
+    font-size: 20px;
+    align-items: flex-end;
+}
+.remind{
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
+}
+.formCard{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.writecontainer{
+    box-shadow: 0.5px 0.5px;
+    width: 200px;
+    border:0.5px solid gray;
+    margin-bottom: 10px;
+}
+.writeimage{
+    width:200px;
+    height:200px;
+    position: relative;
+    border-bottom: 1px solid black;
+
+}
+.writename{
+    padding: 5px;
+}
+.selectFile{
+    padding: 3px;
+    font-size: 15px;
+    background-color: rgb(203, 203, 203);
+    border-radius: 3px;
+    cursor: pointer;
+    height: 21px;
+}
+.selectFile:hover{
+    box-shadow:0.5px 0.5px ;
+    transform: translate(-0.5px,-0.5px);
+}
+.imageContent{
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+}
+.filename{
+    font-size: 15px;
+    font-weight: 700;
+    padding: 3px;
+    text-align: center;
+    height: 160px;
+    width: 120px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.image{
+    margin: auto;
+    display: flex;
+    align-items: center;
+    width: 120px;
+    height:160px;
+    position: relative;
+    margin-top: 5px;
+}
+.tapContainer{
+    display: flex;
+    margin-top:30px;
+    margin-left: 10px;
+    gap:30px;
+}
+.taplist{
+    margin-left:20px;
+    display: flex;
+    gap:30px;
+    overflow-x:hidden;
+    white-space: nowrap;
+    position: relative;
+    max-width: 700px;
+}
+.tap{
+    padding: 1px 7px 3px 7px ;
+    border-radius: 5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.red{
+    background-color: rgb(252, 118, 118);
+}
+.orange{
+    background-color: rgb(241, 197, 116);
+}
+.yellow{
+    background-color: rgb(253, 253, 161);
+}
+.green{
+    background-color: rgb(169, 255, 169);   
+}
+.blue{
+    background-color: rgb(170, 170, 255);
+}
+.purple{
+    background-color: rgb(253, 177, 253);
+}
+.high{
+    background-color: brown;  
+    color: white;
+    box-shadow:1px 1px black;
+    transform: translate(-1px,-1px); 
+}
+.delTap{
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 7px;
+    cursor: pointer;
+    background-color:black;
+    color: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    line-height:15px;
+    text-align: center;
+}
+.card{
+    margin: 10px;
+    position: relative;
+}
+.delCard{
+    color: white;
+    font-size: 14px;
+    line-height:19px;
+    font-weight: 400;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color:black;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+.left{
+    position: absolute;
+    top: 105px;
+    left: 105px;
+    width:25px;
+    height: 25px;
+    background-color: rgb(176, 176, 176);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.right{
+    position: absolute;
+    top: 105px;
+    right: 30px;
+    width:25px;
+    height: 25px;
+    background-color: rgb(176, 176, 176);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.la{
+    margin-left: 6px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right: 10px solid blue;
+}
+.ra{
+    margin-left: 9px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid blue; 
+}

@@ -1,0 +1,20 @@
+.title{
+    width:70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+.content{
+    cursor: pointer;
+    background: linear-gradient(to left,white,rgb(246, 246, 168));
+    padding: 10px;
+    border-radius: 7px;
+    box-shadow: 2px 2px gray;
+}
+.content:hover{
+    background: linear-gradient(to left,white,rgb(197, 197, 71));
+}

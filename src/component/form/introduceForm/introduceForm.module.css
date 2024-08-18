@@ -1,0 +1,39 @@
+.form{
+    display:flex;
+    gap:20px;
+    margin-top: 50px;
+    margin-left: 50px;
+    font-size: 20px;
+}
+.remind{
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
+}
+.textarea{
+    resize: none;
+    width: 247.2px;
+}
+.selectFile{
+    padding: 3px;
+    font-size: 15px;
+    background-color: rgb(203, 203, 203);
+    border-radius: 3px;
+    cursor: pointer;
+    height: 21px;
+}
+.selectFile:hover{
+    box-shadow:0.5px 0.5px ;
+    transform: translate(-0.5px,-0.5px);
+}
+.filename{
+    font-size: 15px;
+    font-weight: 700;
+    padding: 3px;
+    margin-right: 55px;
+}
+.image{
+    width: 90px;
+    height:120px;
+    position: relative;
+}
