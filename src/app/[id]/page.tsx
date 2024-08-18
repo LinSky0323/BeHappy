@@ -7,11 +7,9 @@ import { getListData, getTimeData } from "@/lib/firebase/firestore";
 import { PersonPageProviders } from "@/lib/store/porvider";
 
 export default async function PersonPage({params}:{params:{id:string}}){
-
     const data =  await getListData(params.id)
     const timeList = await getTimeData(params.id)
     const navList = [{name:"簡介",id:"introduce"},{name:"作品展示",id:"displayBlock"},{name:"預約",id:"bookingList"}]
-    const res = checkAuth()
     return(
         <PersonPageProviders>
             <main>
