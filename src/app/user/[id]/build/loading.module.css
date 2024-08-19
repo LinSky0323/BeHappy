@@ -1,0 +1,15 @@
+.container{
+    width:200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 700;
+}
+.circle{
+    animation:turn 1s ease 0s infinite ;
+}
+@keyframes turn{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(-360deg);}
+}

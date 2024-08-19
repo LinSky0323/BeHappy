@@ -25,14 +25,15 @@ export default function Sign(){
     const click = ()=>{
         setSlwindow(true)
     }
-    const clickPerson = ()=>{
+    const clickPerson = (e:React.MouseEvent<HTMLSpanElement>)=>{
+        e.stopPropagation()
         route.push("/user/"+localStorage.getItem("uid"))
     }
     if(!isLogin)return
     return(
         <div className={styles.container}>
-            <div onClick={click} className={styles.item}>
-                {(isLogin===1) &&<span style={{marginRight:"10px"}} onClick = {clickPerson}>個人頁面</span>}
+            <div onClick={click} className={styles.item} id="SLBtn">
+                {(isLogin===1) &&<span style={{marginRight:"10px"}} onClick = {(e)=>clickPerson(e)}>個人頁面</span>}
                 {isLogin===1 ? "登出" : "註冊/登入"}
             </div>
             {slwindow && <SL isLogin = {isLogin} setSlwindow = {setSlwindow} setIsLogin = {setIsLogin}/>}

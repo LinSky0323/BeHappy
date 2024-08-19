@@ -1,17 +1,46 @@
 import Header from "@/component/header/header";
 import Sign from "@/component/sign/sign";
 import styles from "./page.module.css"
+import Image from "next/image";
+import StartBtn from "@/component/button/startButton/page";
+
+
 
 
 export default  function Home() {
+  const day = new Date()
+  const hour = day.getHours()
+  const handleClick = ()=>{
+    const uid = localStorage.getItem("uid")
+    
+  }
   return (
     <main className={styles.container}>
-      <div className={styles.test}>
-      我是首頁
-      我的首頁打算要搭配成品的樣品圖做簡單介紹，但是後面都還沒做完，就先簡單文字介紹一下。</div>
-      <div className={styles.test}>登入&信箱驗證之後 點擊上方的建立網頁，輸入每個資料，最後就能複製一份網址。</div>
-      <div className={styles.test}>網址可以另外使用，但是如果要發送訂單，也需要登入並完成信箱驗證</div>
-      <div className={styles.btn}><Sign/></div>
+      <div className={styles.block}>
+        <div className={styles.imgContainer}>
+          <Image alt="背景" src="/background.jpg" fill style={{ objectFit: 'cover' }}/>
+        </div>
+        <div className={styles.people}>
+          <Image alt="人" src="/people.png" width={100} height={100} style={{ objectFit: 'cover' }}/>
+        </div>
+        <div className={styles.tree}>
+          <Image alt="樹" src="/tree.png" width={250} height={300} style={{ objectFit: 'cover' }}/>
+        </div>
+        <div className={styles.castle}>
+          <Image alt="城堡" src = "/castle.png" width={400} height={400} style={{ objectFit: 'cover' }}/>
+        </div>
+        <div className={styles.sun}>
+          <Image alt="太陽" src = "/sun.png" width={250} height={200} style={{ objectFit: 'cover' }}/>
+        </div>
+        <div className={styles.title}>
+          <div><h1 className={styles.h1}>喜悅網頁製作</h1></div>
+          <div className={styles.btn}><Sign/></div>
+        </div>
+        <div className={styles.text1}>一個人</div>
+        <div className={styles.text2}>也能做出一棟城堡！</div>
+        <StartBtn/>
+        <div className={styles.bl}></div>
+      </div>
     </main>
   );
 }

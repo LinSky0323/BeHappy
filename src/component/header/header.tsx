@@ -3,7 +3,7 @@ import Navbar from "../bar/navbar/navbar"
 import Sign from "../sign/sign"
 import Link from "next/link"
 
-export default async   function Header({title="",username="",data,navList}:{title?:string,username?:string|null,data?:any,navList?:any}){
+export default   function Header({title="",username="",data,navList}:{title?:string,username?:string|null,data?:any,navList?:any}){
     
     return(
         <header className={styles.header}>

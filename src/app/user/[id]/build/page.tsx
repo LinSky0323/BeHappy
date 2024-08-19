@@ -9,9 +9,9 @@ import { useParams, useRouter } from "next/navigation";
 
 export default function Build(){
     const route = useRouter()
-    const uid = localStorage.getItem("uid") as string
     const dispatch = useUserBuildDispatch()
     useEffect(()=>{
+        const uid = localStorage.getItem("uid") as string
         getListData(uid).then((item)=>{
             if(item){
                 dispatch(setBuildList(item))
@@ -20,6 +20,7 @@ export default function Build(){
     },[])
     const buildList  = useUserBuildSelector(selectBuildList)
     const handleClick = ()=>{
+        const uid = localStorage.getItem("uid")
         route.push(`/user/${uid}/build/buildtitle`)
     }
     return(

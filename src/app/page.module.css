@@ -1,13 +1,123 @@
-.test{
-    font-size: 20px;
-}
 .btn{
-    font-size: 50px;
-
+    font-weight: 700;
+    position: relative;
+    z-index: 15;
+}
+.block{
+    position: relative;
+    width:100%;
+    height: 100vh;
 }
 .container{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    position: relative;
+}
+.imgContainer{
+    width:100%;
+    height: 100vh;
+    position: relative;
+    z-index: -10;
+    opacity: 1;
+    animation: backgroundFadeOut 1s ease-in-out 1s forwards;
+}
+.people{
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 2s forwards;
+}
+.people:hover{
+    transform: scale(1.5)
+}
+.tree{
+    position: absolute;
+    bottom: -20px;
+    left: 200px;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 2.5s forwards;
+}
+.sun{
+    position: absolute;
+    top:5vh;
+    left:5vw;
+}
+.castle{
+    position: absolute;
+    bottom: 20px;
+    right: 100px;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 3s forwards;
+}
+.title{
+    z-index: 1;
+    width: calc(100% - 30px);
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    padding-left:20px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    top: 0;
+    background-color: rgba(49, 49, 49, 0.3);
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 2s forwards;
+}
+.h1{
+    margin: 0;
+}
+.text1{
+    position: absolute;
+    top:20vh;
+    left: 20vw;
+    font-size: 50px;
+    font-weight: 700;
+    opacity: 0;
+    z-index: -10;
+    animation: fadeIn 1s ease-in-out 3.5s forwards;
+}
+.text2{
+    position: absolute;
+    top:30vh;
+    left: 30vw;
+    font-size: 50px;
+    font-weight: 700;
+    z-index: -10;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 4s forwards;
+}
+
+.bl{
+    position: absolute;
+    top:calc(50vh - 3px);
+    left: calc(50vw - 105px);
+    width:210px;
+    height: 56px;
+    border:none;
+    z-index: -10;
+    border-radius: 20px;
+    background-color: yellow;
+    filter:blur(10px);
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 5s forwards;
+    animation: bling 1s ease-in-out 5s infinite;
+}
+
+@keyframes fadeIn{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+@keyframes backgroundFadeOut{
+    from{opacity: 1;}
+    to{opacity: 0.7;}
+}
+@keyframes bling{
+    from{opacity: 0;}
+    50%{opacity: 1;}
+    to{opacity: 0;}
 }
