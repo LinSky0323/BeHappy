@@ -7,6 +7,9 @@ import { usePersonPageDispatch, usePersonPageSelector } from "@/lib/store/hooks"
 import { addbookingList, delbookingList, selectbookingList, setbookingListTime } from "@/lib/store/features/personPageSlices"
 import { useEffect, useState } from "react"
 import { checkAuth } from "@/lib/firebase/firaAuth"
+import { getProfile, setBookingItem } from "@/lib/firebase/firestore"
+import { useParams } from "next/navigation"
+import PushMask from "../pushMask/page"
 
 interface bookingListState{
     item:string,
@@ -16,35 +19,52 @@ interface bookingListState{
 
 
 const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
+    const [push,setPush] = useState<{} | null>(null)
     const testData:[bookingListState] = data.bookingList
-    
+    const params = useParams()
+    const uid = params.id as string
     const submit = async(prevState:any, formData:FormData)=>{
         try{
             const res = await checkAuth() as any
+            const profile = await getProfile(res.uid)
             let acounts = 0
             if(totalTime === -1){acounts = 1}
             else if (totalTime > 0){acounts = totalTime/0.5}
-            if(!bookingList.items.length && bookingList.time.length<4){
+            if(!bookingList.items.length || bookingList.time.length<4){
                 alert("請選擇預約項目、日期、時間")
+                return
             }
             let items = ""
             bookingList.items.forEach((item)=>{
                 items += (item.item+" ")
             })
-            const submitItem = {guest:"afihlohsag123",item:items}
-            const submitData :{year:number,month:number,day:number,hours:number[],items:string,uid:string} = {year:bookingList.time[0],month:bookingList.time[1],day:bookingList.time[2],hours:[],items,uid:res.uid}
+            let submitHour = []
             for(let i = 0;i<acounts;i++){
-            if(timeList[bookingList.time[0]][bookingList.time[1]][bookingList.time[2]][bookingList.time[3]+(i*0.5)] && 
-                !Object.keys(timeList[bookingList.time[0]][bookingList.time[1]][bookingList.time[2]][bookingList.time[3]+(i*0.5)]).length)
-            {submitData.hours.push(bookingList.time[3]+(i*0.5))}
+            if(timeList[bookingList.time[0]][bookingList.time[1]][bookingList.time[2]][bookingList.time[3]+(i*50)] && 
+                !Object.keys(timeList[bookingList.time[0]][bookingList.time[1]][bookingList.time[2]][bookingList.time[3]+(i*50)]).length)
+            {submitHour.push(bookingList.time[3]+(i*50))}
             else{
                 alert("預定項目所需時間超過可預約時段長度")
-                submitData.hours = []
+                submitHour = []
                 break
             }
             }
+            if(!submitHour.length){return}
+            const submitData = {
+                guest:res.uid,
+                trade:uid,
+                items,
+                submitHour,
+                year:bookingList.time[0],
+                month:bookingList.time[1],
+                day:bookingList.time[2],
+                totalTime,
+                totalPrice
+            }
+            setPush({submitData,profile,titleName:data.titleName})
+            // await setBookingItem(uid,{items:items},bookingList.time[0],bookingList.time[1],bookingList.time[2],submitHour)
 
-            console.log(submitData)
+        
             }
         catch(error){
             alert(error)
@@ -99,6 +119,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
                 <div className={styles.btn} ><SubmitButton name="預定"/></div>
 
             </form>
+            {push && <PushMask push = {push} setPush = {setPush}/>}
         </div>
     )
 }
@@ -155,7 +176,7 @@ export default function Booking({data,timeList}:{data:any,timeList:any}){
                         <div key={index} className={`${styles.hourItem} 
                         ${(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length) && styles.hourNo}
                         ${((typeof timeitem[3] === "number") && (timeitem[3] === Number(Object.keys(item)[0]))) && styles.choose}
-                        `} onClick={(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length)?undefined:()=> handleClick(Object.keys(item)[0])}>{Number(Object.keys(item)[0])%1===0?`${Object.keys(item)[0]}:00`:`${Math.floor(Number(Object.keys(item)[0]))}:30`}</div>
+                        `} onClick={(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length)?undefined:()=> handleClick(Object.keys(item)[0])}>{Number(Object.keys(item)[0])%100===0?`${Number(Object.keys(item)[0])/100}:00`:`${Math.floor(Number(Object.keys(item)[0])/100)}:30`}</div>
                     ))}
                     </div>}
                 {afternoon.length>0 && <div className={styles.hourList}>
@@ -163,7 +184,7 @@ export default function Booking({data,timeList}:{data:any,timeList:any}){
                         <div key={index} className={`${styles.hourItem} 
                         ${(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length) && styles.hourNo}
                         ${((typeof timeitem[3] === "number") && (timeitem[3] === Number(Object.keys(item)[0]))) && styles.choose}
-                        `} onClick={(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length)?undefined:()=> handleClick(Object.keys(item)[0])}>{Number(Object.keys(item)[0])%1===0?`${Object.keys(item)[0]}:00`:`${Math.floor(Number(Object.keys(item)[0]))}:30`}</div>
+                        `} onClick={(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length)?undefined:()=> handleClick(Object.keys(item)[0])}>{Number(Object.keys(item)[0])%100===0?`${Number(Object.keys(item)[0])/100}:00`:`${Math.floor(Number(Object.keys(item)[0])/100)}:30`}</div>
                     ))}
                     </div>}
                 {evening.length>0 && <div className={styles.hourList}>
@@ -171,7 +192,7 @@ export default function Booking({data,timeList}:{data:any,timeList:any}){
                         <div key={index} className={`${styles.hourItem} 
                         ${(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length) && styles.hourNo}
                         ${((typeof timeitem[3] === "number") && (timeitem[3] === Number(Object.keys(item)[0]))) && styles.choose}
-                        `} onClick={(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length)?undefined:()=> handleClick(Object.keys(item)[0])}>{Number(Object.keys(item)[0])%1===0?`${Object.keys(item)[0]}:00`:`${Math.floor(Number(Object.keys(item)[0]))}:30`}</div>
+                        `} onClick={(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length)?undefined:()=> handleClick(Object.keys(item)[0])}>{Number(Object.keys(item)[0])%100===0?`${Number(Object.keys(item)[0])/100}:00`:`${Math.floor(Number(Object.keys(item)[0])/100)}:30`}</div>
                     ))}
                     </div>}
                 {night.length>0 && <div className={styles.hourList}>
@@ -179,7 +200,7 @@ export default function Booking({data,timeList}:{data:any,timeList:any}){
                         <div key={index} className={`${styles.hourItem} 
                         ${(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length) && styles.hourNo}
                         ${((typeof timeitem[3] === "number") && (timeitem[3] === Number(Object.keys(item)[0]))) && styles.choose}
-                        `} onClick={(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length)?undefined:()=> handleClick(Object.keys(item)[0])}>{Number(Object.keys(item)[0])%1===0?`${Object.keys(item)[0]}:00`:`${Math.floor(Number(Object.keys(item)[0]))}:30`}</div>
+                        `} onClick={(Object.keys(timeList[timeitem[0]][timeitem[1]][timeitem[2]][Object.keys(item)[0]]).length)?undefined:()=> handleClick(Object.keys(item)[0])}>{Number(Object.keys(item)[0])%100===0?`${Number(Object.keys(item)[0])/100}:00`:`${Math.floor(Number(Object.keys(item)[0])/100)}:30`}</div>
                     ))}
                     </div>}
             </div>

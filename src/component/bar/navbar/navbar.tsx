@@ -5,9 +5,10 @@ import styles from "./navbar.module.css"
 export default function Navbar({list}:{list:{name:string,id:string}[]}){
     const params = usePathname()
     const router = useRouter()
+    const param = params.split("/").slice(0,3).join("/")
     const handleClick = (item:{name:string,id:string},e:React.MouseEvent<HTMLDivElement>)=>{
+        e.preventDefault()
         if(params.includes("user/")){
-            const param = params.split("/").slice(0,3).join("/")
             router.push(param+"/"+item.id)
         }
         else{
@@ -26,7 +27,7 @@ export default function Navbar({list}:{list:{name:string,id:string}[]}){
     return(
         <div className={styles.bar}>
         {list.map((item,index)=>(
-            <div key={index} className={styles.item} onClick={(e)=>handleClick(item,e)}>{item.name}</div>
+            <a key={index} href={`${param}/${item.id}`} className={styles.a}><div  className={styles.item} onClick={(e)=>handleClick(item,e)}>{item.name}</div></a>
         ))}
         </div>
     )

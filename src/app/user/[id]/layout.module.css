@@ -9,3 +9,21 @@
     position: relative;
     padding-bottom: 10px;
 }
+.identity{
+    position: absolute;
+    z-index: 100;
+    top:60px;
+    right:10vw;
+}
+.span{
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: antiquewhite;
+    padding: 2px;
+}
+.choose{
+    font-size: 14px;
+    font-weight:700;
+    background-color: rgb(251, 218, 175);
+}

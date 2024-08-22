@@ -11,7 +11,6 @@ export default function ScheduleIn({timeList,setTimeList,selectDay,selectHour,re
     const Day = new Date()
     const [thisMonth,setThisMonth] = useState(Day.getMonth()+1)
     const [thisYear,setThisYear] = useState(Day.getFullYear())
-    
     let delay:boolean = false;
     if(Day.getMonth()>=thisMonth && Day.getFullYear()>=thisYear){
         delay = true;

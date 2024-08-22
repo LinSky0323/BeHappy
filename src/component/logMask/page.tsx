@@ -8,6 +8,7 @@ import { StopPropogation } from "@/lib/stopPropagation"
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
 import { usePathname, useRouter } from "next/navigation"
+import { setProfile } from "@/lib/firebase/firestore"
 
 
 
@@ -21,6 +22,10 @@ const sign = async(prevState:any, formData:FormData,remind: any,setSl:React.Disp
         try{
             const res = await signAuth(name,email,password) as any
             localStorage.setItem("uid",res.uid)
+            await setProfile(res.uid,{
+                email:email,
+                name:name
+            })
             console.log("註冊成功")
             setSl("註冊成功！請至信箱進行驗證")
             setTimeout(()=>{

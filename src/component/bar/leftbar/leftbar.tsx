@@ -2,18 +2,18 @@
 import { useParams, useRouter } from "next/navigation"
 import styles from "./leftbar.module.css"
 
-export default function LeftBar(){
+export default function LeftBar({list,path}:{list:{name:string,id:string}[],path:string}){
     const route = useRouter()
     const url = useParams()
-    const list = ["網頁主題","簡介","產品展示","預約項目","可預約時間","完成"]
-    const urlList = ["buildtitle","buildintroduce","builddisplay","builditem","buildtime","buildcomplete"]
-    const handleClick = (index:number)=>{
-        route.push(`/user/${url.id}/build/${urlList[index]}`)
+
+    const handleClick = (id:string,e:React.MouseEvent<HTMLDivElement>)=>{
+        e.preventDefault()
+        route.push(`/user/${url.id}/${path}/${id}`)
     } 
     return(
         <div className={styles.container}>
-            {list.map((item,index)=>(
-                <div key={index} className={styles.item} onClick={()=>handleClick(index)} >{item}</div>
+            {list.map((item:any,index)=>(
+                <a key={index} href={`/user/${url.id}/${path}/${item.id}`} className={styles.a}><div  className={styles.item} onClick={(e)=>handleClick(item.id,e)} >{item.name}</div></a>
             ))}
         </div>
     )

@@ -11,7 +11,9 @@
 .data__list{
     margin-right: 10px;
 }
-
+.isset{
+    background-color:aquamarine;
+}
 .date__container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -67,9 +69,7 @@
     border-right: 1px solid black;
 }
 
-.isset{
-    background-color:aquamarine;
-}
+
 .choose{
     background-color: yellow;
 }

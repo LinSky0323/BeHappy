@@ -3,8 +3,8 @@ import styles from "./daySchedule.module.css"
 
 
 export default function DayScheduleOut({list,chooseday}:{list:any,chooseday:any}){
-    const hours1 = [0,1,2,3,4,5,6,7,8,9,10,11]
-    const hours2 = [12,13,14,15,16,17,18,19,20,21,22,23]
+    const hours1 = [0,100,200,300,400,500,600,700,800,900,1000,1100]
+    const hours2 = [1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300]
     const { year, month, day } = chooseday;
 
     return (
@@ -26,11 +26,11 @@ export default function DayScheduleOut({list,chooseday}:{list:any,chooseday:any}
                                             <td className={`${styles.td} 
                                             ${(list[year]&&list[year][month]&&list[year][month][day]&&list[year][month][day][item]) && styles.choose}`} data-content={item}
                                             
-                                            >{item}:00</td>
+                                            >{item/100}:00</td>
                                             <td className={`${styles.td} 
-                                            ${(list[year]&&list[year][month]&&list[year][month][day]&&list[year][month][day][item+0.5]) && styles.choose}`} data-content={item+0.5}
+                                            ${(list[year]&&list[year][month]&&list[year][month][day]&&list[year][month][day][item+50]) && styles.choose}`} data-content={item+50}
                                             
-                                            >{Math.floor(item/1)}:30</td>
+                                            >{Math.floor(item/100)}:30</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -44,11 +44,11 @@ export default function DayScheduleOut({list,chooseday}:{list:any,chooseday:any}
                                             <td className={`${styles.td} 
                                             ${(list[year]&&list[year][month]&&list[year][month][day]&&list[year][month][day][item]) && styles.choose}`} data-content={item}
                                             
-                                            >{item}:00</td>
+                                            >{item/100}:00</td>
                                             <td className={`${styles.td} 
-                                            ${(list[year]&&list[year][month]&&list[year][month][day]&&list[year][month][day][item+0.5]) && styles.choose}`} data-content={item+0.5}
+                                            ${(list[year]&&list[year][month]&&list[year][month][day]&&list[year][month][day][item+50]) && styles.choose}`} data-content={item+50}
                                             
-                                            >{Math.floor(item/1)}:30</td>
+                                            >{Math.floor(item/100)}:30</td>
                                         </tr>
                                     ))}
                                 </tbody>

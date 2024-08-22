@@ -9,4 +9,8 @@
     background-color: rgb(253, 229, 198);
     cursor: pointer;
     margin-bottom: 10px;
+    color:black;
+}
+.a{
+    text-decoration:none ;
 }

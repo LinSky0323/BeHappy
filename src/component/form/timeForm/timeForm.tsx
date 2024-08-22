@@ -4,7 +4,7 @@ import DaySchedule from "@/component/daySchedule/daySchedule"
 import DayScheduleOut from "@/component/daySchedule/dayscheduleout"
 import ScheduleIn from "@/component/schedule/schedulein"
 import ScheduleOut from "@/component/schedule/scheduleout"
-import { getListData, getTimeData, setTimeData,  } from "@/lib/firebase/firestore"
+import {  getTimeData, setTimeData,  } from "@/lib/firebase/firestore"
 import { SelectDay, SelectHour } from "@/lib/selectDay"
 import {  selectTimeList, setTime } from "@/lib/store/features/userBuildSlices"
 import { useUserBuildDispatch, useUserBuildSelector } from "@/lib/store/hooks"
@@ -20,7 +20,7 @@ export default function TimeForm(){
     const [ischeck,setIscheck] = useState(false)
     const [timeList,setTimelist] = useState<Record<string, any>>({})
     const [hourList,setHourList] = useState<Record<string, any>>({})
-    const [list,setList] = useState({});
+    const [list,setList] = useState(timelist);
     const [rerenderkey,setRerenderkey] = useState(0)
     const [chooseday,setChooseday] = useState({})
     const uid = localStorage.getItem("uid") as string
@@ -34,7 +34,6 @@ export default function TimeForm(){
             })
         }
     },[])
-
     const clicknocheck = ()=>{
         setIscheck(false)
     }
@@ -54,9 +53,9 @@ export default function TimeForm(){
     const handleclick = async()=>{
         const newDays = {...timeList}
         const newHours = {...hourList}
+
         try{
             if(!Object.keys(newHours)[0]){throw "沒選時間"}
-            // const newList:any = {...list}
             const newList = JSON.parse(JSON.stringify(list));
             const year = Object.keys(newDays)[0]
             const month = Object.keys(newDays[year])[0]
@@ -100,6 +99,9 @@ export default function TimeForm(){
             console.log(error)
         }
     }
+    const test = ()=>{
+        console.log(timeList)
+    }
     return(
         <div> 
             <button className={ischeck?`${styles.button}`:`${styles.button}  ${styles.highbutton}`} onClick={clicknocheck}>編輯</button>
@@ -117,7 +119,7 @@ export default function TimeForm(){
                 <button className={styles.checkbtn} onClick={handleclick}>設定  </button>
             </div>
             </>}
-            
+            <button onClick={test}>test</button>
             
         </div>
     )
