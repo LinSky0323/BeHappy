@@ -61,7 +61,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
                 totalTime,
                 totalPrice
             }
-            setPush({submitData,profile,titleName:data.titleName})
+            setPush({submitData,profile,titleName:data.titleName,writerName:data.writerName})
             // await setBookingItem(uid,{items:items},bookingList.time[0],bookingList.time[1],bookingList.time[2],submitHour)
 
         

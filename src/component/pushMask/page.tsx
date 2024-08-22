@@ -4,15 +4,14 @@ import styles from "./page.module.css"
 import { StopPropogation } from "@/lib/stopPropagation"
 import { useFormState, useFormStatus } from "react-dom"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
-import { pushBookingItem, setProfile } from "@/lib/firebase/firestore"
-import { useRouter } from "next/navigation"
+import { getProfile, pushBookingItem, setProfile } from "@/lib/firebase/firestore"
+
 
 export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch<SetStateAction<{}|null>>}){
-    const {submitData,profile,titleName} = push
+    const {submitData,profile,titleName,writerName} = push
     const {pending} = useFormStatus()
     const [name,setName] = useState(profile.name)
     const [phone,setPhone] = useState(profile.phone)
-    const route = useRouter()
     const hourstart = submitData.submitHour[0]%100===0?(submitData.submitHour[0]/100)+":00":(Math.floor(submitData.submitHour[0]/100))+":30"
     const hourend = (submitData.submitHour[(submitData.submitHour.length)-1]+50)%100===0?(submitData.submitHour[(submitData.submitHour.length)-1]+50)/100+":00":(Math.floor((submitData.submitHour[(submitData.submitHour.length)-1]+50)/100))+":30"
     const handleClick = ()=>{
@@ -20,6 +19,7 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
     }
     const remind = useChangeRemind()
     const submit = async()=>{
+        const tradeData:any = await getProfile(submitData.trade)
         if(!name){
             remind.setRemind("請正確填寫您的姓名")
             return
@@ -64,11 +64,24 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
         }
         
 
-        console.log(shoppingData)
-        console.log(bookingData)
+
         try{
             const result = await pushBookingItem(submitData.guest,submitData.trade,shoppingData,bookingData,submitData.year,submitData.month,submitData.day,submitData.submitHour)
             alert("感謝您的預定。訂單已送出")
+            fetch("/api/sendmail",{
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify({
+                    to: tradeData.email,
+                    subject: `您的「${titleName}」有一筆新的訂單`,
+                    body: `<h1>Hello ${writerName}</h1>
+                    <h3>您收到一筆來自${profile.name}的預約</h3>
+                    <h3>預約時間是${submitData.year}年${submitData.month}月${submitData.day}日</h3>
+                    <h4>詳細情形請至<a href="${window.location.origin}/user/${submitData.trade}/bookingList">網站</a>查詢</h4>`,
+                  }),
+            })
             window.location.reload();
         }
         catch(error){
@@ -77,6 +90,8 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
         }
     }
     const [state,formAction] = useFormState(submit,null)
+
+
     return(
         <div className={styles.mask} onClick={handleClick} >
             <form className={styles.window} onClick={(e)=>StopPropogation(e)} action={formAction}>
@@ -99,7 +114,6 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
                     <button type="submit" aria-disabled={pending} className={styles.btn} >確認送出!</button>
                 </div>
             </form>
-
         </div>
     )
 }
