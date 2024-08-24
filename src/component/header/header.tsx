@@ -7,7 +7,7 @@ export default   function Header({title="",username="",data,navList}:{title?:str
     
     return(
         <header className={styles.header}>
-            <Link href="/" ><h1 className={styles.name} >{`${title===""?data.titleName:title}`}</h1></Link>
+            <Link href="/" className={styles.name}><h1 className={styles.name} >{`${title===""?data.titleName:title}`}</h1></Link>
             <Sign/>
             <div className={styles.mask}>
                 <Navbar list={navList}/>

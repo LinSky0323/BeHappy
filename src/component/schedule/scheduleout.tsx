@@ -10,6 +10,7 @@ export default function ScheduleOut({list,chooseday,setChooseday}:{list:any,choo
     const [thisYear,setThisYear] = useState(Day.getFullYear())
     const [rerenderkey,setRerendkey] = useState(0)
     let delay:boolean = false;
+    console.log(list)
     if(Day.getMonth()>=thisMonth && Day.getFullYear()>=thisYear){
         delay = true;
     }

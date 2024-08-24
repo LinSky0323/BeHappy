@@ -20,6 +20,8 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
     const remind = useChangeRemind()
     const submit = async()=>{
         const tradeData:any = await getProfile(submitData.trade)
+        const date = new Date(submitData.year,submitData.month,submitData.day,(submitData.submitHour[0]/100)) 
+        const reserveTime = date.getTime()
         if(!name){
             remind.setRemind("請正確填寫您的姓名")
             return
@@ -38,8 +40,10 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
             day:submitData.day,
             hours:submitData.submitHour,
             totalPrice:submitData.totalPrice,
-            check:null,
-            complete:false,
+            totalTime:submitData.totalTime,
+            check:0,
+            reserveTime
+
         };
         const bookingData = {
             guestName:name,
@@ -53,8 +57,8 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
             hours:submitData.submitHour,
             totalTime:submitData.totalTime,
             totalPrice:submitData.totalPrice,
-            check:null,
-            complete:false,
+            check:0,
+            reserveTime
         }
         if(profile.name !== name || profile.phone !== phone){
             const newProfile = {...profile}
@@ -63,7 +67,6 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
             await setProfile(submitData.guest,newProfile)
         }
         
-
 
         try{
             const result = await pushBookingItem(submitData.guest,submitData.trade,shoppingData,bookingData,submitData.year,submitData.month,submitData.day,submitData.submitHour)

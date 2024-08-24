@@ -1,46 +1,14 @@
 "use client"
 import FormTitle from "@/component/form/title"
 import styles from "./page.module.css"
-import { SetStateAction, useEffect, useState } from "react"
 import { useTransactionDispatch, useTransactionSelector } from "@/lib/store/hooks"
 import { selectTranscationList, setTranscationList } from "@/lib/store/features/transcationSlices"
-import { checkBookingItem, getShopping } from "@/lib/firebase/firestore"
-import { StopPropogation } from "@/lib/stopPropagation"
+import { useEffect, useState } from "react"
+import { getShopping } from "@/lib/firebase/firestore"
 
 const state = ["未確認","已確認","已拒絕","已完成","已取消","未履約"]
 
-const Mask = ({item,setMask,onlyday}:{item:any,setMask:React.Dispatch<SetStateAction<{}|null>>,onlyday:any})=>{
-    const handleClick = ()=>{
-        setMask(null)
-    }
-    const thisday = new Date(item.year,item.month-1,item.day) as any
-    const clickCheck = async()=>{
-        if(thisday-onlyday<=8640000){
-            alert("前一日不能取消")
-            return
-        }
-        const gusetUid = localStorage.getItem("uid") as string
-        try{
-            const res = await checkBookingItem(gusetUid,item.tradeUid,item.id,4,item.year,item.month,item.day,item.hours)
-            alert(res)
-            window.location.reload();   
-        }
-        catch(error){
-            console.log(error)
-        }
-    }
-    return(
-        <div className={styles.mask} onClick={handleClick}>
-            <div className={styles.check} onClick={StopPropogation}>{`確定要取消「${item.tradeName}」在 ${item.year}/${item.month}/${item.day} 的預約 嗎? `}
-            <button className={styles.checkBtn} onClick={clickCheck}>確定</button>
-            </div>
-            
-        </div>
-    )
-}
-
-export default function MyBookingItem(){
-    const [mask,setMask] = useState<{}|null>(null)
+export default function Record(){
     const day = new Date()
     const onlyday = new Date(day.getFullYear(),day.getMonth(),day.getDate()) as any
     const uid = localStorage.getItem("uid") as string
@@ -57,15 +25,9 @@ export default function MyBookingItem(){
             })
         }
     },[])
-
-    const clickCancle = (item:any)=>{
-        setMask(item)
-    }
     return(
         <main>
-            <div className={styles.remark}>*預約日期前1天無法取消</div>
-            {mask && <Mask item = {mask} setMask = {setMask} onlyday = {onlyday}/>}
-            <FormTitle name = "您的預約"/>
+            <FormTitle name = "預約記錄"/>
             <table className={styles.table}>
                 <thead>
                     <tr>
@@ -73,14 +35,13 @@ export default function MyBookingItem(){
                         <th className={`${styles.th} ${styles.th2}`}>預約日期</th>
                         <th className={`${styles.th} ${styles.th2}`}>預約時間</th>
                         <th className={`${styles.th} ${styles.th3}`}>預約項目</th>
-                        <th className={`${styles.th} ${styles.th4}`}>預計金額</th>
+                        <th className={`${styles.th} ${styles.th4}`}>花費金額</th>
                         <th className={`${styles.th} ${styles.th5}`}>訂單狀態</th>
-                        <th className={`${styles.th} ${styles.th6}`}>取消預約</th>
                     </tr>
                 </thead>
                 <tbody>
                     {list && list.map((item:any,index:number)=>{
-                        if(new Date(item.year,item.month-1,item.day) as any - onlyday<0){
+                        if(new Date(item.year,item.month-1,item.day) as any - onlyday>=0){
                             return null
                         }
                         return(
@@ -91,7 +52,6 @@ export default function MyBookingItem(){
                             <td className={styles.td}>{item.items}</td>
                             <td className={styles.td}>{item.totalPrice===-1?"視情況而定":item.totalPrice+"元"}</td>
                             <td className={styles.td}>{state[item.check]}</td>
-                            <td className={`${styles.td} ${styles.x}`} onClick={item.check>1?undefined:()=>clickCancle(item)}>{(item.check<2) && "x"}</td>
                         </tr>
                         )
                     })}

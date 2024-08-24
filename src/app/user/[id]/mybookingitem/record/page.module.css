@@ -1,0 +1,25 @@
+.table{
+    margin:30px 20px 50px 100px;
+    border-collapse: collapse;
+}
+.th{
+    border: 1px solid black;
+    height:30px;
+    padding: 2px;
+}
+.td{
+    border: 1px solid black;
+    height: 25px;
+    text-align: center;
+}
+.th1{
+    width: 160px;
+}
+.th2{
+    width:100px;
+}
+.th3{
+    width:120px;
+}
+
+

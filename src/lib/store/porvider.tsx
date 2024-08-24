@@ -1,6 +1,6 @@
 "use client"
 import { Provider } from "react-redux";
-import {  makePersonPageStore,makeUserBuildStore,PersonPageStore, UserBuildStore } from "./store";
+import {  makePersonPageStore,makeTranscationStore,makeUserBuildStore,PersonPageStore, TransactionStore, UserBuildStore } from "./store";
 import { useRef } from "react";
 
 
@@ -20,4 +20,13 @@ export function UserBuildProviders({children}:{children:React.ReactNode;}){
     }
     return <Provider store={storeRef.current}>{children}</Provider>
 } 
+
+export function TranscationProviders({children}:{children:React.ReactNode;}){
+    const storeRef = useRef<TransactionStore>()
+    if(!storeRef.current){
+        storeRef.current = makeTranscationStore()
+    }
+    return <Provider store={storeRef.current}>{children}</Provider>
+} 
+
 

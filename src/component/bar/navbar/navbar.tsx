@@ -8,6 +8,7 @@ export default function Navbar({list}:{list:{name:string,id:string}[]}){
     const param = params.split("/").slice(0,3).join("/")
     const handleClick = (item:{name:string,id:string},e:React.MouseEvent<HTMLDivElement>)=>{
         e.preventDefault()
+        e.stopPropagation()
         if(params.includes("user/")){
             router.push(param+"/"+item.id)
         }
@@ -27,7 +28,7 @@ export default function Navbar({list}:{list:{name:string,id:string}[]}){
     return(
         <div className={styles.bar}>
         {list.map((item,index)=>(
-            <a key={index} href={`${param}/${item.id}`} className={styles.a}><div  className={styles.item} onClick={(e)=>handleClick(item,e)}>{item.name}</div></a>
+            <a key={index} href={`${param}/${item.id}`} className={styles.a} onClick={(e) => e.preventDefault()}><div  className={styles.item} onClick={(e)=>handleClick(item,e)}>{item.name}</div></a>
         ))}
         </div>
     )
