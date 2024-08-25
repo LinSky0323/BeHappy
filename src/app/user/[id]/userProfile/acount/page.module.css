@@ -1,0 +1,33 @@
+.imgContainer{
+    position: relative;
+    height: 20px;
+    width: 20px;
+}
+.item{
+    display: flex;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    gap: 20px;
+}
+.content{
+    margin-left: 150px;
+    margin-top:20px;
+    margin-bottom: 30px;
+}
+.input{
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0.851);
+    font-size: 12px;
+    padding: 2px 10px 2px 10px;
+}
+.input:focus{
+    border: none;
+    outline: none;
+}
+.remind{
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
+}

@@ -63,3 +63,16 @@
     font-size: 12px;
     color: red;
 }
+.tableContainer{
+    height:300px;
+    overflow:auto;
+}
+.cancle{
+    color: red;
+}
+.complete{
+    color: green;
+}
+.receive{
+    color:aquamarine
+}

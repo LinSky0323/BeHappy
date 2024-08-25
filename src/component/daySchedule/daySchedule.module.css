@@ -16,6 +16,15 @@
     width: 50px;
     user-select: none;
 }
+.has{
+    background-color: aquamarine;
+}
+.thisItem{
+    background-color: rgb(0, 255, 170);
+}
+.already{
+    background-color:rgb(208, 71, 71);
+}
 .choose{
     background-color: yellow;
 }

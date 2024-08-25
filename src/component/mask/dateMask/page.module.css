@@ -1,0 +1,51 @@
+.mask{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 101;
+    background-color: rgba(0,0,0,0.3);
+}
+.container{
+    margin-left: calc(50vw - 500px);
+    margin-top: 20vh;
+    width: 1000px;
+    height: 500px;
+    background-color:rgb(3, 80, 108) ;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    position: relative;
+}
+.timeContainer{
+    display: flex;
+    background-color: white;
+    color: black;
+}
+.title{
+    margin:20px;
+}
+.btn{
+    width: 40px;
+    padding: 3px;
+    border-radius: 5px;
+    font-weight: 700;
+    border: none;
+    cursor:pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 100px;
+}
+.btn:hover{
+    box-shadow:1px 1px 1px ;
+    transform: translate(-1px,-1px);
+}
+.remind{
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(236, 150, 150);
+    margin-top: 20px;
+}

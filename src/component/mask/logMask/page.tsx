@@ -1,6 +1,6 @@
 "use client"
 import { useFormState, useFormStatus } from "react-dom"
-import SubmitButton from "../button/submitButton/submitButton"
+import SubmitButton from "../../button/submitButton/submitButton"
 import styles from "./page.module.css"
 import { useState } from "react"
 import { loginAuth, logoutAuth, sendEmailAuth, signAuth } from "@/lib/firebase/firaAuth"
@@ -87,6 +87,7 @@ const logout = async(prevState:any, formData:FormData,setOut:React.Dispatch<Reac
         const res = await logoutAuth() as string
         setOut(res)
         localStorage.removeItem("uid")
+        sessionStorage.removeItem("identity")
         setTimeout(()=>{
                 setIsLogin(2)
                 setSlwindow(false)

@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import personPageReducer from "./features/personPageSlices"
 import userBuildReducer from "./features/userBuildSlices"
 import transcationReducer from "./features/transcationSlices"
+import bookingListReducer from "./features/bookingListSlices"
 
 
 export const makePersonPageStore = ()=>{
@@ -27,6 +28,16 @@ export const makeTranscationStore = ()=>{
     })
 }
 
+export const makeBookingListStore = ()=>{
+    return configureStore({
+        reducer:{
+           bookingListSlices:bookingListReducer
+        }
+    })
+}
+export type BookingListStore = ReturnType<typeof makeBookingListStore>
+export type BookingListState = ReturnType<BookingListStore["getState"]>
+export type BookingListDispatch = BookingListStore["dispatch"]
 
 export type PersonPageStore = ReturnType<typeof makePersonPageStore>
 export type PersonPageState = ReturnType<PersonPageStore["getState"]>

@@ -28,35 +28,37 @@ export default function Record(){
     return(
         <main>
             <FormTitle name = "預約記錄"/>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <th className={`${styles.th} ${styles.th1}`}>預約店家</th>
-                        <th className={`${styles.th} ${styles.th2}`}>預約日期</th>
-                        <th className={`${styles.th} ${styles.th2}`}>預約時間</th>
-                        <th className={`${styles.th} ${styles.th3}`}>預約項目</th>
-                        <th className={`${styles.th} ${styles.th4}`}>花費金額</th>
-                        <th className={`${styles.th} ${styles.th5}`}>訂單狀態</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {list && list.map((item:any,index:number)=>{
-                        if(new Date(item.year,item.month-1,item.day) as any - onlyday>=0){
-                            return null
-                        }
-                        return(
-                            <tr key={index}>
-                            <td className={styles.td}>{item.tradeName}</td>
-                            <td className={styles.td}>{item.year+"/"+item.month+"/"+item.day}</td>
-                            <td className={styles.td}>{item.totalTime===-1?`${(item.hours[0]%100===0)?(item.hours[0]/100)+":00":(Math.floor(item.hours[0]/100)+":30")}起`:`${(item.hours[0]%100===0)?(item.hours[0]/100)+":00":(Math.floor(item.hours[0]/100)+":30")} 到 ${((item.hours[item.hours.length-1]+50)%100===0)?((item.hours[item.hours.length-1]+50)/100)+":00":(Math.floor((item.hours[item.hours.length-1]+50)/100)+":30")}`}</td>
-                            <td className={styles.td}>{item.items}</td>
-                            <td className={styles.td}>{item.totalPrice===-1?"視情況而定":item.totalPrice+"元"}</td>
-                            <td className={styles.td}>{state[item.check]}</td>
+            <div className={styles.tableContainer}>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                            <th className={`${styles.th} ${styles.th1}`}>預約店家</th>
+                            <th className={`${styles.th} ${styles.th2}`}>預約日期</th>
+                            <th className={`${styles.th} ${styles.th2}`}>預約時間</th>
+                            <th className={`${styles.th} ${styles.th3}`}>預約項目</th>
+                            <th className={`${styles.th} ${styles.th4}`}>花費金額</th>
+                            <th className={`${styles.th} ${styles.th5}`}>訂單狀態</th>
                         </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {list && list.map((item:any,index:number)=>{
+                            if(new Date(item.year,item.month-1,item.day) as any - onlyday>=0){
+                                return null
+                            }
+                            return(
+                                <tr key={index}>
+                                <td className={styles.td}>{item.tradeName}</td>
+                                <td className={styles.td}>{item.year+"/"+item.month+"/"+item.day}</td>
+                                <td className={styles.td}>{item.totalTime===-1?`${(item.hours[0]%100===0)?(item.hours[0]/100)+":00":(Math.floor(item.hours[0]/100)+":30")}起`:`${(item.hours[0]%100===0)?(item.hours[0]/100)+":00":(Math.floor(item.hours[0]/100)+":30")} 到 ${((item.hours[item.hours.length-1]+50)%100===0)?((item.hours[item.hours.length-1]+50)/100)+":00":(Math.floor((item.hours[item.hours.length-1]+50)/100)+":30")}`}</td>
+                                <td className={styles.td}>{item.items}</td>
+                                <td className={styles.td}>{item.totalPrice===-1?"視情況而定":item.totalPrice+"元"}</td>
+                                <td className={styles.td}>{state[item.check]}</td>
+                            </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </main>
     )
 }

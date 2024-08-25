@@ -66,37 +66,39 @@ export default function MyBookingItem(){
             <div className={styles.remark}>*預約日期前1天無法取消</div>
             {mask && <Mask item = {mask} setMask = {setMask} onlyday = {onlyday}/>}
             <FormTitle name = "您的預約"/>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <th className={`${styles.th} ${styles.th1}`}>預約店家</th>
-                        <th className={`${styles.th} ${styles.th2}`}>預約日期</th>
-                        <th className={`${styles.th} ${styles.th2}`}>預約時間</th>
-                        <th className={`${styles.th} ${styles.th3}`}>預約項目</th>
-                        <th className={`${styles.th} ${styles.th4}`}>預計金額</th>
-                        <th className={`${styles.th} ${styles.th5}`}>訂單狀態</th>
-                        <th className={`${styles.th} ${styles.th6}`}>取消預約</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {list && list.map((item:any,index:number)=>{
-                        if(new Date(item.year,item.month-1,item.day) as any - onlyday<0){
-                            return null
-                        }
-                        return(
-                            <tr key={index}>
-                            <td className={styles.td}>{item.tradeName}</td>
-                            <td className={styles.td}>{item.year+"/"+item.month+"/"+item.day}</td>
-                            <td className={styles.td}>{item.totalTime===-1?`${(item.hours[0]%100===0)?(item.hours[0]/100)+":00":(Math.floor(item.hours[0]/100)+":30")}起`:`${(item.hours[0]%100===0)?(item.hours[0]/100)+":00":(Math.floor(item.hours[0]/100)+":30")} 到 ${((item.hours[item.hours.length-1]+50)%100===0)?((item.hours[item.hours.length-1]+50)/100)+":00":(Math.floor((item.hours[item.hours.length-1]+50)/100)+":30")}`}</td>
-                            <td className={styles.td}>{item.items}</td>
-                            <td className={styles.td}>{item.totalPrice===-1?"視情況而定":item.totalPrice+"元"}</td>
-                            <td className={styles.td}>{state[item.check]}</td>
-                            <td className={`${styles.td} ${styles.x}`} onClick={item.check>1?undefined:()=>clickCancle(item)}>{(item.check<2) && "x"}</td>
+            <div className={styles.tableContainer}>
+                <table className={styles.table}>
+                    <thead className={styles.thead}>
+                        <tr className={styles.thead}>
+                            <th className={`${styles.th} ${styles.th1} ${styles.thead}`}>預約店家</th>
+                            <th className={`${styles.th} ${styles.th2} ${styles.thead}`}>預約日期</th>
+                            <th className={`${styles.th} ${styles.th2} ${styles.thead}`}>預約時間</th>
+                            <th className={`${styles.th} ${styles.th3} ${styles.thead}`}>預約項目</th>
+                            <th className={`${styles.th} ${styles.th4} ${styles.thead}`}>預計金額</th>
+                            <th className={`${styles.th} ${styles.th5} ${styles.thead}`}>訂單狀態</th>
+                            <th className={`${styles.th} ${styles.th6} ${styles.thead}`}>取消預約</th>
                         </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {list && list.map((item:any,index:number)=>{
+                            if(new Date(item.year,item.month-1,item.day) as any - onlyday<0){
+                                return null
+                            }
+                            return(
+                                <tr key={index}>
+                                <td className={styles.td}>{item.tradeName}</td>
+                                <td className={styles.td}>{item.year+"/"+item.month+"/"+item.day}</td>
+                                <td className={styles.td}>{item.totalTime===-1?`${(item.hours[0]%100===0)?(item.hours[0]/100)+":00":(Math.floor(item.hours[0]/100)+":30")}起`:`${(item.hours[0]%100===0)?(item.hours[0]/100)+":00":(Math.floor(item.hours[0]/100)+":30")} 到 ${((item.hours[item.hours.length-1]+50)%100===0)?((item.hours[item.hours.length-1]+50)/100)+":00":(Math.floor((item.hours[item.hours.length-1]+50)/100)+":30")}`}</td>
+                                <td className={styles.td}>{item.items}</td>
+                                <td className={styles.td}>{item.totalPrice===-1?"視情況而定":item.totalPrice+"元"}</td>
+                                <td className={`${styles.td} ${(item.check===2||item.check===4||item.check===5) && styles.cancle} ${item.check===1 && styles.receive} ${item.check===3 && styles.complete}`}>{state[item.check]}</td>
+                                <td className={`${styles.td} ${item.check<2 && styles.x}`} onClick={item.check>1?undefined:()=>clickCancle(item)}>{(item.check<2) && "x"}</td>
+                            </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </main>
     )
 }

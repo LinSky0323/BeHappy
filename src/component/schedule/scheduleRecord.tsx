@@ -4,13 +4,13 @@ import { useState } from "react"
 import { SelectDay } from "@/lib/selectDay"
 
 
-export default function ScheduleOut({list,chooseday,setChooseday,thisItem,setHours}:{list:any,chooseday:any,setChooseday:React.Dispatch<React.SetStateAction<object>>,thisItem?:any,setHours?:React.Dispatch<React.SetStateAction<number[]>>}){
+export default function ScheduleRecord({list,chooseday,setChooseday}:{list:any,chooseday:any,setChooseday:React.Dispatch<React.SetStateAction<object>>}){
     const Day = new Date()
     const [thisMonth,setThisMonth] = useState(Day.getMonth()+1)
     const [thisYear,setThisYear] = useState(Day.getFullYear())
     const [rerenderkey,setRerendkey] = useState(0)
     let delay:boolean = false;
-    if(Day.getMonth()>=thisMonth && Day.getFullYear()>=thisYear){
+    if(Day.getMonth()+1<thisMonth && Day.getFullYear()<=thisYear){
         delay = true;
     }
     const listYear = Day.getFullYear()
@@ -35,31 +35,20 @@ export default function ScheduleOut({list,chooseday,setChooseday,thisItem,setHou
         const month:number = e.target.selectedIndex+1;
         setThisMonth(month)
         setRerendkey(rerenderkey+1)
-        setChooseday({})
-        if(setHours){
-            setHours([])
-        }
 
     }
     const handlechangeyear = (e:React.ChangeEvent<HTMLSelectElement>)=>{
         const year:number = parseInt(e.target.value);
         setThisYear(year)
         setRerendkey(rerenderkey+1)
-        setChooseday({})
-        if(setHours){
-            setHours([])
-        }
     }
     const handleClick = (e:React.MouseEvent<HTMLDivElement>,item:string)=>{
         const newList = {year:thisYear,month:thisMonth,day:item}
         setChooseday(newList)
-        if(setHours){
-            setHours([])
-        }
     }
 
     return(
-        <div className={styles.account__containerIn} >
+        <div className={styles.account__containerBookiong} >
             <select onChange={handlechangeyear} className={styles.data__list} value={thisYear}> 
                 <option>{listYear}</option>
                 <option>{listYear+1}</option>
@@ -69,17 +58,28 @@ export default function ScheduleOut({list,chooseday,setChooseday,thisItem,setHou
                 return <option key={item} >{item}</option>
             })}
             </select>
-            <section className={styles.date__containerIn} key={rerenderkey}>
+            <section className={styles.date__containerBooking} key={rerenderkey}>
                 {daysOfWeek.map((item)=>{
-                    return <div key={item} className={styles.date__week}>{item}</div>
+                    return <div key={item} className={styles.date__weekbooking}>{item}</div>
                 })}
                 {result.map((item,index)=>{
-                    return <div key={index} className={`${styles.date__item} ${((parseInt(item)===Day.getDate()) && (thisMonth===Day.getMonth()+1)) && (thisYear===listYear) && styles.date__today} 
-                    ${(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)<Day.getDate())))&& styles.delay}
+                    let hasbooking = false
+                    if(list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]){
+                        Object.keys(list[thisYear][thisMonth][item]).map((key,index)=>{
+                            if(Object.keys(list[thisYear][thisMonth][item][key]).length){
+                                hasbooking = true
+                            }
+                        })
+                    }
+
+                    return <div key={index} className={`
+                    ${styles.date__itembooking} 
+                    ${((parseInt(item)===Day.getDate()) && (thisMonth===Day.getMonth()+1)) && (thisYear===listYear) && styles.date__today} 
+                    ${(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)>Day.getDate())))&& styles.delay}
                     ${ (list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]) && styles.isset }
                     ${ (chooseday.year === thisYear && chooseday.month === thisMonth && chooseday.day === item ) && styles.choose }
-                    ${ (thisItem && thisItem.year === thisYear && thisItem.month === thisMonth && thisItem.day === item ) && styles.thisItem }`}
-                    onClick={(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)<=Day.getDate())))?undefined:(e)=>{handleClick(e,item)}} 
+                    ${hasbooking && styles.hasbooking}`}
+                    onClick={(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)>=Day.getDate())))?undefined:(e)=>{handleClick(e,item)}} 
                     >{item}</div>
                 })}
             </section>

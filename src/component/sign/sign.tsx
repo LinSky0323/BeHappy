@@ -2,7 +2,7 @@
 import { usePathname, useRouter } from "next/navigation"
 import styles from "./sign.module.css"
 import { useEffect, useLayoutEffect, useState } from "react"
-import SL from "../logMask/page"
+import SL from "../mask/logMask/page"
 import { checkAuth } from "@/lib/firebase/firaAuth"
 
 

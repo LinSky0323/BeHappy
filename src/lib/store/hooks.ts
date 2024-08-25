@@ -1,6 +1,6 @@
 "use client"
 import { useDispatch,useSelector,useStore } from "react-redux";
-import type { PersonPageState,PersonPageDispatch,PersonPageStore, UserBuildStore, UserBuildDispatch, UserBuildState,TransactionDispatch,TransactionState,TransactionStore } from "./store";
+import type { PersonPageState,PersonPageDispatch,PersonPageStore, UserBuildStore, UserBuildDispatch, UserBuildState,TransactionDispatch,TransactionState,TransactionStore,BookingListDispatch,BookingListState,BookingListStore } from "./store";
 
 export const usePersonPageStore = useStore.withTypes<PersonPageStore>()
 export const usePersonPageDispatch = useDispatch.withTypes<PersonPageDispatch>()
@@ -13,4 +13,8 @@ export const useUserBuildSelector = useSelector.withTypes<UserBuildState>()
 export const useTransactionStore = useStore.withTypes<TransactionStore>()
 export const useTransactionDispatch = useDispatch.withTypes<TransactionDispatch>()
 export const useTransactionSelector = useSelector.withTypes<TransactionState>()
+
+export const useBookingListStore = useStore.withTypes<BookingListStore>()
+export const useBookingListDispatch = useDispatch.withTypes<BookingListDispatch>()
+export const useBookingListSelector = useSelector.withTypes<BookingListState>()
 

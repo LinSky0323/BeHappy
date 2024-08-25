@@ -99,9 +99,7 @@ export default function TimeForm(){
             console.log(error)
         }
     }
-    const test = ()=>{
-        console.log(timeList)
-    }
+
     return(
         <div> 
             <button className={ischeck?`${styles.button}`:`${styles.button}  ${styles.highbutton}`} onClick={clicknocheck}>編輯</button>
@@ -119,7 +117,6 @@ export default function TimeForm(){
                 <button className={styles.checkbtn} onClick={handleclick}>設定  </button>
             </div>
             </>}
-            <button onClick={test}>test</button>
             
         </div>
     )

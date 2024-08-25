@@ -1,6 +1,7 @@
 import { addDoc } from "firebase/firestore/lite"
 import {firebaseConfig,db} from "./firebaseApp"
 import { arrayUnion, collection, doc, getDoc, getDocFromServer, getDocs, getFirestore, orderBy, query, runTransaction, setDoc, updateDoc } from "firebase/firestore"
+import { Oldenburg } from "next/font/google"
 
 export async function createListData(uid:string,obj:{}){
     const ref = doc(db,uid,"listdb")
@@ -177,7 +178,7 @@ export async function addBooking(uid:string,obj:{},id:string) {
 
 export async function getShopping(uid:string){
     const ref = collection(db,"IO","shopping",uid)
-    const q = query(ref,orderBy("reserveTime","desc"))
+    const q = query(ref,orderBy("reserveTime"))
     try{
         const data = await getDocs(q)
         if(!data.empty){
@@ -195,6 +196,56 @@ export async function getShopping(uid:string){
     }
 }//獲得shopping list
 
+export async function getBooking(uid:string){
+    const ref = collection(db,"IO","booking",uid)
+    const q = query(ref,orderBy("reserveTime"))
+    try{
+        const data = await getDocs(q)
+        if(!data.empty){
+            const result = data.docs.map((doc)=>{
+                return ({id:doc.id,...doc.data()})
+            })
+            return result
+        }
+        else{
+            return null
+        }
+    }
+    catch(error){
+        return error
+    }
+}//獲得booking list
+
+export async function setRemark(tradeUid:string,guestUid:string,obj:{}){
+    const ref = doc(db,tradeUid,"guestdb")
+    const data = await getDoc(ref)
+    if(data.exists()){
+        const result = data.data()
+        const item = result[guestUid]
+        try{
+            const res = await updateDoc(ref,{[guestUid]:{...item,...obj}})
+            return "修改成功"
+        }
+        catch(error){
+            return error
+        }
+    }
+}//修改個人備註
+export async function getRemark(tradeUid:string,guestUid:string){
+    const ref = doc(db,tradeUid,"guestdb")
+    try{
+        const data = await getDocFromServer(ref)
+        if(data.exists()){
+            return data.data()[guestUid]
+        }
+        else{
+            return null
+        }
+    }
+    catch(error){
+        throw error
+    }
+}//獲得備註
 export async function pushBookingItem(myuid:string,youruid:string,shoppingData:any,bookingData:any,year:number,month:number,day:number,hour:number[]){
     try{
         await runTransaction(db,async(transaction)=>{
@@ -213,8 +264,8 @@ export async function pushBookingItem(myuid:string,youruid:string,shoppingData:a
             })
             transaction.set(addRef,shoppingData)
             transaction.set(bookingRef,bookingData)
-            transaction.set(myRef,{[shoppingData.tradeUid]:shoppingData.tradeName},{merge:true})
-            transaction.set(yourRef,{[bookingData.guestUid]:bookingData.guestName})
+            transaction.set(myRef,{[shoppingData.tradeUid]:{name:shoppingData.tradeName}},{merge:true})
+            transaction.set(yourRef,{[bookingData.guestUid]:{name:bookingData.guestName}})
         })
         return "新增成功"
     }
@@ -247,3 +298,43 @@ export async function checkBookingItem(guestUid:string,tradeUid:string,docId:str
     }
 }//修改訂單狀態的事務
 
+export async function setTotalPrice(guestUid:string,tradeUid:string,docId:string,price:number){
+    try{
+        await runTransaction(db,async(transaction)=>{
+            const guestRef = doc(db,"IO","shopping",guestUid,docId)
+            const tradeRef = doc(db,"IO","booking",tradeUid,docId)
+            transaction.update(guestRef,{totalPrice:price})
+            transaction.update(tradeRef,{totalPrice:price})
+        })
+        return true
+    }
+    catch(error){
+        console.error("Transaction failed: ", error);
+        throw new Error("Transaction failed");
+    }
+}//修改金額
+
+export async function changeTimeItem(guestUid:string,tradeUid:string,docId:string,oldyear:number,oldmonth:number,oldday:number,oldhours:number[],newyear:number,newmonth:number,newday:number,newhours:number[],reserveTime:number){
+    try{
+        await runTransaction(db,async(transcation)=>{
+            const shoppingRef = doc(db,"IO","shopping",guestUid,docId)
+            const bookingRef = doc(db,"IO","booking",tradeUid,docId)
+            const timeRef = doc(db,tradeUid,"timedb")
+            transcation.update(shoppingRef,{year:newyear,month:newmonth,day:newday,hours:newhours,reserveTime:reserveTime})
+            transcation.update(bookingRef,{year:newyear,month:newmonth,day:newday,hours:newhours,reserveTime:reserveTime})
+            oldhours.map((item)=>{
+                const i =  oldyear+"."+oldmonth+"."+oldday+"."+item
+                transcation.update(timeRef,{[i]:{}})
+            })
+            newhours.map((item)=>{
+                const i = newyear+"."+newmonth+"."+newday+"."+item
+                transcation.update(timeRef,{[i]:{id:docId}})
+            })
+        })
+        return true
+    }
+    catch(error){
+        console.error("Transaction failed: ", error);
+        throw new Error("Transaction failed");
+    }
+}

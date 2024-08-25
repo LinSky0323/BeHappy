@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import { checkAuth } from "@/lib/firebase/firaAuth"
 import { getProfile, setBookingItem } from "@/lib/firebase/firestore"
 import { useParams } from "next/navigation"
-import PushMask from "../pushMask/page"
+import PushMask from "../mask/pushMask/page"
 
 interface bookingListState{
     item:string,

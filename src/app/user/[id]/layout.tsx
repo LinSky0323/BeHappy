@@ -21,15 +21,21 @@ export default function UserLayout({children,}: Readonly<{children: React.ReactN
     const [identity,setIdentity] = useState(1)
     useEffect(()=>{
         setok(Agree())
+        const i = sessionStorage.getItem("identity")
+        if(i){
+            setIdentity(Number(i))
+        }
     },[])
 
     if(!ok)return
 
     const clickguest = ()=>{
+        sessionStorage.setItem("identity","1")
         setIdentity(1)
         route.push(`/user/${url.id}`)
     }
     const clicktrade = ()=>{
+        sessionStorage.setItem("identity","2")
         setIdentity(2)
         route.push(`/user/${url.id}`)
     }
