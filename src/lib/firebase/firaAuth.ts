@@ -1,5 +1,5 @@
 import {app} from "./firebaseApp"
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut, sendEmailVerification, getAuth, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut, sendEmailVerification, getAuth, updateProfile, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
 import { setProfile } from "./firestore";
 
 export function checkAuth(){
@@ -93,3 +93,25 @@ export async function logoutAuth(){
         })
     })
 }
+export async function changePassword(oldPassword:string,newPassword:string){
+    const auth = getAuth()
+    const user = auth.currentUser
+
+    return new Promise((resolve,reject)=>{
+        if (!user || !user.email) {
+            reject("使用者未登入");
+            return;
+          }
+          const credential = EmailAuthProvider.credential(user.email,oldPassword)
+          reauthenticateWithCredential(user,credential).then(()=>{
+            updatePassword(user,newPassword).then(()=>{
+                resolve("修改成功")
+            }).catch((error)=>{
+                console.log(error)
+                reject("修改失敗")})
+        }).catch((error)=>{
+            console.log(error)
+            reject("修改失敗")})
+    })
+    
+} 
