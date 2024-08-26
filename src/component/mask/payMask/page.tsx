@@ -74,7 +74,7 @@ export default function PayMask(){
     },[])
     useEffect(()=>{
         getProfile(uid).then((res)=>setProfile(res))
-    })
+    },[])
     window.TPDirect.card.onUpdate(function(update:any){
         if(update.canGetPrime){
             setDisable(false)

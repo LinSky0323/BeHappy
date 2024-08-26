@@ -74,7 +74,7 @@ export default function Levelup(){
     },[load])
     useEffect(()=>{
         getProfile(uid).then((res)=>setProfile(res))
-    })
+    },[])
     if(load){
         window.TPDirect.card.onUpdate(function(update:any){
             if(update.canGetPrime){
