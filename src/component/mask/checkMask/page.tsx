@@ -40,7 +40,7 @@ export default function CheckMask({item,setCheck}:{item:any,setCheck:React.Dispa
                 <div className={styles.title}>管理訂單狀態</div>
                 <div className={styles.tapContainer}>
                     {type.map((item:number,index:number)=>(
-                        <div key={index} className={styles.tap} onClick={()=>submit(item)}>{typeList[item]}</div>
+                        <div key={index} className={`${styles.tap} ${(item===1||item===3)&&styles.good} ${(item===2||item===4||item===5)&&styles.bad}`}  onClick={()=>submit(item)}>{typeList[item]}</div>
                     ))}
                 </div>
                 <div className={styles.remark}>「拒絕」、「取消」、「完成」、「未履約」之後訂單內容將無法修改!</div>

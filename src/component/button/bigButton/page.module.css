@@ -3,8 +3,9 @@
     height: 20vh;
     margin:20px;
     border: none;
-    border-radius: 30px;
+    background-color: rgb(200,200,200);
     box-shadow: 2px 2px 2px  black;
+    color:rgb(45,45,45);
     cursor: pointer;
     font-size: 30px;
     font-weight: 700;
@@ -14,23 +15,16 @@
     gap:20px;
 }
 
-.btn:nth-child(1){
-    background: linear-gradient(to top right,white,rgb(82, 206, 82),green);
-}
-.btn:nth-child(2){
-    background: linear-gradient(to top right,white,rgb(161, 161, 239),rgb(71, 71, 249));
-}
-.btn:nth-child(3){
-    background: linear-gradient(to top right,white,rgb(238, 167, 167),rgb(255, 69, 69));
-}
-.btn:nth-child(4){
-    background: linear-gradient(to top right,white,rgb(249, 249, 175),yellow);
-}
+
 
 .btn:hover{
     box-shadow: 5px 5px 5px  black;
     transform: translate(-3px , -3px);
-    background: linear-gradient(to top right,rgb(247, 160, 38),rgb(161, 99, 11),rgb(165, 42, 42));
-    color:white;
+    background: linear-gradient(to top right,rgb(149, 88, 4),rgb(132, 81, 9),rgb(66, 42, 10));
+    color:rgb(220, 220, 220);
     font-size: 40px;
+}
+
+.btn:active{
+    transform: scale(0.95)
 }

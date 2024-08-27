@@ -1,8 +1,12 @@
 "use client"
-import styles from "./page.module.css"
+import FormTitle from "@/component/form/title"
+import ProfileForm from "@/component/form/profileForm/page"
 
 export default function UserProfile(){
     return(
-        <div></div>
+        <div>
+            <FormTitle name="您的個人資訊"/>
+            <ProfileForm/>
+        </div>
     )
 }

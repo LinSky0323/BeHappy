@@ -22,7 +22,7 @@ export default function BuildComplete(){
             <div className={styles.title}>恭喜你成功編輯完您的網頁！</div>
             <div className={styles.title2}>已下是您的網址：</div>
             <div className={styles.urlContainer}>
-                <div className={styles.url} id="url">{url}</div><div onClick={handleClick}><Image src="/ctrlc.png"  alt="複製" width={30} height={30} style={{marginTop:"30px",cursor:"pointer"}}/></div>
+                <div className={styles.url} id="url">{url}</div><div className={styles.imgContainer} onClick={handleClick}><Image src="/ctrlc.png"  alt="複製" width={30} height={30} style={{marginTop:"30px",cursor:"pointer"}}/></div>
             </div>
             <div className={styles.remind}>{remind.state}</div>
             

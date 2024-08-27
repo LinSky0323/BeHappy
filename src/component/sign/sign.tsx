@@ -33,8 +33,8 @@ export default function Sign(){
     return(
         <div className={styles.container}>
             <div onClick={click} className={styles.item} id="SLBtn">
-                {(isLogin===1) &&<span style={{marginRight:"10px"}} onClick = {(e)=>clickPerson(e)}>個人頁面</span>}
-                {isLogin===1 ? "登出" : "註冊/登入"}
+                {(isLogin===1) &&<span className={styles.items} style={{marginRight:"10px"}} onClick = {(e)=>clickPerson(e)}>個人頁面</span>}
+                {isLogin===1 ?<span className={styles.items}>登出</span>: <span className={styles.items}>註冊/登入</span>}
             </div>
             {slwindow && <SL isLogin = {isLogin} setSlwindow = {setSlwindow} setIsLogin = {setIsLogin}/>}
         </div>

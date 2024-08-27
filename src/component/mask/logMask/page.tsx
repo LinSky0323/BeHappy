@@ -8,7 +8,8 @@ import { StopPropogation } from "@/lib/stopPropagation"
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
 import { usePathname, useRouter } from "next/navigation"
-import { setProfile } from "@/lib/firebase/firestore"
+import { checkLevel, setProfile } from "@/lib/firebase/firestore"
+import Image from "next/image"
 
 
 
@@ -24,7 +25,8 @@ const sign = async(prevState:any, formData:FormData,remind: any,setSl:React.Disp
             localStorage.setItem("uid",res.uid)
             await setProfile(res.uid,{
                 email:email,
-                name:name
+                name:name,
+                level:0,
             })
             console.log("註冊成功")
             setSl("註冊成功！請至信箱進行驗證")
@@ -54,6 +56,8 @@ const login = async(prevState:any, formData:FormData,remind: any,setSl:React.Dis
         try{
             const res  = await loginAuth(email,password) as any
             localStorage.setItem("uid",res.uid)
+            const level = await checkLevel(res.uid) as string
+            localStorage.setItem("level",level)
             const p = path.split('/')
             setSl("登入成功")
             setTimeout(()=>{
@@ -87,6 +91,7 @@ const logout = async(prevState:any, formData:FormData,setOut:React.Dispatch<Reac
         const res = await logoutAuth() as string
         setOut(res)
         localStorage.removeItem("uid")
+        localStorage.removeItem("level")
         sessionStorage.removeItem("identity")
         setTimeout(()=>{
                 setIsLogin(2)
@@ -160,39 +165,47 @@ const SLWindow = ({setSlwindow,slOK,setSl,setIsLogin,isLogin}:{setSlwindow:React
         setIsLogin(1)
         router.push(path+"user/"+localStorage.getItem("uid"))
     }
+    const cliclToLogin = ()=>{
+        setIsReg(false)
+        setSl("")
+    }
     const sendEmail = async()=>{
         const res = await sendEmailAuth() as string
         remind.setRemind(res)
     }
     return(
         <div className={styles.window} onClick={(e)=>StopPropogation(e)}>
+            <div className={styles.back}>
+                <Image src = {slOK?"/backnopeople.png":"/signback.png"} alt="背景" fill  sizes="340px" priority/>
+            </div>
+            <div className={styles.content}>
             <div className={styles.top}><X setSlwindow = {setSlwindow} setSl = {setSl}/></div>
             {slOK?
             <>
-            <div className={styles.title}> 
+            <div className={styles.title1}> 
                 {slOK}
             </div>
             {slOK==="信箱尚未驗證"?
             <button className={styles.btn} onClick = {sendEmail}>重發驗證信</button>:
-            <button className={styles.btn} onClick = {!path.split('/')[1]?clickToUser:clickOK}>{isReg?"返回登入頁":`${!path.split('/')[1]?"跳轉到會員頁":"返回上一個頁面"}`}</button>}
+            <button className={styles.btn} onClick = {isReg?cliclToLogin:(!path.split('/')[1]?clickToUser:clickOK)}>{isReg?"返回登入頁":`${!path.split('/')[1]?"跳轉到會員頁":"返回上一個頁面"}`}</button>}
             <div className={styles.remind}>{remind.state}</div>
             </>:
             <>
-            <div className={styles.title}>{isReg?"註冊使用者帳戶":"輸入帳號密碼"}</div>
+            <div className={styles.title}>{isReg?"Sign up":"Login"}</div>
             <form className={styles.form} action={isReg?signAction:loginAction}>
                 {isReg && <input className={styles.input} placeholder="輸入使用者名稱" name="name" type="text"/> }
-                <input className={styles.input} placeholder="輸入帳號" name="email" type="email"/>
-                <input className={styles.input} placeholder="輸入密碼" name="password" type="password"/>
+                <input className={styles.input} placeholder="帳號" name="email" type="email"/>
+                <input className={styles.input} placeholder="密碼" name="password" type="password"/>
                 <SubmitBtn name={isReg?"註冊":"登入"}/>
                 <div className={styles.remind}>{remind.state}</div>
             </form>
             <div className={styles.bottom}>
-                {isReg?<><span>已經有帳號了?</span>   
-                <span className={styles.clickSign} onClick={clickLogin}>點我返回登入頁</span></>:<><span>還沒有帳號?</span>   
-                <span className={styles.clickSign} onClick={clickSign}>點我註冊</span></>}
+                {isReg?<><span>已有帳號 </span>   
+                <span className={styles.clickSign} onClick={clickLogin}>登入</span></>:<><span>加入會員 </span>   
+                <span className={styles.clickSign} onClick={clickSign}>註冊</span></>}
             </div>
             </>}
-
+            </div>
         </div>
     )
 }
@@ -212,17 +225,21 @@ const SLWindow = ({setSlwindow,slOK,setSl,setIsLogin,isLogin}:{setSlwindow:React
         }
         return(
             <div className={styles.window} onClick={(e)=>StopPropogation(e)}>
+                <div className={styles.back}>
+                    <Image src = {outOK?"/backnopeople.png":"/signback.png"} alt="背景" fill sizes="340px" priority/>
+                </div>
+                <div className={styles.content}>
                 <div className={styles.top}><X setSlwindow = {setSlwindow} setOut = {setOut}/></div>
 
                 {outOK?
                 <>
-                <div className={styles.title}> 
+                <div className={styles.title1}> 
                     {outOK}
                 </div>
                 <button className={styles.btn} onClick = {clickOut}>{path.includes("user")?"返回首頁":"返回剛才的頁面"}</button>
                 </>:
                 <>
-                <div className={styles.title}>確定要登出嗎?</div>
+                <div className={styles.title1}>確定要登出嗎?</div>
                 <form className={styles.form} action={formAction}>
                     <SubmitBtn name="登出"/>
                 </form>
@@ -230,7 +247,7 @@ const SLWindow = ({setSlwindow,slOK,setSl,setIsLogin,isLogin}:{setSlwindow:React
                 </>}
                 
 
-
+                </div>
                 <div className={styles.bottom}>
                 </div>
             </div>

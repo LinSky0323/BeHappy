@@ -10,7 +10,7 @@ export default function BuildTitle(){
         <div className={styles.container}>
             <FormTitle name="編輯你的網頁標題" />
             <TitleForm/>
-            <div className={styles.btnContainer}><LastButton/><NextButton url="buildintroduce"/></div>
+            <div className={styles.btnContainer}><LastButton url=""/><NextButton url="buildintroduce"/></div>
         </div>
     )
 }

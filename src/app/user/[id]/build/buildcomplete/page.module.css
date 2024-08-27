@@ -28,3 +28,9 @@
     color: red;
     margin-left: 200px;
 }
+.imgContainer:hover{    
+    transform: translate(-1px,-1px);
+}
+.imgContainer:active{
+    transform: scale(0.95)
+}

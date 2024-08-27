@@ -1,16 +1,27 @@
 .container{
     min-width: 100px;
     height: 300px;
-    background:linear-gradient(to top ,white,rgb(237, 237, 190));
-    border-radius: 10px;
+    background:linear-gradient(to top ,rgb(120,120,120),rgb(45,45,45));
+}
+
+.a{
+    color: transparent;
+    text-decoration:none ;
 }
 .item{
     margin:2px;
-    background-color: rgb(253, 229, 198);
     cursor: pointer;
     margin-bottom: 10px;
-    color:black;
+    color:rgb(220, 220, 220);
+    text-align: center;
 }
-.a{
-    text-decoration:none ;
+
+.item:hover{
+    color:rgb(160,140,40)
+}
+.item:active{
+    transform: scale(0.95)
+}
+.high{
+    color:rgb(200,170,40);
 }

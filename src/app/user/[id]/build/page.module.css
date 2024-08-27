@@ -10,11 +10,18 @@
 }
 .content{
     cursor: pointer;
-    background: linear-gradient(to left,white,rgb(246, 246, 168));
+    background: linear-gradient(to top,white,rgb(155, 199, 207),rgb(135, 178, 199));
     padding: 10px;
     border-radius: 7px;
     box-shadow: 2px 2px gray;
+    color:gray;
 }
 .content:hover{
-    background: linear-gradient(to left,white,rgb(197, 197, 71));
+    background: linear-gradient(to left,white,rgb(223, 223, 193),rgb(197, 197, 71));
+    box-shadow:0.5px 0.5px ;
+    transform: translate(-0.5px,-0.5px);
+    color:rgb(80,80,80);
+}
+.content:active{
+    transform: scale(0.95)
 }

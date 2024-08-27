@@ -4,6 +4,10 @@ import styles from "./page.module.css"
 import Image from "next/image";
 import StartBtn from "@/component/button/startButton/page";
 
+import localFont from 'next/font/local'
+
+const myFont = localFont({ src: './ChenYuluoyanThin.ttf' })
+
 
 
 
@@ -36,8 +40,8 @@ export default  function Home() {
           <div><h1 className={styles.h1}>喜悅網頁製作</h1></div>
           <div className={styles.btn}><Sign/></div>
         </div>
-        <div className={styles.text1}>一個人</div>
-        <div className={styles.text2}>也能做出一棟城堡！</div>
+        <div className={`${styles.text1} ${myFont.className}`}>一個人</div>
+        <div className={`${styles.text2} ${myFont.className}`}>也能做出一棟城堡！</div>
         <StartBtn/>
         <div className={styles.bl}></div>
       </div>

@@ -123,7 +123,7 @@ export default function IntroduceForm(){
             <input type="file" name="introduceImage" id="imageInput" onChange={handleChange} disabled={!imageiswrite}  style={{display:"none"}} accept="image/*"></input>
             <label htmlFor="imageInput" className={styles.selectFile}>選擇檔案</label>
             {(!imageUrl) ?<span className={styles.filename}>未選擇任何檔案</span>:
-            <div className={styles.image}><Image src={imageUrl} alt="預覽圖"  fill  sizes="270px"/></div> }
+            <div className={styles.image}><Image src={imageUrl} alt="預覽圖"  fill  sizes="270px" style={{ objectFit: 'cover' }}/></div> }
             <SubmitButton name={imageiswrite?"送出":"修改"}/>
             {imageRemind.state && <div className={styles.remind}>{imageRemind.state}</div>}
         </form>

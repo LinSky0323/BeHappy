@@ -14,6 +14,9 @@
     resize: none;
     width: 247.2px;
 }
+.textarea:focus{
+    outline: none;
+}
 .selectFile{
     padding: 3px;
     font-size: 15px;
@@ -21,10 +24,15 @@
     border-radius: 3px;
     cursor: pointer;
     height: 21px;
+    color:black;
 }
 .selectFile:hover{
     box-shadow:0.5px 0.5px ;
     transform: translate(-0.5px,-0.5px);
+    background: linear-gradient(to right,white,rgb(244, 200, 134));
+}
+.selectFile:active{
+    transform: scale(0.95)
 }
 .filename{
     font-size: 15px;

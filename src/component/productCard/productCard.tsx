@@ -8,7 +8,7 @@ export default function ProductCard({description,src}:{description:string,src:st
     return(
         <div className={styles.container}>
             <div className={styles.image}>
-                <Image src={src} alt={description} fill sizes="100%"/>
+                <Image src={src} alt={description} fill sizes="100%" style={{ objectFit: 'cover' }}/>
             </div>
             <div className={styles.title}>
                 <div>{description}</div>

@@ -21,16 +21,15 @@
     align-items: flex-end;
 }
 .writecontainer{
-    box-shadow: 0.5px 0.5px;
+    background-color: rgb(110,110,110);
     width: 200px;
-    border:0.5px solid gray;
     margin-bottom: 10px;
 }
 .writeimage{
     width:200px;
     height:200px;
     position: relative;
-    border-bottom: 1px solid black;
+
 
 }
 .writename{
@@ -43,10 +42,15 @@
     border-radius: 3px;
     cursor: pointer;
     height: 21px;
+    color:rgb(80,80,80)
 }
 .selectFile:hover{
     box-shadow:0.5px 0.5px ;
     transform: translate(-0.5px,-0.5px);
+    background: linear-gradient(to right,white,rgb(244, 200, 134));
+}
+.selecFile:active{
+    transform: scale(0.95)
 }
 .imageContent{
     display: flex;
@@ -95,43 +99,49 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    color:rgb(80,80,80)
 }
 .red{
-    background-color: rgb(252, 118, 118);
+    background-color: rgb(176 196 222);
 }
 .orange{
-    background-color: rgb(241, 197, 116);
+    background-color: rgb(205 205 180);
 }
 .yellow{
-    background-color: rgb(253, 253, 161);
+    background-color: rgb(205 145 158);
 }
 .green{
-    background-color: rgb(169, 255, 169);   
+    background-color: rgb(143 188 143);   
 }
-.blue{
-    background-color: rgb(170, 170, 255);
-}
-.purple{
-    background-color: rgb(253, 177, 253);
-}
+
+
 .high{
-    background-color: brown;  
+    background-color: rgb(46, 46, 46);  
     color: white;
     box-shadow:1px 1px black;
     transform: translate(-1px,-1px); 
 }
 .delTap{
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 700;
     margin-left: 7px;
     cursor: pointer;
-    background-color:black;
-    color: white;
-    border-radius: 50%;
+    color: rgb(40,40,40);
     width: 15px;
     height: 15px;
     line-height:15px;
     text-align: center;
+}
+.delTap:hover{
+    color: rgb(255, 0, 0);
+    font-size: 16px;
+    font-weight: 700;
+}
+.delTap:active{
+    transform: scale(0.95)
+}
+.highDelTap{
+    color:rgb(220,220,220)
 }
 .card{
     margin: 10px;
@@ -141,16 +151,23 @@
     color: white;
     font-size: 14px;
     line-height:19px;
-    font-weight: 400;
+    font-weight: 700;
     width: 20px;
     height: 20px;
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color:black;
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
+}
+.delCard:hover{
+    color: rgb(255, 0, 0);
+    font-size: 16px;
+    font-weight: 700;
+}
+.delCard:active{
+    transform: scale(0.95)
 }
 .left{
     position: absolute;
@@ -191,4 +208,11 @@
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     border-left: 10px solid blue; 
+}
+.input{
+    background-color: rgb(230,230,230);
+    border:none;
+}
+.input:focus{
+    outline: none;
 }

@@ -24,6 +24,9 @@ export default function TimeForm(){
     const [rerenderkey,setRerenderkey] = useState(0)
     const [chooseday,setChooseday] = useState({})
     const uid = localStorage.getItem("uid") as string
+    console.log(timeList)
+    console.log(hourList)
+    console.log(chooseday)
     useEffect(()=>{
         if(!Object.keys(timelist).length){
             getTimeData(uid).then((item)=>{
@@ -36,9 +39,19 @@ export default function TimeForm(){
     },[])
     const clicknocheck = ()=>{
         setIscheck(false)
+        setTimelist({})
+        setHourList({})
+        setChooseday({})
+        selectDay.reset()
+        selectHour.reset()
     }
     const clickcheck = ()=>{
         setIscheck(true)
+        setTimelist({})
+        setHourList({})
+        setChooseday({})
+        selectDay.reset()
+        selectHour.reset()
     }
 
     const pushandreset = async(itemlist:object)=>{

@@ -1,10 +1,11 @@
 .imgContainer{
     position: relative;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 .item{
     display: flex;
+    align-items: center;
     padding: 5px;
     font-size: 16px;
     font-weight: 700;
@@ -30,4 +31,24 @@
     font-size: 12px;
     font-weight: 500;
     color: red;
+}
+.clickpay{
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 12px;
+    display: flex;
+    align-items:flex-end ;
+    color:rgb(180,180,180);
+    transition:font-size 0.3s ease,color 0.3s ease;
+}
+.clickpay:hover{
+    font-size: 14px;
+    color: rgb(220,220,220);
+}
+.clickpay:active{
+    transform: scale(0.95)
+}
+.btn{
+    margin-top: 10px;
+    margin-left: 200px;
 }

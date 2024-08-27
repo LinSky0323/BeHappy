@@ -51,6 +51,9 @@
     box-shadow:1px 1px 1px ;
     transform: translate(-1px,-1px);
 }
+.btn:active{
+    transform: scale(0.95)
+}
 .remind{
     text-align: right;
     width: 97%;

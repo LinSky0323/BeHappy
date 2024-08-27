@@ -28,10 +28,17 @@ const HeadImg = ({imgUrl,setImgUrl}:{imgUrl:string,setImgUrl:React.Dispatch<SetS
     const submit = async(prevState:any,formData:FormData)=>{
         const img = formData.get("headImg")
         let profileImage = "";
+        console.log(img)
         if (img instanceof File){
-            if(img.name){
+            if(img.name!==""){
                 profileImage = await UploadImg(img)
             }
+            else{
+                return
+            }
+        }
+        else{
+            return
         }
         
         const submitData = {profileImage}
@@ -56,7 +63,7 @@ const HeadImg = ({imgUrl,setImgUrl}:{imgUrl:string,setImgUrl:React.Dispatch<SetS
         <form className={styles.headImg} action={formAction}>
             <label htmlFor="headImg" className={styles.selectimg}>選擇檔案</label>
             <div className={styles.imgContainer}>
-                {imgUrl ? <Image src={imgUrl} alt="預覽" fill sizes="100%" priority/>:<div className={styles.chooseimg}>未選擇照片</div>}
+                {imgUrl ? <Image src={imgUrl} alt="預覽" fill style={{ objectFit: 'cover' }} sizes="100%" priority/>:<div className={styles.chooseimg}>未選擇照片</div>}
             </div>
             <input type="file" accept="image/*" style={{display:"none"}} name="headImg" id="headImg" onChange={handleChange}/>
             <div className={styles.imgbtn}>{remind.state && <div className={styles.remind}>{remind.state}</div>}<SubmitButton name="上傳"/></div>

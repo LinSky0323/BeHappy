@@ -11,7 +11,7 @@ export default function BuildTime(){
         <div className={styles.container}>
             <FormTitle name="編輯你可預約的時間"/>
             <TimeForm/>
-            <div className={styles.btnContainer}><LastButton/><NextButton url="buildcomplete"/></div>
+            <div className={styles.btnContainer}><LastButton url="builditem"/><NextButton url="buildcomplete"/></div>
         </div>
     )
 }

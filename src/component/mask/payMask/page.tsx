@@ -4,18 +4,21 @@ import styles from "./page.module.css"
 import Script from "next/script"
 import { useEffect, useRef, useState } from "react"
 import { useFormState } from "react-dom"
-import { getProfile } from "@/lib/firebase/firestore"
+import { getProfile, levelup } from "@/lib/firebase/firestore"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
+import { useRouter } from "next/navigation"
+import { StopPropogation } from "@/lib/stopPropagation"
 
 const money = 300
 
 export default function PayMask(){
-    console.log(123)
+    const route = useRouter()
     const uid = localStorage.getItem("uid") as string
     const card_number_ref = useRef<any>(null)
     const card_expiration_date_ref = useRef<any>(null)
     const card_ccv_ref = useRef<any>(null)
     const btnRef = useRef<any>(null)
+    const [load,setLoad] = useState(false)
     const [disable,setDisable] = useState(true)
     const [profile,setProfile] = useState<any>({})
     const remind = useChangeRemind()
@@ -71,18 +74,21 @@ export default function PayMask(){
                 endIndex: 11
             }
         })
-    },[])
+    },[load])
     useEffect(()=>{
         getProfile(uid).then((res)=>setProfile(res))
     },[])
-    window.TPDirect.card.onUpdate(function(update:any){
-        if(update.canGetPrime){
-            setDisable(false)
-        }
-        else{
-            setDisable(true)
-        }
-    })
+    if(load){
+        window.TPDirect.card.onUpdate(function(update:any){
+            if(update.canGetPrime){
+                setDisable(false)
+            }
+            else{
+                setDisable(true)
+            }
+        })
+    }
+    
     const pay = async()=>{
         const tappayStatus = window.TPDirect.card.getTappayFieldsStatus()
         if (tappayStatus.canGetPrime === false) {
@@ -110,16 +116,26 @@ export default function PayMask(){
                     if(i.ok){
                         return i.text()
                     }}).then((result)=>{
-                        console.log(result)
+                        if(result==="Pay success"){
+                            levelup(uid).then(()=>{
+                                localStorage.setItem("level","1")
+                                route.back()
+                            })
+                        }
                     })
         })
     }
     const [state,formAction] = useFormState(pay,null)
+    const handleCLick = ()=>{
+        route.back()
+    }
     return(
-        <div className={styles.mask}>
-            <div className={styles.container} >
-                <div>付費升級會員</div>
-                
+        <div className={styles.mask} onClick={handleCLick}>
+             <Script src="https://js.tappaysdk.com/sdk/tpdirect/v5.18.0"  strategy="afterInteractive"    onLoad={()=>setLoad(true)} />
+            <div className={styles.container} onClick={StopPropogation}>
+                <div className={styles.x} onClick={handleCLick}>x</div>
+                <div >付費升級會員</div>
+                <div className={styles.content}>只需 300元 即可使用創建網頁、管理訂單等功能。<br/>編輯自己的網頁來給你的客戶使用吧！</div>
                 <form className={styles.form} action={formAction}>
                     <div className={styles.item}><div className={styles.label}>卡片號碼：</div><div className={`tpfield ${styles.input}`} id="card-number" ref={card_number_ref}></div></div>
                     <div className={styles.item}><div className={styles.label}>過期時間：</div><div className={`tpfield ${styles.input}`} id="card-expiration-date" ref={card_expiration_date_ref}></div></div>

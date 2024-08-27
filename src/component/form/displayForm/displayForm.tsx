@@ -205,7 +205,7 @@ export default function DisplayForm(){
     return(
         <>
          <form className={styles.form } action={tapformAction}>
-            <label>添加作品種類：</label><input type="text" name="displayType" value={tapinput.value} onChange={tapinput.onChange}></input>
+            <label>添加作品種類：</label><input className={styles.input} type="text" name="displayType" value={tapinput.value} onChange={tapinput.onChange}></input>
             <SubmitButton name="確認"/>
             {tapRemind.state && <div className={styles.remind}>{tapRemind.state}</div>}
         </form>
@@ -220,8 +220,8 @@ export default function DisplayForm(){
         <div className={styles.tapContainer}>
             請選擇種類:<div className={styles.taplist}  ref={tapRef}>
             {tapList && tapList.map((item,index)=>(         
-                    <div onClick={()=>clickTap(item,index)} key={index} className={`${styles.tap} ${styles[`${TapColor[index%6]}`]} ${index===highTap[1] && styles.high}`}>
-                        {item}<div className={styles.delTap} onClick={(e)=>checkDelTap(index,e)}>x</div>
+                    <div onClick={()=>clickTap(item,index)} key={index} className={`${styles.tap} ${styles[`${TapColor[index%4]}`]} ${index===highTap[1] && styles.high}`}>
+                        {item}<div className={`${styles.delTap} ${index===highTap[1] && styles.highDelTap}`} onClick={(e)=>checkDelTap(index,e)}>x</div>
                     </div>
             ))}
             </div>
@@ -247,11 +247,11 @@ export default function DisplayForm(){
                                 <input type="file" id="displayImage" name="displayImage" ref={fileInputRes} onChange={handleChange} style={{display:"none"}} accept="image/*" ></input>
                                 </div>
                                 {(!preview) ?<div className={styles.filename}>未選擇任何檔案</div>:
-                                <div className={styles.image}><Image src={preview} alt="預覽圖"  fill /></div> }
+                                <div className={styles.image}><Image src={preview} alt="預覽圖"  fill sizes="100%" style={{ objectFit: 'cover' }}/></div> }
                             </div> 
                         </div>
                         <div className={styles.writename}>
-                            <label>作品名稱：</label><input type="text" name="displayContent" value={nameinput.value} onChange={nameinput.onChange}></input>
+                            <label>作品名稱：</label><input className={styles.input} type="text" name="displayContent" value={nameinput.value} onChange={nameinput.onChange}></input>
                         </div>
                     </div>
                     <div style={{display:"flex"}}>

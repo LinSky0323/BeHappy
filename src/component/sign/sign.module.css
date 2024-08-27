@@ -7,4 +7,17 @@
     margin-right: 10px ;
     cursor: pointer;
     display: flex;
+    height:20px;
+}
+.items{
+    height:20px;
+    transition: transform 0.3s ease ,color 0.3s ease,font-weight 0.3s ease;
+}
+.items:hover{
+    font-weight: 700;
+    transform: translate(-0.5px,-0.5px);
+    color:rgb(160,140,40);
+}
+.items:active{
+    transform: scale(0.95)
 }

@@ -11,6 +11,7 @@ import { changePassword } from "@/lib/firebase/firaAuth"
 import { usePathname, useRouter } from "next/navigation"
 
 export default function UserAcount (){
+    const level = localStorage.getItem("level")
     const route = useRouter()
     const path = usePathname()
     const [profile,setProfile] = useState<any>({})
@@ -56,7 +57,9 @@ export default function UserAcount (){
         <div>
             <FormTitle name="用戶等級"/>
             <div className={styles.content}>
-                <div className={styles.item}>{profile.level?"付費用戶":"免費用戶"}<div className={styles.imgContainer}><Image alt="level" src={profile.level?"/crown.png":"/profile.png"} fill sizes="20"/></div><div onClick={toPay}>付費升級，使用業者功能</div></div>
+                <div className={styles.item}>{level==="1"?"付費用戶":"免費用戶"}<div className={styles.imgContainer}><Image alt="level" src={level==="1"?"/star.png":"/profile.png"} fill sizes="20"/></div>
+                {level==="1"?<></>:<div className={styles.clickpay} onClick={toPay}>付費升級，使用業者功能</div>}
+                </div>
             </div>
             <FormTitle name="修改密碼"/>
             <form className={styles.content} action={formAction} ref={formRef}>

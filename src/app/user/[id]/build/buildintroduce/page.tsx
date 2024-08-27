@@ -10,7 +10,7 @@ export default function BuildIntroduce(){
         <div className={styles.container}>
             <FormTitle name="編輯你的個人自我介紹"/>
             <IntroduceForm/>
-            <div className={styles.btnContainer}><LastButton/><NextButton url="builddisplay"/></div>
+            <div className={styles.btnContainer}><LastButton url="buildtitle"/><NextButton url="builddisplay"/></div>
         </div>
     )
 }

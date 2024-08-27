@@ -25,7 +25,6 @@ export default function DisplayBlock({data}:{data:any}){
     }
     return(
         <div className={styles.container} id="displayBlock">
-            <div className={styles.mask}></div>
             <div className={styles.titleContainer} id="displayBlock__titleContainer">
                 {testTitle.map((item,index)=>(
                     <div className={`${styles.title} ${(index===highLight) && styles.highLight}`} key={index}>{item}</div>

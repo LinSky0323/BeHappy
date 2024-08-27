@@ -75,9 +75,19 @@ export default function ScheduleIn({timeList,setTimeList,selectDay,selectHour,re
                     return <div key={item} className={styles.date__week}>{item}</div>
                 })}
                 {result.map((item,index)=>{
+
+                    let hasbooking = false
+                    if(list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]){
+                        Object.keys(list[thisYear][thisMonth][item]).map((key,index)=>{
+                            if(Object.keys(list[thisYear][thisMonth][item][key]).length){
+                                hasbooking = true
+                            }
+                        })
+                    }
                     return <div key={index} className={`${styles.date__item} ${((parseInt(item)===Day.getDate()) && (thisMonth===Day.getMonth()+1)) && (thisYear===listYear) && styles.date__today} 
                     ${(delay ||(thisYear===Day.getFullYear() && thisMonth===Day.getMonth()+1 && (parseInt(item)<Day.getDate())))&& styles.delay}
-                    ${ (list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]) && styles.isset }`}
+                    ${ (list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]) && styles.isset }
+                    ${hasbooking && styles.hasbooking}`}
                     onMouseDown={(delay ||(thisYear===Day.getFullYear() &&thisMonth===Day.getMonth()+1 && (parseInt(item)<=Day.getDate())))?undefined:(e)=>selectDay.handleMouseDown(e)} 
                     onMouseEnter={(delay ||(thisYear===Day.getFullYear() &&thisMonth===Day.getMonth()+1 && (parseInt(item)<=Day.getDate())))?undefined:(e)=>selectDay.handleMouseOver(e)} 
                     onMouseUp={(delay ||(thisYear===Day.getFullYear() &&thisMonth===Day.getMonth()+1 && (parseInt(item)<=Day.getDate())))?undefined:()=>checkSelect()} 

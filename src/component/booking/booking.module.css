@@ -3,6 +3,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    color:rgb(149 123 95);
 }
 .title{
     display: flex;
@@ -11,7 +12,7 @@
     top:50px;
     left:50px;
     z-index: 10;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
 }
 .content{
@@ -19,7 +20,6 @@
     margin-top: 150px;
 }
 .bookingList{
-    border: 0.5px solid black;
     width:200px;
     margin-left: 50px;
     margin-right: 100px;
@@ -29,8 +29,8 @@
     position: relative;
 }
 .form{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 5px;
 }
 .price{

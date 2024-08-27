@@ -10,15 +10,14 @@
 .container{
     position: relative;
     margin-left: calc(50vw - 250px);
-    margin-top: 30vh;
+    margin-top: 25vh;
     width: 500px;
-    height: 200px;
-    background-color:rgb(3, 80, 108) ;
+    background-color:rgb(152, 152, 152) ;
     color:white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 20px;
+
 }
 .form{
     margin:20px 0px 20px 0px;
@@ -42,7 +41,7 @@
     width:50px;
     height:20px;
     font-size: 15px;
-    background: linear-gradient(to right,white,rgb(240, 222, 195));
+    background: linear-gradient(to right,rgb(217, 217, 217),rgb(227, 227, 227));
     border-radius: 5px;
     border:0.5px solid black;
     cursor: pointer;
@@ -52,14 +51,33 @@
     font-weight: 700;
     transition: transform 0.1s ease;
     margin-left: 350px;
+    color:rgb(150,150,150)
 }
 .btn:hover{
-    box-shadow:0.5px 0.5px ;
-    transform: translate(-0.5px,-0.5px);
+    box-shadow:1px 1px ;
+    transform: translate(-1px,-1px);
+    color:rgb(200, 170, 40)
+}
+.btn:active{
+    transform: scale(0.95)
 }
 .remind{
     font-size: 14px;
     font-weight: 500;
     color: red;
     margin-left: 350px;
+}
+.content{
+    font-size: 14px;
+    margin-top: 20px;
+}
+.x{
+    line-height: 15px;
+    text-align:start;
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+}
+.x:active{
+    transform: scale(0.95);
 }

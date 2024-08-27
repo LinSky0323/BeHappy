@@ -4,12 +4,14 @@ import styles from "./page.module.css"
 import Script from "next/script"
 import { useEffect, useRef, useState } from "react"
 import { useFormState } from "react-dom"
-import { getProfile } from "@/lib/firebase/firestore"
+import { getProfile, levelup } from "@/lib/firebase/firestore"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
+import { useRouter } from "next/navigation"
 
 const money = 300
 
 export default function Levelup(){
+    const route = useRouter()
     const uid = localStorage.getItem("uid") as string
     const card_number_ref = useRef<any>(null)
     const card_expiration_date_ref = useRef<any>(null)
@@ -53,7 +55,8 @@ export default function Levelup(){
                     'font-size':'16px',
                     'border':'1px',
                     'font-weight':'500',
-                    'font-family': '"Noto Sans TC", sans-serif'
+                    'font-family': '"Noto Sans TC", sans-serif',
+                    "background-color":"rgb(220,220,220)"
                 },
                 
                 // style valid state
@@ -112,16 +115,22 @@ export default function Levelup(){
                     if(i.ok){
                         return i.text()
                     }}).then((result)=>{
-                        console.log(result)
+                        if(result==="Pay success"){
+                            levelup(uid).then(()=>{
+                                localStorage.setItem("level","1")
+                                route.back()
+                            })
+                        }
                     })
         })
     }
     const [state,formAction] = useFormState(pay,null)
     return(
         <main>
-            <Script src="https://js.tappaysdk.com/sdk/tpdirect/v5.18.0"  strategy="afterInteractive"    onLoad={()=>setLoad(true)} />
+            <Script src="https://js.tappaysdk.com/sdk/tpdirect/v5.18.0"  strategy="afterInteractive"    onLoad={()=>{setLoad(true)}} />
             <FormTitle name="付費升級會員"/>
-            {load && 
+            <div className={styles.content}>只需 300元 即可使用創建網頁、管理訂單等功能。<br/>編輯自己的網頁來給你的客戶使用吧！</div>
+            {
             <form className={styles.form} action={formAction}>
                 <div className={styles.item}><div className={styles.label}>卡片號碼：</div><div className={`tpfield ${styles.input}`} id="card-number" ref={card_number_ref}></div></div>
                 <div className={styles.item}><div className={styles.label}>過期時間：</div><div className={`tpfield ${styles.input}`} id="card-expiration-date" ref={card_expiration_date_ref}></div></div>

@@ -23,6 +23,12 @@
 }
 .input{
     border: 1px solid rgb(205, 205, 205);
+    background-color: rgb(220,220,220);
+    padding:0px 5px 0px 5px;
+    border-radius: 3px;
+}
+.input:focus{
+    outline: none;
 }
 .sex{
     font-size: 15px;
@@ -32,6 +38,7 @@
 }
 .select{
     margin: 5px;
+    background-color: rgb(220,220,220);
 }
 .btn{
     display: flex;
@@ -45,6 +52,7 @@
     display: flex;
     flex-direction: column;
     font-size: 20px;
+    position: relative;
 }
 .imgContainer{
     width:120px;
@@ -53,6 +61,7 @@
     margin:5px;
     margin-left: 20px;
     position: relative;
+    object-fit: cover;
 }
 .chooseimg{
     width: 100%;
@@ -62,7 +71,8 @@
     align-items: center;
 }
 .selectimg{
-    background-color: rgb(168, 168, 168);
+    background-color: rgb(220,220,220);
+    color:rgb(45,45,45);
     width:70px;
     font-size: 15px;
     font-weight: 700;
@@ -70,12 +80,19 @@
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
+    transition:transform 0.1s ease,box-shadow 0.1s ease;
 }
 .selectimg:hover{
-    box-shadow:0.5px 0.5px ;
-    transform: translate(-0.5px,-0.5px);
+    box-shadow:1px 1px ;
+    transform: translate(-1px,-1px);
+    background: linear-gradient(to right,white,rgb(244, 200, 134));
+}
+.selectimg:active{
+    transform: scale(0.95)
 }
 .imgbtn{
-    margin-left: 90px;
-    margin-top: 3px;
+    display: flex;
+    position: absolute;
+    right: 5px;
+    bottom:25px ;
 }

@@ -46,11 +46,11 @@ export default function Schedule({timeList,chooseDay,setChooseDay}:{timeList:any
     }
     return(
         <div className={styles.account__container}>
-            <select onChange={handlechangeyear} className={styles.data__list} value={thisYear}> 
+            <select onChange={handlechangeyear} className={styles.data__list__out} value={thisYear}> 
                 <option>{listYear}</option>
                 <option>{listYear+1}</option>
             </select>
-            <select onChange={handlechange} className={styles.data__list} value={months[thisMonth-1]}> 
+            <select onChange={handlechange} className={styles.data__list__out} value={months[thisMonth-1]}> 
             {months.map((item)=>{
                 return <option key={item} >{item}</option>
             })}

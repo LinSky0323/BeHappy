@@ -337,4 +337,33 @@ export async function changeTimeItem(guestUid:string,tradeUid:string,docId:strin
         console.error("Transaction failed: ", error);
         throw new Error("Transaction failed");
     }
-}
+}//變更訂單時間及時間表
+
+export async function levelup(uid:string){
+    const ref = doc(db,uid,"profiledb")
+
+    return new Promise(async(resolve,reject)=>{
+        try{
+            await updateDoc(ref,{level:1})
+            resolve("升級成功")
+        }
+        catch(error){
+            reject("發生錯誤")
+        }
+    })
+}//升級level
+
+export async function checkLevel(uid:string){
+    const ref = doc(db,uid,"profiledb")
+
+    return new Promise(async(resolve,reject)=>{
+        try{
+            const res = await getDoc(ref)
+            const data :any = res.data()
+            resolve(data.level)}
+        catch{
+            reject("發生錯誤")
+        }
+    })
+
+}//確認level

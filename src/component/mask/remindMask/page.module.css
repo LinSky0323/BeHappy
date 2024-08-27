@@ -1,0 +1,55 @@
+.mask{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 101;
+    background-color: rgba(0,0,0,0.3);
+}
+.container{
+    position: relative;
+    margin-left: calc(50vw - 250px);
+    margin-top: 30vh;
+    width: 500px;
+    background-color:rgb(152, 152, 152) ;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.url{
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 10px;
+}
+.url:hover{
+    color:rgb(242, 248, 171);
+}
+.button{
+    height:20px;
+    font-size: 15px;
+    background: linear-gradient(to right,rgb(220,220,220),rgb(180,180,180));
+    border-radius: 5px;
+    border:0.5px solid black;
+    color:rgb(40,40,40);
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: transform 0.1s ease,color 0.1s ease;
+}
+.button:hover{
+    box-shadow:1px 1px ;
+    transform: translate(-1px,-1px);
+    color:black;
+    background: linear-gradient(to right,white,rgb(244, 200, 134));
+}
+.button:active{
+    transform: scale(0.95)
+}

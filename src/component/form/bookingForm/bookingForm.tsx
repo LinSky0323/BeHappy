@@ -72,9 +72,9 @@ export default function BookingForm(){
     return(
         <section className={styles.container}>
             <form className={styles.form} action={formAction}>
-                <label>預約項目：</label><input type="text" name="bookingItemName" value={nameinput.value} onChange={nameinput.onChange}></input>
-                <label>預估費用：</label><input type="text" name="bookingItemPrice" value={priceinput.value} onChange={priceinput.onChange} placeholder="單位:元"></input>
-                <label>預估時間：</label><input type="text" name="bookingItemTime" value={timeinput.value} onChange={timeinput.onChange} placeholder="單位:小時"></input>
+                <label>預約項目：</label><input className={styles.input} type="text" name="bookingItemName" value={nameinput.value} onChange={nameinput.onChange}></input>
+                <label>預估費用：</label><input className={styles.input} type="text" name="bookingItemPrice" value={priceinput.value} onChange={priceinput.onChange} placeholder="單位:元"></input>
+                <label>預估時間：</label><input className={styles.input} type="text" name="bookingItemTime" value={timeinput.value} onChange={timeinput.onChange} placeholder="單位:小時"></input>
                 <div className={styles.btn}>
                     <SubmitButton name="送出"/>
                     {remind.state && <div className={styles.remind}>{remind.state}</div>}

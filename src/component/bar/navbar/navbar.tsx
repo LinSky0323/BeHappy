@@ -27,9 +27,10 @@ export default function Navbar({list}:{list:{name:string,id:string}[]}){
     }
     return(
         <div className={styles.bar}>
-        {list.map((item,index)=>(
-            <a key={index} href={`${param}/${item.id}`} className={styles.a} onClick={(e) => e.preventDefault()}><div  className={styles.item} onClick={(e)=>handleClick(item,e)}>{item.name}</div></a>
-        ))}
+        {list.map((item,index)=>{
+            return(
+            <a key={index} href={`${param}/${item.id}`} className={`${styles.a} ${(params.split("/")[3]===item.id) && styles.high}`} onClick={(e) => e.preventDefault()}><div  className={styles.item} onClick={(e)=>handleClick(item,e)}>{item.name}</div></a>
+        )})}
         </div>
     )
 }
