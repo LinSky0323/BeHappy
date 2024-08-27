@@ -1,19 +1,14 @@
 "use client"
 import Header from "@/component/header/header";
-import { UserBuildProviders } from "@/lib/store/porvider";
 import styles from "./layout.module.css"
 import { Agree } from "@/lib/agree";
-import { Suspense, useEffect, useState } from "react";
+import {   useEffect, useState } from "react";
 import React from "react";
-import { createContext } from "react";
 import { useParams, useRouter } from "next/navigation";
 import RemindMask from "@/component/mask/remindMask/page";
 
-export const IdentityContext = createContext({})
-
-export const guestNavList = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"我的預約",id:"mybookingitem",img:"/bookingItem.png"},{name:"訊息",id:"message",img:"/message.png"}]
-export const tradeNavlist = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"建立網頁",id:"build",img:"/build.png"},{name:"訂單確認",id:"bookingList",img:"/schedule.png"},{name:"訊息",id:"message",img:"/message.png"}]
-
+const guestNavList = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"我的預約",id:"mybookingitem",img:"/bookingItem.png"},{name:"訊息",id:"message",img:"/message.png"}]
+const tradeNavlist = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"建立網頁",id:"build",img:"/build.png"},{name:"訂單確認",id:"bookingList",img:"/schedule.png"},{name:"訊息",id:"message",img:"/message.png"}]
 
 export default function UserLayout({children,}: Readonly<{children: React.ReactNode;}>) {
     const route = useRouter()
@@ -52,9 +47,9 @@ export default function UserLayout({children,}: Readonly<{children: React.ReactN
             <div className={styles.identity}><span className={`${styles.span} ${identity===1 && styles.choose}`} onClick={clickguest}>顧客</span> | <span className={`${styles.span} ${identity===2 && styles.choose}`} onClick={clicktrade}>業者</span></div>
             {openRemind && <RemindMask setOpenRemind={setOpenRemind} message="您未升級會員，此功能無法使用" url={`/user/${url.id}/userProfile/levelup`} urlMessage="點此前往付費頁面"/>}
             <section className={styles.container}>
-            <IdentityContext.Provider value={{identity,setIdentity}}>
+                <div key={identity}>
                 {children}
-            </IdentityContext.Provider>
+                </div>
             </section>  
         </>     
 
