@@ -37,7 +37,7 @@ export default  function Home() {
           <Image alt="太陽" src = "/sun.png" width={250} height={200} style={{ objectFit: 'cover' }}/>
         </div>
         <div className={styles.title}>
-          <div><h1 className={styles.h1}>喜悅網頁製作</h1></div>
+          <div><h1 className={styles.h1}>喜悦網頁製作</h1></div>
           <div className={styles.btn}><Sign/></div>
         </div>
         <div className={`${styles.text1} ${myFont.className}`}>一個人</div>
