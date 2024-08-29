@@ -146,7 +146,7 @@ export default function Levelup(){
     const [state,formAction] = useFormState(pay,null)
     return(
         <main>
-            <Script src="https://js.tappaysdk.com/sdk/tpdirect/v5.18.0"  strategy="afterInteractive"    onLoad={()=>{setLoad(true)}} />
+            <Script src="https://js.tappaysdk.com/sdk/tpdirect/v5.18.0"  strategy="afterInteractive"    onLoad={()=>{setLoad(true),console.log("有tappay了")}} />
             <FormTitle name="付費升級會員"/>
             <div className={styles.content}>只需 300元 即可使用創建網頁、管理訂單等功能。<br/>編輯自己的網頁來給你的客戶使用吧！</div>
             {
