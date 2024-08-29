@@ -9,7 +9,7 @@ export default function User(){
 
     return(
         <main className={styles.container}>
-        {(identity===1?guestNavList:tradeNavlist).map((item,index)=>(
+        {(identity===2?tradeNavlist:guestNavList).map((item,index)=>(
             <BigButton key={index} content={item.name} target = {item.id} img = {item.img}/>
         ))}
         </main>
