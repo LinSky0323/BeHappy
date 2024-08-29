@@ -114,6 +114,9 @@ export default function Levelup(){
                   })}).then((i:any)=>{
                     if(i.ok){
                         return i.text()
+                    }
+                    else{
+                        throw new Error(`HTTP error! status: ${i.status}`);
                     }}).then((result)=>{
                         if(result==="Pay success"){
                             levelup(uid).then(()=>{
@@ -121,7 +124,7 @@ export default function Levelup(){
                                 route.back()
                             })
                         }
-                    })
+                    }).catch(error => console.error('Error:', error))
         })
     }
     const [state,formAction] = useFormState(pay,null)

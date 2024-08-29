@@ -14,10 +14,7 @@ const myFont = localFont({ src: './ChenYuluoyanThin.ttf' })
 export default  function Home() {
   const day = new Date()
   const hour = day.getHours()
-  const handleClick = ()=>{
-    const uid = localStorage.getItem("uid")
-    
-  }
+
   return (
     <main className={styles.container}>
       <div className={styles.block}>
