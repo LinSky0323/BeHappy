@@ -46,10 +46,8 @@ export default function UserLayout({children,}: Readonly<{children: React.ReactN
             <Header title="喜悦網頁製作" username="1" navList={identity===1?guestNavList:tradeNavlist}/>
             <div className={styles.identity}><span className={`${styles.span} ${identity===1 && styles.choose}`} onClick={clickguest}>顧客</span> | <span className={`${styles.span} ${identity===2 && styles.choose}`} onClick={clicktrade}>業者</span></div>
             {openRemind && <RemindMask setOpenRemind={setOpenRemind} message="您未升級會員，此功能無法使用" url={`/user/${url.id}/userProfile/levelup`} urlMessage="點此前往付費頁面"/>}
-            <section className={styles.container}>
-                <div key={identity}>
-                {children}
-                </div>
+            <section className={styles.container} key={identity}>
+                {children}     
             </section>  
         </>     
 
