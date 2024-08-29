@@ -10,6 +10,7 @@ import { checkAuth } from "@/lib/firebase/firaAuth"
 import { getProfile, setBookingItem } from "@/lib/firebase/firestore"
 import { useParams } from "next/navigation"
 import PushMask from "../mask/pushMask/page"
+import RemindMask from "../mask/remindMask/page"
 
 interface bookingListState{
     item:string,
@@ -19,6 +20,7 @@ interface bookingListState{
 
 
 const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
+    const [openRemind,setOpenRemind] = useState<string|boolean>("")
     const [push,setPush] = useState<{} | null>(null)
     const testData:[bookingListState] = data.bookingList
     const params = useParams()
@@ -31,7 +33,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
             if(totalTime === -1){acounts = 1}
             else if (totalTime > 0){acounts = totalTime/0.5}
             if(!bookingList.items.length || bookingList.time.length<4){
-                alert("請選擇預約項目、日期、時間")
+                setOpenRemind("請選擇預約項目、日期、時間")
                 return
             }
             let items = ""
@@ -44,7 +46,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
                 !Object.keys(timeList[bookingList.time[0]][bookingList.time[1]][bookingList.time[2]][bookingList.time[3]+(i*50)]).length)
             {submitHour.push(bookingList.time[3]+(i*50))}
             else{
-                alert("預定項目所需時間超過可預約時段長度")
+                setOpenRemind("預定項目所需時間超過可預約時段長度")
                 submitHour = []
                 break
             }
@@ -67,7 +69,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
         
             }
         catch(error){
-            alert(error)
+            setOpenRemind("發生錯誤")
         }
         
     }
@@ -106,6 +108,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
 
     return(
         <div className={styles.bookingList} id="bookingList">
+            {openRemind && <RemindMask setOpenRemind={setOpenRemind} message={openRemind}/>}
             <h1 className={styles.h1}>預約項目</h1>
             <form className={styles.form} action={formAction}>
                 {testData.map((item,index)=>(
@@ -142,12 +145,13 @@ export default function Booking({data,timeList}:{data:any,timeList:any}){
             hourList = {}
         }
     }
+    console.log(hourList)
     if(Object.keys(hourList).length){
         const hourarray = Object.keys(hourList).sort((a,b)=>Number(a)-Number(b))
         hourarray.forEach((item)=>{
-            if(Number(item) < 6){night.push({[item]:timeList[timeitem[0]][timeitem[1]][timeitem[2]][item]})}
-            else if (Number(item) >= 6 && Number(item) < 12){morning.push({[item]:timeList[timeitem[0]][timeitem[1]][timeitem[2]][item]})}
-            else if (Number(item) >= 12 && Number(item) < 18){afternoon.push({[item]:timeList[timeitem[0]][timeitem[1]][timeitem[2]][item]})}
+            if(Number(item) < 600){night.push({[item]:timeList[timeitem[0]][timeitem[1]][timeitem[2]][item]})}
+            else if (Number(item) >= 600 && Number(item) < 1200){morning.push({[item]:timeList[timeitem[0]][timeitem[1]][timeitem[2]][item]})}
+            else if (Number(item) >= 1200 && Number(item) < 1800){afternoon.push({[item]:timeList[timeitem[0]][timeitem[1]][timeitem[2]][item]})}
             else {evening.push({[item]:timeList[timeitem[0]][timeitem[1]][timeitem[2]][item]})}
         })
     }

@@ -55,8 +55,6 @@
     font-weight: 700;
     border: none;
     cursor:pointer;
-    margin-left: 270px;
-    margin-top: 10px;
 }
 .remark{
     position: absolute;
@@ -78,4 +76,16 @@
 }
 .receive{
     color:aquamarine
+}
+.remind{
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
+}
+.btnC{
+    width: 70%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

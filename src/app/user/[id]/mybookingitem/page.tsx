@@ -6,24 +6,33 @@ import { useTransactionDispatch, useTransactionSelector } from "@/lib/store/hook
 import { selectTranscationList, setTranscationList } from "@/lib/store/features/transcationSlices"
 import { checkBookingItem, getShopping } from "@/lib/firebase/firestore"
 import { StopPropogation } from "@/lib/stopPropagation"
+import { useChangeRemind } from "@/lib/hook/useChangeRemind"
 
 const state = ["未確認","已確認","已拒絕","已完成","已取消","未履約"]
 
-const Mask = ({item,setMask,onlyday}:{item:any,setMask:React.Dispatch<SetStateAction<{}|null>>,onlyday:any})=>{
+const Mask = ({item,setMask,onlyday,list,setList}:{item:any,setMask:React.Dispatch<SetStateAction<{}|null>>,onlyday:any,list:[],setList:React.Dispatch<SetStateAction<{}|null>>})=>{
+    const remind = useChangeRemind()
     const handleClick = ()=>{
         setMask(null)
     }
     const thisday = new Date(item.year,item.month-1,item.day) as any
     const clickCheck = async()=>{
-        if(thisday-onlyday<=8640000){
-            alert("前一日不能取消")
+        
+        if(thisday-onlyday<=86400000){
+            remind.setRemind("前一日不能取消")
             return
         }
         const gusetUid = localStorage.getItem("uid") as string
         try{
             const res = await checkBookingItem(gusetUid,item.tradeUid,item.id,4,item.year,item.month,item.day,item.hours)
-            alert(res)
-            window.location.reload();   
+            if(res){
+                remind.setRemind("取消成功")
+                let newList:any = [...list]
+                let newObj = {...newList[item.index]}
+                let data = {...newObj,check:4}
+                newList[item.index] = data
+                setList(newList)
+            }   
         }
         catch(error){
             console.log(error)
@@ -32,7 +41,10 @@ const Mask = ({item,setMask,onlyday}:{item:any,setMask:React.Dispatch<SetStateAc
     return(
         <div className={styles.mask} onClick={handleClick}>
             <div className={styles.check} onClick={StopPropogation}>{`確定要取消「${item.tradeName}」在 ${item.year}/${item.month}/${item.day} 的預約 嗎? `}
+            <div className={styles.btnC}>
+            {remind.state && <div className={styles.remind}>{remind.state}</div>}
             <button className={styles.checkBtn} onClick={clickCheck}>確定</button>
+            </div>
             </div>
             
         </div>
@@ -57,14 +69,13 @@ export default function MyBookingItem(){
             })
         }
     },[])
-
-    const clickCancle = (item:any)=>{
-        setMask(item)
+    const clickCancle = (item:any,index:number)=>{
+        setMask({...item,index})
     }
     return(
         <main>
             <div className={styles.remark}>*預約日期前1天無法取消</div>
-            {mask && <Mask item = {mask} setMask = {setMask} onlyday = {onlyday}/>}
+            {mask && <Mask item = {mask} setMask = {setMask} onlyday = {onlyday} list={list} setList = {setList}/>}
             <FormTitle name = "您的預約"/>
             <div className={styles.tableContainer}>
                 <table className={styles.table}>
@@ -92,7 +103,7 @@ export default function MyBookingItem(){
                                 <td className={styles.td}>{item.items}</td>
                                 <td className={styles.td}>{item.totalPrice===-1?"視情況而定":item.totalPrice+"元"}</td>
                                 <td className={`${styles.td} ${(item.check===2||item.check===4||item.check===5) && styles.cancle} ${item.check===1 && styles.receive} ${item.check===3 && styles.complete}`}>{state[item.check]}</td>
-                                <td className={`${styles.td} ${item.check<2 && styles.x}`} onClick={item.check>1?undefined:()=>clickCancle(item)}>{(item.check<2) && "x"}</td>
+                                <td className={`${styles.td} ${item.check<2 && styles.x}`} onClick={item.check>1?undefined:()=>clickCancle(item,index)}>{(item.check<2) && "x"}</td>
                             </tr>
                             )
                         })}

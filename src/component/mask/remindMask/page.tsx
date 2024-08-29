@@ -5,7 +5,7 @@ import styles from "./page.module.css"
 import { SetStateAction } from "react"
 import { useRouter } from "next/navigation"
 
-export default function RemindMask({setOpenRemind,message,url,urlMessage}:{setOpenRemind:React.Dispatch<SetStateAction<boolean>>,message:string,url?:string,urlMessage?:string}){
+export default function RemindMask({setOpenRemind,message,url,urlMessage}:{setOpenRemind:React.Dispatch<SetStateAction<string|boolean>>,message:string|boolean,url?:string,urlMessage?:string}){
     const route = useRouter()
     const handleClick = ()=>{
         setOpenRemind(false)

@@ -70,7 +70,7 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
 
         try{
             const result = await pushBookingItem(submitData.guest,submitData.trade,shoppingData,bookingData,submitData.year,submitData.month,submitData.day,submitData.submitHour)
-            alert("感謝您的預定。訂單已送出")
+            remind.setRemind("感謝您的預定。訂單已送出")
             fetch("/api/sendmail",{
                 method:"POST",
                 headers: {
@@ -99,19 +99,19 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
         <div className={styles.mask} onClick={handleClick} >
             <form className={styles.window} onClick={(e)=>StopPropogation(e)} action={formAction}>
                 <div className={styles.title}> 您的訂單：</div>
-                <div>---------------------------------------------------------------------</div>
+                <div>------------------------------------------------------------------</div>
                 <div className={styles.labelContainer}>
                     <label className={styles.label}>會員姓名：</label><input className={styles.input} value={name} onChange={(e)=>setName(e.target.value)}/>
                 </div>
                 <div className={styles.labelContainer}>
                     <label className={styles.label}>會員手機號碼：</label><input className={styles.input} value={phone} onChange={(e)=>setPhone(e.target.value)}/>
                 </div>
-                <div>---------------------------------------------------------------------</div>
+                <div>------------------------------------------------------------------</div>
                 <div>預約項目：{submitData.items}</div>
                 <div>預計金額：{submitData.totalPrice===-1?`試情況而定`:submitData.totalPrice+"元"}</div>
                 <div>預約日期：{submitData.year}/{submitData.month}/{submitData.day}</div>
                 <div>預約時間：{submitData.totalTime===-1?`${hourstart}起`:`${hourstart} 到 ${hourend}`}</div>
-                <div>---------------------------------------------------------------------</div>
+                <div>------------------------------------------------------------------</div>
                 <div >
                     {remind.state && <div className={styles.remind}>{remind.state}</div>}
                     <button type="submit" aria-disabled={pending} className={styles.btn} >確認送出!</button>

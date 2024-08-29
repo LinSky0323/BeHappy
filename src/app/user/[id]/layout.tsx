@@ -15,7 +15,7 @@ export default function UserLayout({children,}: Readonly<{children: React.ReactN
     const url = useParams()
     const [ok,setok] = useState(false)
     const [identity,setIdentity] = useState(1)
-    const [openRemind,setOpenRemind] = useState(false)
+    const [openRemind,setOpenRemind] = useState<string|boolean>(false)
     useEffect(()=>{
         setok(Agree())
         const i = sessionStorage.getItem("identity")
