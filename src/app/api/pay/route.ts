@@ -3,6 +3,7 @@
     const header:any = {"Content-Type":"application/json","x-api-key": process.env.PARTNER_KEY}
 
     export async function POST(request: NextRequest){
+        console.log(process.env.PARTNER_KEY)
         const body = await request.json()
         const prime = body.prime
         const name = body.order.name
