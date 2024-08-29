@@ -112,35 +112,20 @@ export default function Levelup(){
                         uid:uid
                     }
                   })})
-                  .then((response) => {
-                    if (response.ok) {
-                      return response.text(); // 如果请求成功，返回文本
-                    } else {
-                      return response.text().then((text) => {
-                        throw new Error(`HTTP error! status: ${response.status}, details: ${text}`);
-                      });
+                  .then((i:any)=>{
+                    if(i.ok){
+                        return i.text()
                     }
-                  })
-                  .then((text) => {
-                    console.log("Response Text: ", text);
-                  })
-                  .catch((error) => {
-                    console.error("Fetch Error: ", error);
-                  });
-                //   .then((i:any)=>{
-                //     if(i.ok){
-                //         return i.text()
-                //     }
-                //     else{
-                //         throw new Error(`HTTP error! status: ${i.status}`);
-                //     }}).then((result)=>{
-                //         if(result==="Pay success"){
-                //             levelup(uid).then(()=>{
-                //                 localStorage.setItem("level","1")
-                //                 route.back()
-                //             })
-                //         }
-                //     }).catch(error => console.error('Error:', error))
+                    else{
+                        throw new Error(`HTTP error! status: ${i.status}`);
+                    }}).then((result)=>{
+                        if(result==="Pay success"){
+                            levelup(uid).then(()=>{
+                                localStorage.setItem("level","1")
+                                route.back()
+                            })
+                        }
+                    }).catch(error => console.error('Error:', error))
         })
     }
     const [state,formAction] = useFormState(pay,null)
