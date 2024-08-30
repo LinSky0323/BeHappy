@@ -5,6 +5,9 @@ import Image from "next/image";
 import StartBtn from "@/component/button/startButton/page";
 
 import localFont from 'next/font/local'
+import MyDisplay from "@/component/mydisplay/page";
+import TeachGuest from "@/component/teachguset/page";
+import TeachTrade from "@/component/teachtrade/page";
 
 const myFont = localFont({ src: './ChenYuluoyanThin.ttf' })
 
@@ -42,6 +45,9 @@ export default  function Home() {
         <StartBtn/>
         <div className={styles.bl}></div>
       </div>
+      <MyDisplay/>
+      <TeachGuest/>
+      <TeachTrade/>
     </main>
   );
 }

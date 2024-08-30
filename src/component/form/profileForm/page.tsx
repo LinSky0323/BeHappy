@@ -100,7 +100,7 @@ export default function ProfileForm(){
         const res =await  setProfile(uid,newList) as string
         if(res==="修改成功" || res==="創建成功"){
             dispatch(setProfileList(newList))
-            setTotalData(res)
+            setTotalData(newList)
             if(name)setName(name);
             if(phone)setPhone(phone);
             if(sex)setSex(sex);
