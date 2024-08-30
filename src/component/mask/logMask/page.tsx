@@ -22,7 +22,6 @@ const sign = async(prevState:any, formData:FormData,remind: any,setSl:React.Disp
     if(name && email && password){
         try{
             const res = await signAuth(name,email,password) as any
-            localStorage.setItem("uid",res.uid)
             await setProfile(res.uid,{
                 email:email,
                 name:name,
