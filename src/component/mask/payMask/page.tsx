@@ -6,13 +6,17 @@ import { useEffect, useRef, useState } from "react"
 import { useFormState } from "react-dom"
 import { getProfile, levelup } from "@/lib/firebase/firestore"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { StopPropogation } from "@/lib/stopPropagation"
+import { useProfileSelector } from "@/lib/store/hooks"
+import { selectProfileList } from "@/lib/store/features/profileSlices"
 
 const money = 300
 
 export default function PayMask(){
+    const profileData = useProfileSelector(selectProfileList)
     const route = useRouter()
+    const pathname = usePathname()
     const uid = localStorage.getItem("uid") as string
     const card_number_ref = useRef<any>(null)
     const card_expiration_date_ref = useRef<any>(null)
@@ -20,7 +24,7 @@ export default function PayMask(){
     const btnRef = useRef<any>(null)
     const [load,setLoad] = useState(false)
     const [disable,setDisable] = useState(true)
-    const [profile,setProfile] = useState<any>({})
+    const [profile,setProfile] = useState<any>(profileData)
     const remind = useChangeRemind()
     useEffect(()=>{
         
@@ -76,7 +80,9 @@ export default function PayMask(){
         })
     },[load])
     useEffect(()=>{
-        getProfile(uid).then((res)=>setProfile(res))
+        if(!Object.keys(profileData).length){
+            getProfile(uid).then((res)=>setProfile(res))
+        }
     },[])
     if(load){
         window.TPDirect.card.onUpdate(function(update:any){
@@ -95,7 +101,10 @@ export default function PayMask(){
             remind.setRemind("請輸入正確的信用卡資訊")
             return
         }
-
+        if(!profile.phone){
+            remind.setRemind("您的會員資訊需填入手機號碼")
+            return
+        }
         window.TPDirect.card.getPrime((result:any) => {
             if (result.status !== 0) {
                 remind.setRemind('get prime error ' + result.msg)
@@ -119,7 +128,7 @@ export default function PayMask(){
                         if(result==="Pay success"){
                             levelup(uid).then(()=>{
                                 localStorage.setItem("level","1")
-                                route.back()
+                                route.push(pathname.split("/").slice(0,4).join("/")+"/acount")
                             })
                         }
                     })

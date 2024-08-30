@@ -4,7 +4,7 @@ import personPageReducer from "./features/personPageSlices"
 import userBuildReducer from "./features/userBuildSlices"
 import transcationReducer from "./features/transcationSlices"
 import bookingListReducer from "./features/bookingListSlices"
-
+import profileReducer from "./features/profileSlices"
 
 export const makePersonPageStore = ()=>{
     return configureStore({
@@ -35,6 +35,18 @@ export const makeBookingListStore = ()=>{
         }
     })
 }
+
+export const makeProfileStore = ()=>{
+    return configureStore({
+        reducer:{
+          profileSlices:profileReducer
+        }
+    })
+}
+export type ProfileStore = ReturnType<typeof makeProfileStore>
+export type ProfileState = ReturnType<ProfileStore["getState"]>
+export type ProfileDispatch = ProfileStore["dispatch"]
+
 export type BookingListStore = ReturnType<typeof makeBookingListStore>
 export type BookingListState = ReturnType<BookingListStore["getState"]>
 export type BookingListDispatch = BookingListStore["dispatch"]

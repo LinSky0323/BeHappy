@@ -1,8 +1,7 @@
 "use client"
 import FormTitle from "@/component/form/title"
 import styles from "./page.module.css"
-import { useEffect, useRef, useState } from "react"
-import { getProfile } from "@/lib/firebase/firestore"
+import {useRef} from "react"
 import Image from "next/image"
 import SubmitButton from "@/component/button/submitButton/submitButton"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
@@ -14,19 +13,13 @@ export default function UserAcount (){
     const level = localStorage.getItem("level")
     const route = useRouter()
     const path = usePathname()
-    const [profile,setProfile] = useState<any>({})
-    const [pay,setPay] = useState(false)
     const uid = localStorage.getItem("uid") as string
     const oldRemind = useChangeRemind()
     const newRemind = useChangeRemind()
     const reRemind = useChangeRemind()
     const remind = useChangeRemind()
     const formRef = useRef<HTMLFormElement>(null)
-    useEffect(()=>{
-        getProfile(uid).then((res)=>{
-            setProfile(res)
-        })
-    },[])
+
     const submit = async(prevDtate:any,formData:FormData)=>{
         const oldPassword = formData.get("oldPassword") as string
         const newPassword = formData.get("newPassword") as string

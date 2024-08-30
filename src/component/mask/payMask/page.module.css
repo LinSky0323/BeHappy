@@ -21,6 +21,7 @@
 }
 .form{
     margin:20px 0px 20px 0px;
+    position: relative;
 }
 .item{
     display: flex;  
@@ -62,10 +63,12 @@
     transform: scale(0.95)
 }
 .remind{
+    position: absolute;
     font-size: 14px;
     font-weight: 500;
     color: red;
-    margin-left: 350px;
+    top:110px;
+    right:100px;
 }
 .content{
     font-size: 14px;

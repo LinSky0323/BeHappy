@@ -194,7 +194,7 @@ const SLWindow = ({setSlwindow,slOK,setSl,setIsLogin,isLogin}:{setSlwindow:React
             <div className={styles.title}>{isReg?"Sign up":"Login"}</div>
             <form className={styles.form} action={isReg?signAction:loginAction}>
                 {isReg && <input className={styles.input} placeholder="輸入使用者名稱" name="name" type="text"/> }
-                <input className={styles.input} placeholder="帳號" name="email" type="email"/>
+                <input className={styles.input} placeholder="電子郵件" name="email" type="email"/>
                 <input className={styles.input} placeholder="密碼" name="password" type="password"/>
                 <SubmitBtn name={isReg?"註冊":"登入"}/>
                 <div className={styles.remind}>{remind.state}</div>

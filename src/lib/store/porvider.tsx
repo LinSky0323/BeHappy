@@ -1,6 +1,6 @@
 "use client"
 import { Provider } from "react-redux";
-import {  BookingListStore, makeBookingListStore, makePersonPageStore,makeTranscationStore,makeUserBuildStore,PersonPageStore, TransactionStore, UserBuildStore } from "./store";
+import {  BookingListStore, makeBookingListStore, makePersonPageStore,makeProfileStore,makeTranscationStore,makeUserBuildStore,PersonPageStore, ProfileStore, TransactionStore, UserBuildStore } from "./store";
 import { useRef } from "react";
 
 
@@ -36,6 +36,15 @@ export function BookingListProviders({children}:{children:React.ReactNode;}){
     }
     return <Provider store={storeRef.current}>{children}</Provider>
 } 
+
+export function ProfileProviders({children}:{children:React.ReactNode;}){
+    const storeRef = useRef<ProfileStore>()
+    if(!storeRef.current){
+        storeRef.current = makeProfileStore()
+    }
+    return <Provider store={storeRef.current}>{children}</Provider>
+} 
+
 
 
 

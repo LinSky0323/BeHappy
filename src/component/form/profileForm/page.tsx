@@ -4,10 +4,12 @@ import styles from "./page.module.css"
 import { useFormState } from "react-dom"
 import { SetStateAction, useEffect, useState } from "react"
 import { doc, getFirestore, onSnapshot } from "firebase/firestore"
-import { setProfile } from "@/lib/firebase/firestore"
+import { getProfile, setProfile } from "@/lib/firebase/firestore"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
 import Image from "next/image"
 import { UploadImg } from "@/lib/firebase/firestorage"
+import { useProfileDispatch, useProfileSelector } from "@/lib/store/hooks"
+import { selectProfileList, setProfileList } from "@/lib/store/features/profileSlices"
 
 function createYear(){
     const date = new Date()
@@ -61,7 +63,7 @@ const HeadImg = ({imgUrl,setImgUrl}:{imgUrl:string,setImgUrl:React.Dispatch<SetS
     const [state,formAction] = useFormState(submit,null)
     return(
         <form className={styles.headImg} action={formAction}>
-            <label htmlFor="headImg" className={styles.selectimg}>選擇檔案</label>
+            <label htmlFor="headImg" className={styles.selectimg}>選擇照片</label>
             <div className={styles.imgContainer}>
                 {imgUrl ? <Image src={imgUrl} alt="預覽" fill style={{ objectFit: 'cover' }} sizes="100%" priority/>:<div className={styles.chooseimg}>未選擇照片</div>}
             </div>
@@ -73,50 +75,58 @@ const HeadImg = ({imgUrl,setImgUrl}:{imgUrl:string,setImgUrl:React.Dispatch<SetS
 
 
 export default function ProfileForm(){
+    const profileData : any = useProfileSelector(selectProfileList)
+    const dispatch = useProfileDispatch()
     const uid = localStorage.getItem("uid") as string
     const [totalData,setTotalData] = useState<any>({})
-    const [imgUrl,setImgUrl] = useState("")
-    const [email,setEmail] = useState("")
-    const [name,setName] = useState("")
-    const [phone,setPhone] = useState("")
-    const [sex,setSex] = useState("")
-    const [year,setYear] = useState("")
-    const [month,setMonth] = useState("1")
-    const [day,setDay] = useState("1")
+    const [imgUrl,setImgUrl] = useState(profileData.profileImage?profileData.profileImage:"")
+    const [email,setEmail] = useState(profileData.email?profileData.email:"")
+    const [name,setName] = useState(profileData.name?profileData.name:"")
+    const [phone,setPhone] = useState(profileData.phone?profileData.phone:"")
+    const [sex,setSex] = useState(profileData.sex?profileData.sex:"")
+    const [year,setYear] = useState(profileData.year?profileData.year:"")
+    const [month,setMonth] = useState(profileData.month?profileData.month:"")
+    const [day,setDay] = useState(profileData.day?profileData.day:"")
     const remind = useChangeRemind()
 
     const submit = async(prevState:any,formData:FormData)=>{
         const newList = {...totalData}
-        newList["name"] = name
-        newList["phone"] = phone
-        newList["sex"] = sex
-        newList["year"] = year
-        newList["month"] = month
-        newList["day"] = day
+        if(name){newList["name"] = name}
+        if(phone){newList["phone"] = phone}
+        if(sex){newList["sex"] = sex}
+        if(year){newList["year"] = year}
+        if(month){newList["month"] = month}
+        if(day){newList["day"] = day}
         const res =await  setProfile(uid,newList) as string
+        if(res==="修改成功" || res==="創建成功"){
+            dispatch(setProfileList(newList))
+            setTotalData(res)
+            if(name)setName(name);
+            if(phone)setPhone(phone);
+            if(sex)setSex(sex);
+            if(year)setYear(year)
+            if(month)setMonth(month)
+            if(day)setDay(day)
+        }
         remind.setRemind(res)
     }
 
     useEffect(()=>{
-        const db = getFirestore()
-        const ref = doc(db,uid,"profiledb")
-        const unsubscribe = onSnapshot(ref,(message)=>{
-            const result:any = message.data()
-            if(result){
-                setTotalData(result)
-                setEmail(result["email"])
-                setName(result["name"])
-                setPhone(result["phone"])
-                setSex(result["sex"])
-                setYear(result["year"])
-                setMonth(result["month"])
-                setDay(result["day"])
-                setImgUrl(result["profileImage"])
-            }
-        })
-        return ()=>{
-            unsubscribe()
+        if(!Object.keys(profileData).length){
+            getProfile(uid).then((res:any)=>{
+                dispatch(setProfileList(res))
+                setTotalData(res)
+                if(res.profileImage)setImgUrl(res.profileImage);
+                setEmail(res.email)
+                setName(res.name);
+                if(res.phone)setPhone(res.phone);
+                if(res.sex)setSex(res.sex);
+                if(res.year)setYear(res.year);
+                if(res.month)setMonth(res.month);
+                if(res.day)setDay(res.day)
+            })
         }
+        
     },[])
     const [state,formAction] = useFormState(submit,null)
 
