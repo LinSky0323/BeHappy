@@ -93,7 +93,7 @@ export class SelectHour{
         if((this.isSelect === true) && data){
             newSelectHour[data] = {}
             target.classList.add(daystyles.choose)
-            this.selectHour = newSelectHour
+            this .selectHour= newSelectHour
         }
     }
     handleMouseUp(){
@@ -106,5 +106,8 @@ export class SelectHour{
     }
     selectedDay(y:any,m:any){
         return {[y]:{[m]:this.selectHour}}
+    }
+    setValue(obj:{}){
+        this .selectHour = obj
     }
 }

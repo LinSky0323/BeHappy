@@ -21,13 +21,21 @@
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    background-color: rgb(70,70,70);
     color:rgb(200,200,200); 
+    transition: color 0.3s ease-in;
     padding: 2px;
 }
 .choose{
     color:white;
     font-size: 18px;
     font-weight:500;
-    color:rgb(200,170,40)
+    color:rgb(40,40,40)
+}
+.itemMask{
+    position: absolute;
+    top:0;
+    width:42px;
+    height: 29px;
+    background-color: white;
+    z-index: -1;
 }

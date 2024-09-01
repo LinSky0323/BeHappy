@@ -11,9 +11,12 @@ export default   function Header({title="",username,data,navList}:{title?:string
             </video>
             <Link href="/" className={styles.name}><h1 className={styles.name} >{`${title===""?data.titleName:title}`}</h1></Link>
             <Sign/>
-            <div className={styles.mask}>
+            {navList.length===0? null: 
+                <div className={styles.mask}>
                 <Navbar list={navList}/>
-            </div>
+                </div>
+            }
+            
             <div className={styles.username}>{`${username?"":"by."+data.writerName}`}</div>
         </header>
     )

@@ -12,7 +12,7 @@ import { checkLevel, setProfile } from "@/lib/firebase/firestore"
 import Image from "next/image"
 
 
-
+const emailRule = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 
 const sign = async(prevState:any, formData:FormData,remind: any,setSl:React.Dispatch<React.SetStateAction<string>>,setIsLogin:React.Dispatch<React.SetStateAction<number>>,setSlwindow:React.Dispatch<React.SetStateAction<boolean>>,isLogin:number,path:string,router:any,setIsReg:React.Dispatch<React.SetStateAction<boolean>>)=>{
@@ -51,6 +51,10 @@ const sign = async(prevState:any, formData:FormData,remind: any,setSl:React.Disp
 const login = async(prevState:any, formData:FormData,remind: any,setSl:React.Dispatch<React.SetStateAction<string>>,setIsLogin:React.Dispatch<React.SetStateAction<number>>,setSlwindow:React.Dispatch<React.SetStateAction<boolean>>,isLogin:number,path:string,router:any)=>{
     const email = formData.get("email") as string
     const password = formData.get("password") as string
+    if(password.length<6){
+        remind.setRemind("密碼不可小於6個字")
+        return
+    }
     if(email && password){
         try{
             const res  = await loginAuth(email,password) as any
@@ -75,9 +79,7 @@ const login = async(prevState:any, formData:FormData,remind: any,setSl:React.Dis
             else if (error==="信箱尚未驗證"){
                 setSl(error)
             }
-            
         }
-       
     }
     else{
         remind.setRemind("有資料尚未輸入")
@@ -137,15 +139,12 @@ const SLWindow = ({setSlwindow,slOK,setSl,setIsLogin,isLogin}:{setSlwindow:React
     const [loginstate,loginAction] = useFormState((prevState:any, formData:any)=>login(prevState, formData,remind,setSl,setIsLogin,setSlwindow,isLogin,path,router), null)
     const [isReg,setIsReg] = useState(false)
     const remind = useChangeRemind()
-
     const clickSign = ()=>{
         setIsReg(true)
     }
     const clickLogin = ()=>{
         setIsReg(false)
     }
-  
-
     const clickOK = ()=>{
         if(isReg){
             setIsReg(false)
@@ -156,7 +155,6 @@ const SLWindow = ({setSlwindow,slOK,setSl,setIsLogin,isLogin}:{setSlwindow:React
             setSl("")
             setIsLogin(1)
         }
-
     }
     const clickToUser = ()=>{
         setSlwindow(false)

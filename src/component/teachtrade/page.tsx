@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import styles from "./page.module.css" 
 import { useSprings,animated,to as interpolate } from "@react-spring/web"
 import { useDrag } from "@use-gesture/react"
@@ -10,6 +10,8 @@ const cards = [{src:"/trade_display.png"},{src:"/trade_time.png"}]
 
 
 export default function TeachTrade(){
+    const ref = useRef<HTMLElement|null>(null)
+    
     const to = (i: number) => ({
         x: 50,
         y: 20,
@@ -27,7 +29,19 @@ export default function TeachTrade(){
         from:from(i)
     }))
     useEffect(()=>{
-        api.start((i)=>(to(i)))
+        const intersectionObserver = new IntersectionObserver((entries)=>{
+            if(entries[0].intersectionRatio <=0 ){
+                api.start((i)=>(from(i)))
+            }
+            else{
+                setTimeout(()=>{
+                    api.start((i)=>(to(i)))
+                },500)
+            }
+        })
+        if(ref.current){
+            intersectionObserver.observe(ref.current)
+        }
     },[])
     const bind = useDrag(({ args: [index], down, movement: [mx], direction: [xDir],velocity:[vx]},)=>{
         // if(xDir>0)return
@@ -74,7 +88,7 @@ export default function TeachTrade(){
         }
     }
     return(
-    <section className={styles.container}>
+    <section className={styles.container} ref={ref}>
             <div className={styles.title}>使用引導</div>
             <div className={styles.row} onClick={clickRow}>向右滑動<br/>{">>>"}</div>
             {props.map(({x,y,rot,scale},index)=>(       

@@ -34,12 +34,23 @@ export default function BookingForm(){
         const itemName = formData.get("bookingItemName")
         const itemPrice : number|null = formData.get("bookingItemPrice")?parseInt(formData.get("bookingItemPrice") as string):null
         const itemTime = formData.get("bookingItemTime")?parseFloat(formData.get("bookingItemTime") as string):null
-        if(Number.isNaN(itemPrice)){
-            console.log("請輸入數字")
+        if(!itemName){
+            remind.setRemind("請輸入項目名稱")
+            return
         }
-        else if(Number.isNaN(itemTime)){
-            console.log("請輸入數字")
+        if(!itemPrice || Number.isNaN(itemPrice)){
+            remind.setRemind("費用請輸入數字")
+            return
         }
+        if(!itemTime || Number.isNaN(itemTime)){
+            remind.setRemind("時間請輸入數字")
+            return
+        }
+        if(itemTime % 0.5 !== 0){
+            remind.setRemind("時間最小單位0.5HR")
+            return
+        }
+
         else if(itemName && (itemPrice || itemPrice===0) && (itemTime != null && itemTime % 0.5 === 0)){
             const newList = [...(buildList.bookingList||[])]
             const newObject = {item:itemName,price:itemPrice,time:itemTime}

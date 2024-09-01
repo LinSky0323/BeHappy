@@ -107,9 +107,7 @@
     height:30px;
     user-select: none;
 }
-.date__today{
-    background-color: antiquewhite;
-}
+
 
 .isset{
     background-color:rgb(181, 255, 230);
@@ -125,4 +123,7 @@
 }
 .choose{
     background-color: rgb(251, 209, 131);
+}
+.date__today{
+    background-color: antiquewhite;
 }

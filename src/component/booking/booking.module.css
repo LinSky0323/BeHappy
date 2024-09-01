@@ -91,4 +91,5 @@
 .choose{
     box-shadow:2px 2px 5px 0px black ;
     transform: translate(-2px,-2px);
+    background: linear-gradient(to right,rgb(243, 206, 119),rgb(196, 153, 55));
 }

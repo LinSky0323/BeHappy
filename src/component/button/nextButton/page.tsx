@@ -11,6 +11,7 @@ export function NextButton({url}:{url:string}){
         ans = p.slice(0,5).join("/")
     }
     const route = useRouter()
+    
     const handleClick = ()=>{
         route.push(ans)
 

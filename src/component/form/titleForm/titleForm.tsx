@@ -8,6 +8,8 @@ import { useChangeValue } from "@/lib/hook/useChangeValue"
 import { useUserBuildDispatch, useUserBuildSelector } from "@/lib/store/hooks"
 import { selectBuildList, setBuildList } from "@/lib/store/features/userBuildSlices"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
+import { NextButton } from "@/component/button/nextButton/page"
+import { LastButton } from "@/component/button/lastButton/page"
 
 
 export default function TitleForm(){
@@ -25,12 +27,13 @@ export default function TitleForm(){
             getListData(uid).then((item)=>{
                 if(item){
                     dispatch(setBuildList(item))
-                    titleinput.setValue(item.titleName)
-                    writerinput.setValue(item.writerName)
-                    if(item.titleName !== ""){
+                    if(item.titleName){
+                        titleinput.setValue(item.titleName)
                         setTitle(false)
                     }
-                    if(item.writerName !== ""){
+                    
+                    if(item.writerName){
+                        writerinput.setValue(item.writerName)
                         setWriter(false)
                     }
                 }
@@ -72,19 +75,26 @@ export default function TitleForm(){
 
     const [titlestate,titleformAction] = useFormState(titlesubmit,null)
     const [namestate,nameformAction] = useFormState(namesubmit,null)
-
+    const clickNext = async()=>{
+        if(buildList.titleName && buildList.writerName)return
+        const titleName = titleinput.value
+        const writerName = writerinput.value
+        const submitData = {titleName,writerName}
+        await createListData(uid,submitData)
+    }
         return(
             <>
             <form className={styles.form} action={titleiswrite?titleformAction:titleUse}>
                 <label>網頁名稱：</label><input type="text" name="titleName" value={titleinput.value} onChange={titleinput.onChange} disabled={!titleiswrite}></input>
-                <SubmitButton name={titleiswrite?"送出":"修改"}/>
+                {buildList.titleName?<SubmitButton name={titleiswrite?"送出":"修改"}/>:null}
                 {titleRemind.state && <div className={styles.remind}>{titleRemind.state}</div>}
             </form>
             <form className={styles.form} action={writeriswrite?nameformAction:writerUse}>
                 <label>作者名稱：</label><input type="text" name="writerName"value={writerinput.value} onChange={writerinput.onChange} disabled={!writeriswrite} ></input>
-                <SubmitButton name={writeriswrite?"送出":"修改"}/>
+                {buildList.writerName?<SubmitButton name={writeriswrite?"送出":"修改"}/>:null}
                 {writerRemind.state && <div className={styles.remind}>{writerRemind.state}</div>}
             </form>
+            <div className={styles.btnContainer}><LastButton url=""/><div onClick={clickNext}><NextButton url="buildintroduce"/></div></div>
             </>
         )
 }

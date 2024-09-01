@@ -11,6 +11,7 @@ import { UploadImg } from "@/lib/firebase/firestorage"
 import { useProfileDispatch, useProfileSelector } from "@/lib/store/hooks"
 import { selectProfileList, setProfileList } from "@/lib/store/features/profileSlices"
 
+const phoneRegex = /^09\d{8}$/;
 function createYear(){
     const date = new Date()
     let list = []
@@ -90,6 +91,10 @@ export default function ProfileForm(){
     const remind = useChangeRemind()
 
     const submit = async(prevState:any,formData:FormData)=>{
+        if(phone && (!phoneRegex.test(phone))){
+            remind.setRemind("請輸入正確的號碼")
+            return
+        }
         const newList = {...totalData}
         if(name){newList["name"] = name}
         if(phone){newList["phone"] = phone}

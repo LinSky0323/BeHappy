@@ -23,9 +23,10 @@
 .thisItem{
     background-color: rgb(0, 255, 170);
 }
-.already{
-    background-color:rgb(247, 255, 141);
-}
 .choose{
     background-color: rgb(251, 209, 131);
 }
+.already{
+    background-color:rgb(247, 255, 141);
+}
+

@@ -37,11 +37,24 @@
 .filename{
     font-size: 15px;
     font-weight: 700;
-    padding: 3px;
-    margin-right: 55px;
+    width: 120px;
+    height:160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .image{
-    width: 90px;
-    height:120px;
+    width: 120px;
+    height:160px;
     position: relative;
+}
+.btnContainer{
+    display: flex;
+    width:450px;
+    margin-left: 50px;
+    margin-top: 50px;
+    justify-content: space-between;
+}
+.card{
+    background-color: rgb(110,110,110);
 }

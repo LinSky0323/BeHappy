@@ -64,7 +64,7 @@ export default function Schedule({timeList,chooseDay,setChooseDay}:{timeList:any
                     ${(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)<Day.getDate())))&& styles.delay}
                     ${(timeList[thisYear] && timeList[thisYear][thisMonth] && timeList[thisYear][thisMonth][item]) && styles.isset}
                     ${(bookingList.time && bookingList.time[0]===thisYear && bookingList.time[1]===thisMonth&& bookingList.time[2]===item)&&styles.choose}`}
-                    onClick={(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)<=Day.getDate())))?undefined:(e)=>handleClick(e)} >{item}</div>
+                    onClick={(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)<=Day.getDate())) || !(timeList[thisYear] && timeList[thisYear][thisMonth] && timeList[thisYear][thisMonth][item] ))?undefined:(e)=>handleClick(e)} >{item}</div>
                 })}
             </section>
 

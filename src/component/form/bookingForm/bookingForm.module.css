@@ -44,6 +44,9 @@
     vertical-align: top;
     padding: 3px;
 }
+.thD{
+    padding: 0px 5px 0px 5px;
+}
 .del{
     color: white;
     font-size: 14px;
@@ -51,7 +54,7 @@
     font-weight: 400;
     width: 20px;
     height: 20px;
-    margin-left:4px;
+    margin-left:8px;
     text-align: center;
     cursor: pointer;
     transition: color 0.1s ease,font-size 0.1s ease,font-weight 0.1s ease;

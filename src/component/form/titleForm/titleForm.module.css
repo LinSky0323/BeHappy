@@ -11,3 +11,10 @@
     font-weight: 500;
     color: red;
 }
+.btnContainer{
+    display: flex;
+    width:360px;
+    margin-left: 50px;
+    margin-top: 50px;
+    justify-content: space-between;
+}

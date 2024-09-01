@@ -46,7 +46,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
                 !Object.keys(timeList[bookingList.time[0]][bookingList.time[1]][bookingList.time[2]][bookingList.time[3]+(i*50)]).length)
             {submitHour.push(bookingList.time[3]+(i*50))}
             else{
-                setOpenRemind("預定項目所需時間超過可預約時段長度")
+                setOpenRemind(`預定項目需${totalTime}小時，業者自預約期間起${totalTime}小時內有時間無法服務`)
                 submitHour = []
                 break
             }
@@ -113,8 +113,8 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
             <form className={styles.form} action={formAction}>
                 {testData.map((item,index)=>(
                     <div key={index}>
-                        <input type="checkbox" onChange={(e)=>handleChange(item,e)}></input>
-                        <label >{item["item"]}:{item["price"]===0?"":item["price"]}</label>
+                        <input style={{transform:"scale(1.8)"}} type="checkbox" onChange={(e)=>handleChange(item,e)}></input>
+                        <label style={{marginLeft:"5px"}} >{item["item"]}:{item["price"]===0?"":item["price"]}</label>
                     </div>
                 ))}
                 <div className={styles.time}>預估需要時間：{totalTime===-1?"視情況而定":`${totalTime}小時`}</div>
@@ -145,7 +145,6 @@ export default function Booking({data,timeList}:{data:any,timeList:any}){
             hourList = {}
         }
     }
-    console.log(hourList)
     if(Object.keys(hourList).length){
         const hourarray = Object.keys(hourList).sort((a,b)=>Number(a)-Number(b))
         hourarray.forEach((item)=>{

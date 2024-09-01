@@ -101,7 +101,19 @@ export default function DisplayForm(){
     const submit = async(prevState:any, formData:FormData)=>{
         const image = formData.get("displayImage") as File
         const name = formData.get("displayContent")
-        if(image.name && name && highTap && buildList.displayList){
+        if(!highTap[0]){
+            displayRemind.setRemind("未選擇分類")
+            return
+        }
+        if(!image.name){
+            displayRemind.setRemind("未選擇照片")
+            return
+        }
+        if(!name){
+            displayRemind.setRemind("未設定名稱")
+            return
+        }
+        if(image.name && name && highTap[0]&& buildList.displayList){
             const url = await UploadImg(image)
             const newList = [...buildList.displayList[highTap[1] as number][highTap[0]]]
             newList.push({src:url,description:name})
