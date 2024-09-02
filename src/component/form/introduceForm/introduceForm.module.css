@@ -13,6 +13,9 @@
 .textarea{
     resize: none;
     width: 247.2px;
+    background-color: transparent;
+    border: 1px solid rgb(165, 137, 105);
+    color: rgb(200,200,200);
 }
 .textarea:focus{
     outline: none;
@@ -21,7 +24,6 @@
     padding: 3px;
     font-size: 15px;
     background-color: rgb(203, 203, 203);
-    border-radius: 3px;
     cursor: pointer;
     height: 21px;
     color:black;
@@ -44,9 +46,11 @@
     align-items: center;
 }
 .image{
-    width: 120px;
-    height:160px;
-    position: relative;
+    width: 90px;
+    height:121px;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
 }
 .btnContainer{
     display: flex;
@@ -56,5 +60,19 @@
     justify-content: space-between;
 }
 .card{
-    background-color: rgb(110,110,110);
+    width:247px;
+    height: 121px;
+    display: flex;
+    position: relative;
+    border: 1px solid rgb(165, 137, 105);
+}
+.btn1{
+    position: absolute;
+    top:200px;
+    left:550px;
+}
+.btn2{
+    position: absolute;
+    bottom: 80px;
+    left:550px;
 }

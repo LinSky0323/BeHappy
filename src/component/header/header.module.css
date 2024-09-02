@@ -14,9 +14,10 @@
 .mask{
     position: absolute;
     bottom:0;
-    right:calc(20vw);
+    left:50%;
+    transform: translateX(-50%);
     background-color: rgba(200,200,200,0.5);
-    width:50vw;
+    width:40vw;
     height:50px;
     display: flex;
     align-items: center;

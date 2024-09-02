@@ -44,6 +44,7 @@ export default function NameMask({item,setName}:{item:string,setName:React.Dispa
     return(
         <div className={styles.mask} onClick={handleClick}>
             <div className={styles.container} onClick={StopPropogation}>
+                <div className={styles.remark}>*可編輯「僅你可見」的個人備註</div>
                 <div className={styles.title}>個人資訊</div>
                 <div className={styles.content}>
                     <div className={styles.imgContainer}>
@@ -77,12 +78,12 @@ export default function NameMask({item,setName}:{item:string,setName:React.Dispa
                             <div className={styles.tap}>備註:<div onClick={clickEdit} style={{width:"20px",height:"20px",position:"relative",cursor:"pointer",backgroundColor:"white"}}><Image alt="pencil" src="/pencil.png" fill sizes="20px"/></div></div>
                             {edit?
                             <form action={formAction}>
-                                <textarea name="remarkEdit" rows={4} cols={30} placeholder={remarkText.join("\n")}></textarea>
+                                <textarea style={{resize: "none"}} name="remarkEdit" rows={4} cols={18} placeholder={remarkText?remarkText.join("\n"):""}></textarea>
                                 <SubmitButton name="送出"/>
                             </form>
                             : 
                             <div className={styles.tapremark}>
-                                {remarkText.map((item,index)=>(<div key={index}>{item}</div>
+                                {remarkText && remarkText.map((item,index)=>(<div key={index}>{item}</div>
                             ))}
                             </div>}
                            

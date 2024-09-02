@@ -137,14 +137,14 @@ export default function IntroduceForm(){
             {(!imageUrl) ?<div className={styles.filename}>未選擇圖片</div>:
             <div className={styles.image}><Image src={imageUrl} alt="預覽圖"  fill  sizes="100%" style={{ objectFit: 'cover' }}/></div> }
             </div>
-            <SubmitButton name={imageiswrite?"送出":"修改"}/>
+            <div className={styles.btn1}><SubmitButton name={imageiswrite?"送出":"修改"}/></div>
             {imageRemind.state && <div className={styles.remind}>{imageRemind.state}</div>}
         </form>
         <form className={styles.form} action={contentiswrite?contentAction:contentUse}>
             <label>簡介內容：</label>
             <textarea name="introduceContent" rows={8} cols={30} className={styles.textarea} 
             value={textinput.value} onChange={textinput.onTextCgange} disabled={!contentiswrite}></textarea>
-            {buildList.introduceContent?.length ?<SubmitButton name={contentiswrite?"送出":"修改"}/>:null}
+            {buildList.introduceContent?.length ?<div className={styles.btn2}><SubmitButton name={contentiswrite?"送出":"修改"}/></div>:null}
             
             {contentRemind.state && <div className={styles.remind}>{contentRemind.state}</div>}
         </form>

@@ -84,6 +84,10 @@
     cursor: pointer;
     background-color: rgb(221, 206, 174);
 }
+.btn:hover{
+    background-color: rgb(165, 137, 105);
+    color:rgb(220, 220, 220);
+}
 .bottom{
     margin-bottom: 20px;
     font-size: 16px;

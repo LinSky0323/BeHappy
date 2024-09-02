@@ -8,7 +8,8 @@ import { NextButton } from "@/component/button/nextButton/page"
 export default function BuildDisplay(){
     return(
         <div className={styles.container}>
-            <div className={styles.remark}>*種類數量不限，但一種作品只能展示4張</div>
+            <div className={styles.remark}>*所有圖片皆會3:4等比例縮放</div>
+            <div className={styles.remark2}>*種類數量不限，但一種作品只能展示4張</div>
             <FormTitle name="編輯你要展示的作品集"/>
             <DisplayForm/>
             <div className={styles.btnContainer}><LastButton url="buildintroduce"/><NextButton url="builditem"/></div>

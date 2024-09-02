@@ -84,7 +84,7 @@ export default function PayMask(){
             getProfile(uid).then((res)=>setProfile(res))
         }
     },[])
-    if(load){
+    if(window.TPDirect){
         window.TPDirect.card.onUpdate(function(update:any){
             if(update.canGetPrime){
                 setDisable(false)
@@ -94,7 +94,6 @@ export default function PayMask(){
             }
         })
     }
-    
     const pay = async()=>{
         const tappayStatus = window.TPDirect.card.getTappayFieldsStatus()
         if (tappayStatus.canGetPrime === false) {

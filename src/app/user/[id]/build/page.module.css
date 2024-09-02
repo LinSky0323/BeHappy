@@ -10,17 +10,16 @@
 }
 .content{
     cursor: pointer;
-    background: linear-gradient(to top,white,rgb(155, 199, 207),rgb(135, 178, 199));
+    background-color:rgb(200,200,200);
     padding: 10px;
-    border-radius: 7px;
     box-shadow: 2px 2px gray;
-    color:gray;
+    color:rgb(45,45,45);
 }
 .content:hover{
-    background: linear-gradient(to left,white,rgb(223, 223, 193),rgb(197, 197, 71));
+    background-color: rgb(165, 137, 105);
     box-shadow:0.5px 0.5px ;
     transform: translate(-0.5px,-0.5px);
-    color:rgb(80,80,80);
+    color:rgb(220, 220, 220);
 }
 .content:active{
     transform: scale(0.95)

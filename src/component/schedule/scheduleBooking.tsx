@@ -71,7 +71,6 @@ export default function ScheduleBooking({list,chooseday,setChooseday}:{list:any,
                             }
                         })
                     }
-
                     return <div key={index} className={`
                     ${styles.date__itembooking} 
                     ${((parseInt(item)===Day.getDate()) && (thisMonth===Day.getMonth()+1)) && (thisYear===listYear) && styles.date__today} 
@@ -79,7 +78,7 @@ export default function ScheduleBooking({list,chooseday,setChooseday}:{list:any,
                     ${ (list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]) && styles.isset }
                     ${ (chooseday.year === thisYear && chooseday.month === thisMonth && chooseday.day === item ) && styles.choose }
                     ${hasbooking && styles.hasbooking}`}
-                    onClick={(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)<Day.getDate())))?undefined:(e)=>{handleClick(e,item)}} 
+                    onClick={(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)<Day.getDate()))||item==="")?undefined:(e)=>{handleClick(e,item)}} 
                     >{item}</div>
                 })}
             </section>

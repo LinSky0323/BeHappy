@@ -43,6 +43,7 @@ export default function DateMask({item,setDate}:{item:any,setDate:React.Dispatch
     return(
         <div className={styles.mask} onClick={handleClick}>
             <div className={styles.container} onClick={StopPropogation}>
+                <div className={styles.remark}>*建議先和顧客溝通再進行修改</div>
                 <div className={styles.title}>修改預約時間</div>
                 <div className={styles.timeContainer}>
                     <ScheduleOut list = {item.time} chooseday={chooseday} setChooseday={setChooseday} thisItem={thisItem} setHours={setHours}/>

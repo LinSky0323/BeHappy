@@ -5,19 +5,19 @@
     width: 100%;
     height: 100%;
     z-index: 101;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.6);
 }
 .container{
     margin-left: calc(50vw - 250px);
     margin-top: 30vh;
     width: 500px;
     height: 150px;
-    background-color:rgb(152, 152, 152) ;
+    background-color: #424141;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
     color:white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 20px;
 }
 .tapContainer{
     display: flex;
@@ -36,7 +36,6 @@
     font-weight: 700;
     padding: 3px 5px 3px 5px;
     border: none;
-    border-radius: 3px;
     cursor: pointer;
 }
 /* .tap:hover{
@@ -64,5 +63,5 @@
     margin-bottom: 10px;
 }
 .remark{
-    font-size: 12px;
+    font-size: 14px;
 }

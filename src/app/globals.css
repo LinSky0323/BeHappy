@@ -2,5 +2,7 @@ body{
     margin:0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(45,45,45);
+    background-color: #232324;
+background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

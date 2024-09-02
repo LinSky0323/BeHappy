@@ -6,6 +6,7 @@ import { useBookingListDispatch, useBookingListSelector } from "@/lib/store/hook
 import { selectBookingList, selectTimeList, setBookingList, setTimeList } from "@/lib/store/features/bookingListSlices"
 import { getBooking, getTimeData } from "@/lib/firebase/firestore"
 import ScheduleRecord from "@/component/schedule/scheduleRecord"
+import NameMask from "@/component/mask/nameMask/page"
 
 const state = ["未確認","已確認","已拒絕","已完成","已取消","未履約"]
 
@@ -40,6 +41,7 @@ export default function BookingRecord(){
     }
     return(
         <div>
+            {name && <NameMask item = {name} setName = {setName}/>}
             <FormTitle name="歷史預約記錄"/>
             <div style={{display:"flex"}}>
             <ScheduleRecord list={time} chooseday={chooseday} setChooseday={setChooseday}/>

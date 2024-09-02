@@ -84,7 +84,7 @@ export default function Levelup(){
             getProfile(uid).then((res)=>setProfile(res))
         }
     },[])
-    if(load){
+    if(window.TPDirect){
         window.TPDirect.card.onUpdate(function(update:any){
             if(update.canGetPrime){
                 setDisable(false)

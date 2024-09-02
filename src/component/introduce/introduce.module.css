@@ -6,7 +6,7 @@
     align-items: center;
     margin-top: 80px;
     position: relative;
-    color:rgb(149 123 95);
+    color:rgb(215, 178, 135);
 }
 .content{
     width:1000px;
@@ -23,11 +23,13 @@
     width:650px;
     margin-left: 50px;
     margin-top: 90px;
+    font-size: 20px;
 }
 .h2{
     position: absolute;
     top:50px;
-    left:50px;
+    left:50%;
+    transform: translateX(-50%);
     font-size: 40px;
     margin:0;
     font-weight: 700;

@@ -1,10 +1,10 @@
 .btn{
-    width:350px;
-    height: 20vh;
+    width:200px;
+    height: 65px;
     margin:20px;
     border: none;
-    background-color: rgb(200,200,200);
     box-shadow: 2px 2px 2px  black;
+    background-color: rgb(200,200,200);
     color:rgb(45,45,45);
     cursor: pointer;
     font-size: 30px;
@@ -20,9 +20,8 @@
 .btn:hover{
     box-shadow: 5px 5px 5px  black;
     transform: translate(-3px , -3px);
-    background: linear-gradient(to top right,rgb(149, 88, 4),rgb(132, 81, 9),rgb(66, 42, 10));
+    background-color: rgb(165, 137, 105);
     color:rgb(220, 220, 220);
-    font-size: 40px;
 }
 
 .btn:active{

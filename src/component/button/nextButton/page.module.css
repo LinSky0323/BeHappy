@@ -2,8 +2,8 @@
     width:70px;
     height:20px;
     font-size: 15px;
-    background: linear-gradient(to right,rgb(220,220,220),rgb(180,180,180));
-    border-radius: 5px;
+    background-color: rgb(200,200,200);
+    color:rgb(45,45,45);
     border:0.5px solid black;
     cursor: pointer;
     display:flex;
@@ -15,7 +15,8 @@
 .button:hover{
     box-shadow:1px 1px ;
     transform: translate(-1px,-1px);
-    background: linear-gradient(to right,white,rgb(244, 200, 134));
+    background-color: rgb(165, 137, 105);
+    color:rgb(220, 220, 220);
 }
 .button:active{
     transform: scale(0.95)

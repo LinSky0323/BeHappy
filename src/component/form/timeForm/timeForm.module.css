@@ -1,16 +1,17 @@
 .container{
     display: flex;
-    background-color: rgb(120,120,120);
     color:rgb(50,50,50);
+    margin-left: 50px;
 }
 .button{
     position: relative;
     z-index: 1;
     cursor: pointer;
-    transition: font-weight 0.1s ease-in;
+    transition: font-weight 0.1s ease-in,color 0.3s ease-in;
 }
 .highbutton{
     font-weight: 700;
+    color:rgb(220, 220, 220);
 }
 .rightbutton{
     right:200px;
@@ -26,8 +27,7 @@
     width:50px;
     height:20px;
     font-size: 15px;
-    background: linear-gradient(to right,white,rgb(210,210,210));
-    border-radius: 5px;
+    background-color: rgb(200,200,200);
     border:0.5px solid black;
     cursor: pointer;
     display:flex;
@@ -35,11 +35,12 @@
     justify-content: center;
     font-weight: 700;
     transition: transform 0.1s ease;
+    color:rgb(45,45,45);
 }
 .checkbtn:hover{
-    box-shadow:1px 1px ;
     transform: translate(-1px,-1px);
-    background: linear-gradient(to right,white,rgb(244, 200, 134));
+    background-color: rgb(165, 137, 105);
+    color:rgb(220, 220, 220);
 }
 .checkbtn:active{
     transform: scale(0.95)
@@ -50,8 +51,8 @@
     flex-direction: column;
     align-items: center;
     position: absolute;
-    left:50%;
-    transform: translateX(-50%);
+    left:503px;
+
 }
 .btnc{
     display: flex;
@@ -60,22 +61,21 @@
 .toggleBtn{
     position: absolute;
     background-color: rgb(220,220,220);
-    padding: 2px 3px 2px 3px;
+    padding: 2px 0px 2px 0px;
     color:rgb(80,80,80);
-    width:204px;
+    width:260.4px;
     height: 22px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    top:20px;
-    left:50%;
-    transform: translateX(-50%);
+    top: 58px;
+    left:407.5px;
 }
 .toggleMask{
     position: absolute;
-    width: 70px;
+    width: 86.8px;
     height: 26px;
-    background:linear-gradient(to right, rgb(239, 208, 160), rgb(244, 200, 134));
+    background-color: rgb(165, 137, 105);
     z-index: 0;
 }
 .remind{

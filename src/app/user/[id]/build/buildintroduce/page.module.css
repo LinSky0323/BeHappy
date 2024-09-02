@@ -8,3 +8,11 @@
     margin-top: 50px;
     justify-content: space-between;
 }
+.remark{
+    position: absolute;
+    top:3px;
+    right:3px;
+    font-size: 14px;
+    font-weight: 700;
+    color: hsl(0, 100%, 68%);;
+}

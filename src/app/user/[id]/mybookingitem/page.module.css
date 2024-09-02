@@ -33,28 +33,35 @@
     width: 100%;
     height: 100%;
     z-index: 101;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.6);
 }
 .check{
     margin-left: calc(50vw - 250px);
     margin-top: 30vh;
     width: 500px;
     height: 100px;
-    background-color:rgb(3, 80, 108) ;
+    background-color: #424141;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
     color:white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
 }
 .checkBtn{
     width:100px;
     padding: 3px;
-    border-radius: 5px;
     font-weight: 700;
     border: none;
     cursor:pointer;
+    background-color: rgb(200,200,200);
+    color:rgb(45,45,45);
+}
+.checkBtn:hover{
+    box-shadow: 2px 2px 2px  black;
+    transform: translate(-2px , -2px);
+    background-color: rgb(165, 137, 105);
+    color:rgb(220, 220, 220);
 }
 .remark{
     position: absolute;

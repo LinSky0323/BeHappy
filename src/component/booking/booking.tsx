@@ -5,7 +5,7 @@ import Schedule from "../schedule/schedule"
 import styles from "./booking.module.css"
 import { usePersonPageDispatch, usePersonPageSelector } from "@/lib/store/hooks"
 import { addbookingList, delbookingList, selectbookingList, setbookingListTime } from "@/lib/store/features/personPageSlices"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { checkAuth } from "@/lib/firebase/firaAuth"
 import { getProfile, setBookingItem } from "@/lib/firebase/firestore"
 import { useParams } from "next/navigation"
@@ -113,7 +113,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
             <form className={styles.form} action={formAction}>
                 {testData.map((item,index)=>(
                     <div key={index}>
-                        <input style={{transform:"scale(1.8)"}} type="checkbox" onChange={(e)=>handleChange(item,e)}></input>
+                        <input style={{transform:"scale(1.8)",cursor:"pointer"}} type="checkbox" onChange={(e)=>handleChange(item,e)}></input>
                         <label style={{marginLeft:"5px"}} >{item["item"]}:{item["price"]===0?"":item["price"]}</label>
                     </div>
                 ))}
@@ -165,12 +165,11 @@ export default function Booking({data,timeList}:{data:any,timeList:any}){
             dispatch(setbookingListTime([...timeitem,Number(item)]))
         }
     }
-
     return(
         <section className={styles.container}>
             <div className={styles.title}>預訂</div>
             <div className={styles.content}>
-                <CheckList data={data} timeList={timeList}/>
+                <CheckList data={data} timeList={timeList} />
                 <Schedule timeList={timeList} chooseDay = {chooseDay} setChooseDay = {setChooseDay}/>
             </div>
             <div className={styles.hours}>

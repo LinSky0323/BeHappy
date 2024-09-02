@@ -16,8 +16,8 @@ import DayScheduleFix from "@/component/daySchedule/dayScheduleFix"
 const selectDay = new SelectDay()
 const selectHour = new SelectHour() 
 const from = ()=>({x:0})
-const to = ()=>({x:70})
-const to2 = ()=>({x:140})
+const to = ()=>({x:86.8})
+const to2 = ()=>({x:173.6})
 export default function TimeForm({ischeck,setIscheck}:{ischeck:number,setIscheck:React.Dispatch<SetStateAction<number>>}){
     const [prop,api] = useSpring(()=>({
         from
