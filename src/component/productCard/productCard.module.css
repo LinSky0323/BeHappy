@@ -1,13 +1,17 @@
 .container{
-
     width: 180px;
-
+    transition: transform 0.2s ease-in;
+}
+.container:hover{
+    transform: scale(1.05);
 }
 .image{
     width:180px;
     height:240px;
     position: relative;
+    cursor: pointer;
 }
+
 .title{
     display: flex;
     justify-content: space-between;

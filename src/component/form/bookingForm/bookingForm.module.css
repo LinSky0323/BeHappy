@@ -26,21 +26,21 @@
 .table{
     margin-top: 50px;
     margin-left: 100px;
-    border: 1px solid black;
+    border: 1px solid rgb(165, 137, 105);
     border-collapse: collapse;
     height: 50px;
 }
 .thI{
     width: 150px;
-    border: 1px solid black;
+    border: 1px solid rgb(165, 137, 105);
 }
 .th{
     width: 100px;
-    border: 1px solid black;
+    border: 1px solid rgb(165, 137, 105);
 }
 .td{
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid rgb(165, 137, 105);
     vertical-align: top;
     padding: 3px;
 }

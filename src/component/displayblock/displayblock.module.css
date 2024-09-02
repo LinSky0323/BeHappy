@@ -36,6 +36,7 @@
     justify-content: space-around;
     opacity: 0;
     transition: opacity 0.5s ease;
+    overflow: hidden;
 }
 .highLight{
     opacity: 1;
