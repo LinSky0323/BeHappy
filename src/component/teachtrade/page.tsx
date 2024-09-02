@@ -42,6 +42,9 @@ export default function TeachTrade(){
         if(ref.current){
             intersectionObserver.observe(ref.current)
         }
+        return()=>{
+            intersectionObserver.disconnect()
+        }
     },[])
     const bind = useDrag(({ args: [index], down, movement: [mx], direction: [xDir],velocity:[vx]},)=>{
         // if(xDir>0)return

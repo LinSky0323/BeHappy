@@ -9,9 +9,7 @@ import { useChangeValue } from "@/lib/hook/useChangeValue"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import build from "next/dist/build"
 import { UploadImg } from "@/lib/firebase/firestorage"
-import { buildCreateApi } from "@reduxjs/toolkit/query"
 import ProductCard from "@/component/productCard/productCard"
 
 const TapColor = ["red","orange","yellow","green","blue","purple"]
@@ -78,8 +76,11 @@ export default function DisplayForm(){
             else{
                 setArrow(false)
             }
+            return () => {
+                mutationObserver.disconnect()
+            };
         }
-
+        
     },[])
 
     const tapSubmit = async(prevState:any, formData:FormData)=>{

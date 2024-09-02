@@ -24,6 +24,9 @@ export default function MyDisplay(){
                 delay:3000 
             }
         })
+        return()=>{
+            api.stop()
+        }
     },[])
 
     return(
