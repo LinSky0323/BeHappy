@@ -5,7 +5,7 @@ import { useSprings,animated,to as interpolate } from "@react-spring/web"
 import { useDrag } from "@use-gesture/react"
 import Image from "next/image"
 
-const cards = [{src:"/trade_display.png"},{src:"/trade_time.png"}]
+const cards = ["/I8.png","/I7.png","/I6.png","/I5.png","/I4.png","/I3.png","/I2.png","/I1.png",]
 
 
 
@@ -13,7 +13,7 @@ export default function TeachTrade(){
     const ref = useRef<HTMLElement|null>(null)
     
     const to = (i: number) => ({
-        x: 50,
+        x: 150,
         y: 20,
         scale: 1,
         rot: 0,
@@ -96,7 +96,7 @@ export default function TeachTrade(){
             <div className={styles.row} onClick={clickRow}>向右滑動<br/>{">>>"}</div>
             {props.map(({x,y,rot,scale},index)=>(       
                  <animated.div key={index}  className={styles.card} {...bind(index)} style={{x,y,transform: interpolate([rot, scale], trans),}}>
-                     <div className={styles.imgContainer} style={{touchAction:"none",pointerEvents: "none"}}><Image  alt="教學"src={cards[index].src} fill sizes="100%" style={{objectFit:"cover"}}/></div>
+                     <div className={styles.imgContainer} style={{touchAction:"none",pointerEvents: "none"}}><Image  alt="教學" src={cards[index]} fill sizes="100%" style={{objectFit:"cover"}}/></div>
                  </animated.div>
             ))}
     </section>

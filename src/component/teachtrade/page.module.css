@@ -13,8 +13,8 @@
 }
 .card{
     position: absolute;
-    width: 75vw;
-    height: 60vh;
+    width: 950px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     will-change: transform;
@@ -32,7 +32,7 @@
 .row{
     position: absolute;
     top:30vh;
-    right:5vw;
+    right:10vw;
     font-size: 20px;
     font-weight: 700;
     text-align: center;
