@@ -14,7 +14,7 @@
     width: 500px;
     padding: 30px 20px 20px 20px;
     background-color: #424141;
-    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    background-image: url("/stardust.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
     color:white;
     display: flex;

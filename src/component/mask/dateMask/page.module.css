@@ -13,7 +13,7 @@
     width: 1000px;
     height: 500px;
     background-color: #424141;
-    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    background-image: url("/stardust.png");
     color: white;
     display: flex;
     flex-direction: column;
@@ -51,7 +51,7 @@
 .remind{
     font-size: 20px;
     font-weight: 700;
-    color: rgb(236, 150, 150);
+    color: rgb(251, 127, 127);
     margin-top: 20px;
 }
 .remark{

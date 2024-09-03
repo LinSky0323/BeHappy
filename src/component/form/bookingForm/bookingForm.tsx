@@ -47,7 +47,7 @@ export default function BookingForm(){
             return
         }
         if(itemTime % 0.5 !== 0){
-            remind.setRemind("時間最小單位0.5HR")
+            remind.setRemind("以0.5hr為單位")
             return
         }
 

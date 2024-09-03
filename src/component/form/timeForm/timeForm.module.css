@@ -80,9 +80,9 @@
 }
 .remind{
     position: absolute;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
-    color: red;
+    color: rgb(251, 127, 127);
     top:93%;
     left:50%;
     transform: translateX(-50%);

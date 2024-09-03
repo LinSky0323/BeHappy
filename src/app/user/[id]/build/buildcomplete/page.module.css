@@ -23,9 +23,9 @@
     display: flex;
 }
 .remind{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
-    color: red;
+    color: rgb(251, 127, 127);
     margin-left: 200px;
 }
 .imgContainer:hover{    

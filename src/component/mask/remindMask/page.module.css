@@ -13,7 +13,7 @@
     margin-top: 30vh;
     width: 500px;
     background-color: #424141;
-    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    background-image: url("/stardust.png");
     color:white;
     display: flex;
     flex-direction: column;

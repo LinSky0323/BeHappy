@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter,Noto_Sans_TC } from "next/font/google";
 import "./globals.css";
 import localFont from 'next/font/local'
+import Footer from "@/component/footer/page";
 
 const myFont = localFont({ src: [
   {path:"./SourceHanSerifTC-Bold.otf",weight:"700",},{path:"./SourceHanSerifTC-Medium.otf",weight:"500",},{path:"./SourceHanSerifTC-Regular.otf",weight:"400",}
@@ -23,7 +24,10 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
 
         </head>
       <body className={myFont.className}>
-          {children}
+        <div style={{flex:"1"}}>
+        {children}
+        </div>
+        <Footer/>
       </body>
     </html>
   );

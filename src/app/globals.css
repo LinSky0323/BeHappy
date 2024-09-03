@@ -3,6 +3,10 @@ body{
     padding: 0;
     box-sizing: border-box;
     background-color: #232324;
-background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    background-image: url("/stardust.png");
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    scrollbar-color: rgb(220,220,220) rgb(80,80,80);
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

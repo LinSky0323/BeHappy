@@ -5,7 +5,7 @@
 .remark{
     position: absolute;
     top:3px;
-    right:3px;
+    left:50vw;
     font-size: 14px;
     font-weight: 700;
     color: hsl(0, 100%, 68%);;
@@ -20,7 +20,7 @@
 .remark2{
     position: absolute;
     top:20px;
-    right:3px;
+    left:50vw;
     font-size: 14px;
     font-weight: 700;
     color: hsl(0, 100%, 68%);;
