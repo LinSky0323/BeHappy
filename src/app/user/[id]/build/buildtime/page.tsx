@@ -16,7 +16,7 @@ export default function BuildTime(){
             {ischeck===2 && <div className={styles.remark}>*點擊想查詢的日期，僅可查看無法修改</div>}
             <FormTitle name={ischeck===0?"批量編輯可預約時間":ischeck===1?"單日修改可預約時間":"查詢已設定可預約時間"}/>
             <TimeForm ischeck = {ischeck} setIscheck = {setIscheck}/>
-            <div className={styles.btnContainer}><LastButton url="builditem"/><NextButton url="buildcomplete"/></div>
+            <div className={styles.btnContainer}><LastButton url="builditem"/><NextButton url="buildid"/></div>
         </div>
     )
 }

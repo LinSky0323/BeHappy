@@ -7,7 +7,7 @@ import { usePersonPageDispatch, usePersonPageSelector } from "@/lib/store/hooks"
 import { addbookingList, delbookingList, selectbookingList, setbookingListTime } from "@/lib/store/features/personPageSlices"
 import { useState } from "react"
 import { checkAuth } from "@/lib/firebase/firaAuth"
-import { getProfile, setBookingItem } from "@/lib/firebase/firestore"
+import { getParamsId, getProfile, setBookingItem } from "@/lib/firebase/firestore"
 import { useParams } from "next/navigation"
 import PushMask from "../mask/pushMask/page"
 import RemindMask from "../mask/remindMask/page"
@@ -24,8 +24,9 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
     const [push,setPush] = useState<{} | null>(null)
     const testData:[bookingListState] = data.bookingList
     const params = useParams()
-    const uid = params.id as string
+    const id = params.id as string
     const submit = async(prevState:any, formData:FormData)=>{
+        const uid = await getParamsId(id) as string
         try{
             const res = await checkAuth() as any
             const profile = await getProfile(res.uid)

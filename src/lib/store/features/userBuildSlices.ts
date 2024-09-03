@@ -10,7 +10,7 @@ interface liststate{
     introduceContent?:string[],
     displayList?:any[],
     bookingList?:any[],
-
+    paramsId?:string
 }
 
 
@@ -25,7 +25,8 @@ const initialState:buildState ={
         introduceImage:"",
         introduceContent:[],
         displayList:[],
-        bookingList:[]
+        bookingList:[],
+        paramsId:""
     },
     timeList:{}
 }

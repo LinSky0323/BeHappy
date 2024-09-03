@@ -28,6 +28,71 @@ export async function createListData(uid:string,obj:{}){
     })
 }//創建、更新list
 
+export async function createParamsId(id:string,obj:{}){
+    const ref = doc(db,"ParamsID",id)
+
+    return new Promise(async(resolve,reject)=>{
+        try{
+            await updateDoc(ref,obj)
+            resolve("修改成功")
+        }
+        catch(error:any){
+            if(error.code==="not-found"){
+                try{
+                    await setDoc(ref,obj)
+                    resolve("創建成功")
+                }
+                catch(seterror){
+                    reject(seterror)
+                }
+            }
+            else{
+                reject(error)
+            }
+        }
+    })
+}//創建？更新paramsID
+
+export async function checkParamsId(id:string,uid:string){
+    const ref = collection(db,"ParamsID")
+    
+    return new Promise(async(resolve,reject)=>{
+            try{
+                const docs = await getDocs(ref)
+                docs.forEach((data)=>{
+                    const res = data.id
+                    if(res===id){
+                        const resuid = data.data().uid
+                        if(resuid!==uid)
+                            resolve(false)
+                    }
+                })
+                resolve(true)
+            }
+            catch(error){
+                reject(error)
+            }
+    })
+}//確認取的網址有沒有跟別人重複
+export async function getParamsId(id:string){
+    const ref = doc(db,"ParamsID",id)
+    
+    return new Promise(async(resolve,reject)=>{
+        try{
+            const data = await getDoc(ref)
+            if(data.exists()){
+                resolve( data.data().uid )
+            }
+            else{
+                reject("找不到對應的網址")
+            }    
+        }
+        catch(error){
+            reject(error)
+        }
+    })
+
+}
 export async function setBookingItem(uid:string,obj:{},year:number,month:number,day:number,hour:number[]){
     const ref = doc(db,uid,"timedb")
     
