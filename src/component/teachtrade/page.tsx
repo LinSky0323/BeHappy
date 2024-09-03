@@ -17,7 +17,7 @@ export default function TeachTrade(){
         y: 20,
         scale: 1,
         rot: 0,
-        delay: i * 100,
+        delay: i *30,
       })
     const from = (_i: number) => ({ x: -1500, rot: 0, scale: 1.5, y:0})
     
