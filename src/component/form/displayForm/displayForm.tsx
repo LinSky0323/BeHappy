@@ -100,6 +100,7 @@ export default function DisplayForm(){
         }
     }
     const submit = async(prevState:any, formData:FormData)=>{
+        console.log(123)
         const image = formData.get("displayImage") as File
         const name = formData.get("displayContent")
         if(!highTap[0]){

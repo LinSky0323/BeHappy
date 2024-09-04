@@ -115,7 +115,7 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
                 <div>------------------------------------------------------------------</div>
                 <div >
                     {remind.state && <div className={styles.remind}>{remind.state}</div>}
-                    <button type="submit" aria-disabled={pending} className={styles.btn} >確認送出!</button>
+                    <button type="submit" disabled={pending} className={styles.btn} >{pending?"處理中":"確認送出!"}</button>
                 </div>
             </form>
         </div>
