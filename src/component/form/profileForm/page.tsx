@@ -136,7 +136,7 @@ export default function ProfileForm(){
     const [state,formAction] = useFormState(submit,null)
 
     return(
-        <div style={{display:"flex"}}>
+        <div className={styles.bigcontainer}>
             <form action={formAction} className={styles.form}>
                 <div className={styles.container}><label className={styles.label}>信箱</label><span>{email}</span></div>
                 <div className={styles.container}><label className={styles.label}>姓名</label><input className={styles.input} placeholder="請輸入您的姓名" value={name} onChange={(e)=>setName(e.target.value)}/></div>

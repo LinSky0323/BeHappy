@@ -23,3 +23,9 @@
 .high{
     color:rgb(200,170,40);
 }
+@media(max-width:500px){
+    .item{
+        font-size: 14px;
+    }
+    
+}

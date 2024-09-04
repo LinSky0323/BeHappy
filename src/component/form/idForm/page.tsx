@@ -15,6 +15,7 @@ import { LastButton } from "@/component/button/lastButton/page"
 export default function IdForm(){
     const buildList = useUserBuildSelector(selectBuildList)
     const [paramsIdwrite,setParamsId] = useState(true)
+
     const paramsIdinput = useChangeValue("")
     const paramsIdRemind = useChangeRemind()
     const uid = localStorage.getItem("uid") as string
@@ -41,7 +42,12 @@ export default function IdForm(){
     
 
     const titlesubmit = async(prevState:any, formData:FormData)=>{
+        const Reg = /^[a-zA-Z0-9_]+$/
         const paramsId = formData.get("paramsId") as string;
+        if(!Reg.test(paramsId)){
+            paramsIdRemind.setRemind("請輸入英文 數字 _ ")
+            return
+        }
         const submitData = {paramsId}
         const check = await checkParamsId(paramsId,uid)
         if(check===true){
@@ -60,31 +66,16 @@ export default function IdForm(){
     const titleUse = ()=>{
         setParamsId(true)
     }
-  
-
     const [titlestate,paramsIdformAction] = useFormState(titlesubmit,null)
-    const clickNext = async()=>{
-        if(buildList.paramsId )return
-        const paramsId = paramsIdinput.value
-        const submitData = {paramsId}
-        const check = await checkParamsId(paramsId,uid)
-        if(check===true){
-            await createListData(uid,submitData)
-            await createParamsId(paramsId,{uid:uid})
-        }
-        else{
-            paramsIdRemind.setRemind("網址跟別人重複了")
-        }
-        
-    }
+
         return(
             <>
             <form className={styles.form} action={paramsIdwrite?paramsIdformAction:titleUse}>
                 <label>網址：</label><input type="text" name="paramsId" value={paramsIdinput.value} onChange={paramsIdinput.onChange} disabled={!paramsIdwrite}></input>
-                {buildList.paramsId?<SubmitButton name={paramsIdwrite?"送出":"修改"}/>:null}
+                {paramsIdwrite?<SubmitButton name="確認"/>:null}
                 {paramsIdRemind.state && <div className={styles.remind}>{paramsIdRemind.state}</div>}
             </form>
-            <div className={styles.btnContainer}><LastButton url="buildtime"/><div onClick={clickNext}><NextButton url="buildcomplete"/></div></div>
+            <div className={styles.btnContainer}><LastButton url="buildtime"/><div><NextButton url="buildcomplete"/></div></div>
             </>
         )
 }

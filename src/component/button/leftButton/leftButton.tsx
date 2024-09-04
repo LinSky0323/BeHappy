@@ -7,12 +7,16 @@ export default function LeftButton({setHighLight,length,highLight}:{setHighLight
         const title = document.querySelector("#displayBlock__titleContainer")
         if(list && title){
             if(highLight>0){
-                list.scrollBy({left:-1000,behavior:"smooth"})
+                if(window.innerWidth>800){list.scrollBy({left:-1000,behavior:"smooth"})}
+                else if(window.innerWidth>600){list.scrollBy({left:-500,behavior:"smooth"})}
+                else{list.scrollBy({left:-200,behavior:"smooth"})}
                 title.scrollBy({left:-150,behavior:"smooth"})
                 setHighLight(highLight-1)
             }
             else{
-                list.scrollBy({left:(1000*(length-1)),behavior:"smooth"})
+                if(window.innerWidth>800){list.scrollBy({left:(1000*(length-1)),behavior:"smooth"})}
+                else if(window.innerWidth>600){list.scrollBy({left:(500*(length-1)),behavior:"smooth"})}
+                else{list.scrollBy({left:(200*(length-1)),behavior:"smooth"})}
                 title.scrollBy({left:(150*(length-1)),behavior:"smooth"})
                 setHighLight(length-1)
             }

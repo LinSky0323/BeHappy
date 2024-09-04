@@ -69,7 +69,7 @@ export default function BookingList(){
             {date && <DateMask item = {date} setDate = {setDate}/>}
             {price && <PriceMask item = {price} setPrice = {setPrice}/>}
             {check && <CheckMask item = {check} setCheck = {setCheck}/>}
-            <div style={{display:"flex"}}>
+            <div className={styles.bigContainer}>
                 <ScheduleBooking list={time} chooseday={chooseday} setChooseday={setChooseday}/>
                 <div className={styles.tableContainer}>
                 <table className={styles.table}>

@@ -52,3 +52,13 @@
     margin-top: 10px;
     margin-left: 200px;
 }
+@media(max-width:800px){
+    .content{
+        margin-left: 60px;
+    }
+}
+@media(max-width:500px){
+    .content{
+        margin-left: 20px;
+    }
+}

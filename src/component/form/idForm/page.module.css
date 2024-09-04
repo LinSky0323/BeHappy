@@ -18,3 +18,12 @@
     margin-top: 50px;
     justify-content: space-between;
 }
+@media(max-width:800px){
+    .btnContainer{
+        width:90%;
+        margin-left: 5%;
+    }
+    .form{
+        margin-left: 30px;
+    }
+}

@@ -16,3 +16,8 @@
     font-weight: 700;
     color: hsl(0, 100%, 68%);;
 }
+@media(max-width:600px){
+    .remark{
+        top:-25px;
+    }
+}

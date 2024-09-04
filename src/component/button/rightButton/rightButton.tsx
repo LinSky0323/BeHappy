@@ -7,12 +7,16 @@ export default function RightButton({setHighLight,length,highLight}:{setHighLigh
         const title = document.querySelector("#displayBlock__titleContainer")
         if(list && title){
             if(highLight<length-1){
-                list.scrollBy({left:1000,behavior:"smooth"})
+                if(window.innerWidth>800){list.scrollBy({left:1000,behavior:"smooth"})}
+                else if(window.innerWidth>600){list.scrollBy({left:500,behavior:"smooth"})}
+                else{list.scrollBy({left:200,behavior:"smooth"})}
                 title.scrollBy({left:150,behavior:"smooth"})
                 setHighLight(highLight+1)
             }
             else{
-                list.scrollBy({left:(-1000*(length-1)),behavior:"smooth"})
+                if(window.innerWidth>800){list.scrollBy({left:(-1000*(length-1)),behavior:"smooth"})}
+                else if(window.innerWidth>600){list.scrollBy({left:(-500*(length-1)),behavior:"smooth"})}
+                else{list.scrollBy({left:(-200*(length-1)),behavior:"smooth"})}
                 title.scrollBy({left:(-150*(length-1)),behavior:"smooth"})
                 setHighLight(0)
             }

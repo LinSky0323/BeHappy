@@ -51,3 +51,10 @@
     font-weight: 700;
     color: rgb(239, 112, 112);
 }
+@media(max-width:800px){
+    .container{
+        margin-left: 5%;
+        margin-top: 30vh;
+        width:80%;
+    }
+}

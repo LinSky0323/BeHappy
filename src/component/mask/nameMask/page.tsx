@@ -14,6 +14,9 @@ export default function NameMask({item,setName}:{item:string,setName:React.Dispa
     const handleClick = ()=>{
         setName(null)
     }
+    const clickX = ()=>{
+        setName(null)
+    }
     const [list,setList] = useState<any>()
     const [remarkText,setRemarkText] = useState([])
     useEffect(()=>{
@@ -44,6 +47,7 @@ export default function NameMask({item,setName}:{item:string,setName:React.Dispa
     return(
         <div className={styles.mask} onClick={handleClick}>
             <div className={styles.container} onClick={StopPropogation}>
+            <div className={styles.x} onClick={clickX}>X</div>
                 <div className={styles.remark}>*可編輯「僅你可見」的個人備註</div>
                 <div className={styles.title}>個人資訊</div>
                 <div className={styles.content}>

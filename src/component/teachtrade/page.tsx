@@ -13,7 +13,14 @@ export default function TeachTrade(){
     const ref = useRef<HTMLElement|null>(null)
     
     const to = (i: number) => ({
-        x: 150,
+        x: 50,
+        y: 20,
+        scale: 1,
+        rot: 0,
+        delay: i *30,
+      })
+    const to2 = (i: number) => ({
+        x: 0,
         y: 20,
         scale: 1,
         rot: 0,
@@ -34,9 +41,17 @@ export default function TeachTrade(){
                 api.start((i)=>(from(i)))
             }
             else{
-                setTimeout(()=>{
-                    api.start((i)=>(to(i)))
-                },500)
+                if(window.innerWidth>1200){
+                    setTimeout(()=>{
+                        api.start((i)=>(to(i)))
+                    },500)
+                }
+                else{
+                    setTimeout(()=>{
+                        api.start((i)=>(to2(i)))
+                    },500)
+                }
+                
             }
         })
         if(ref.current){
@@ -52,8 +67,9 @@ export default function TeachTrade(){
         if(!down && trigger) gone.add(index);
         api.start((i)=>{
             if (index !== i) return
+            const gap = window.innerWidth>1200?50:0
             const isGone = gone.has(index)
-            const x = isGone?(200+window.innerWidth):down?mx+50:50;
+            const x = isGone?(200+window.innerWidth):down?mx+gap:gap;
             const rot = mx/100
             const scale = down?1.1:1
             return({
@@ -65,10 +81,18 @@ export default function TeachTrade(){
             })
         })
         if(!down && gone.size === cards.length){
-            setTimeout(()=>{
-                gone.clear()
-                api.start((i)=>to(i))
-            },600)
+            if(window.innerWidth>1200){
+                setTimeout(()=>{
+                    gone.clear()
+                    api.start((i)=>to(i))
+                },600)
+            }
+            else{
+                setTimeout(()=>{
+                    gone.clear()
+                    api.start((i)=>to2(i))
+                },600)
+            }
         }
     }) 
     const clickRow = ()=>{
@@ -84,10 +108,18 @@ export default function TeachTrade(){
             })
         })
         if(gone.size === cards.length){
-            setTimeout(()=>{
-                gone.clear()
-                api.start((i)=>to(i))
-            },600)
+            if(window.innerWidth>1200){
+                setTimeout(()=>{
+                    gone.clear()
+                    api.start((i)=>to(i))
+                },600)
+            }
+            else{
+                setTimeout(()=>{
+                    gone.clear()
+                    api.start((i)=>to2(i))
+                },600)
+            }
         }
     }
     return(

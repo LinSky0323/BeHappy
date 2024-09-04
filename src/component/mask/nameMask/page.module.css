@@ -56,3 +56,33 @@
     top:5px;
     left:232px;
 }
+.x{
+    display: none;
+}
+@media(max-width:650px){
+    .container{
+        margin-top: 3vh;
+        width: 80%;
+        margin-left: 5%;
+    }
+    .title{
+        left:50%;
+        transform: translateX(-50%);
+        top:20px;
+    }
+    .content{
+        flex-direction: column;
+        align-items: center;
+    }
+    .x{
+        display: block;
+        position: absolute;
+        top:5px;
+        left: 5px;
+        cursor: pointer;
+        background-color: rgb(200,200,200);
+        color:rgb(80,80,80);
+        width:20px;
+        text-align: center;
+    }
+}

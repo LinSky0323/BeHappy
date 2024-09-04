@@ -96,3 +96,23 @@
     justify-content: flex-end;
     align-items: center;
 }
+@media(max-width:800px){
+    .th1{width:10%}
+    .th2{width:10%}
+    .th3{width:10%}
+    .th4{width:10%}
+    .th5{width:8%}
+    .th6{width:5%}
+    .table{
+        margin:30px 20px 50px 10px;}
+}
+@media(max-width:650px){
+    .table{
+        font-size: 12px;
+    }
+}
+@media(max-width:450px){
+    .table{
+        font-size: 10px;
+    }
+}

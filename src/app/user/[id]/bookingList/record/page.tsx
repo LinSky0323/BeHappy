@@ -43,7 +43,7 @@ export default function BookingRecord(){
         <div>
             {name && <NameMask item = {name} setName = {setName}/>}
             <FormTitle name="歷史預約記錄"/>
-            <div style={{display:"flex"}}>
+            <div className={styles.bigContainer}>
             <ScheduleRecord list={time} chooseday={chooseday} setChooseday={setChooseday}/>
             <div className={styles.tableContainer}>
             <table className={styles.table}>

@@ -14,6 +14,7 @@
 .mask{
     position: absolute;
     bottom:0;
+    right:0;
     left:50%;
     transform: translateX(-50%);
     background-color: rgba(200,200,200,0.5);
@@ -44,4 +45,30 @@
     right:20px;
     bottom: 10px;
     color: black;
+}
+@media(max-width:850px){
+    .name{
+        margin-left: 0;
+        display: flex;
+        align-items: flex-start;
+    }
+    .mask{
+        width:300px;
+        left:auto;
+        right:0px;
+        transform: none;
+    }
+    .username{
+        display: none;
+    }
+}
+@media(max-width:500px){
+    .name{
+        font-size: 30px;
+        margin:0;
+    }
+    .mask{
+        width:100%;
+        height:30px;
+    }
 }

@@ -1,3 +1,7 @@
+.bigContainer{
+    display: flex;
+}
+
 .table{
     margin:38px 20px 50px 20px;
     border-collapse: collapse;
@@ -37,4 +41,21 @@
 }
 .complete{
     color:green;
+}
+@media(max-width:800px){
+    .bigContainer{
+        width:100%;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media(max-width:600px){
+    .table{
+        font-size: 12px;
+    }
+}
+@media(max-width:450px){
+    .table{
+        font-size: 10px;
+    }
 }

@@ -34,3 +34,23 @@
     margin:0;
     font-weight: 700;
 }
+@media(max-width:800px){
+    .content{
+        width:100vw;
+    }
+    .image{
+        height:280px;
+        width:210px;
+    }
+    .description{
+        width:100%;
+        font-size: 14px;
+        margin-left: 20px;
+    }
+}
+@media(max-width:420px){
+    .image{
+        height:200px;
+        width:150px;
+    }
+}

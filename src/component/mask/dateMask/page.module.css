@@ -62,3 +62,39 @@
     font-weight: 700;
     color: hsl(0, 100%, 68%);;
 }
+.x{
+    display: none;
+}
+@media(max-width:800px){
+    .title{
+        margin:20px 5px 5px 5px;
+    }
+    .container{
+        margin-left:0;
+        margin-top: 10px;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+    }
+    .timeContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+    .x{
+        display: block;
+        position: absolute;
+        top:5px;
+        left: 5px;
+        cursor: pointer;
+        background-color: rgb(200,200,200);
+        color:rgb(80,80,80);
+        width:20px;
+        text-align: center;
+    }
+}
+@media(max-width:650px){
+    .btn{
+        right: calc(50vw - 180px);
+        bottom: 10vh;
+    }
+}

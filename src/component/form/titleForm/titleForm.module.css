@@ -18,3 +18,14 @@
     margin-top: 50px;
     justify-content: space-between;
 }
+@media(max-width:500px){
+    .form{
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0px;
+    }
+    .btnContainer{
+        width:90%;
+        margin-left: 5%;
+    }
+}

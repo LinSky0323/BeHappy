@@ -14,6 +14,9 @@ export default function DateMask({item,setDate}:{item:any,setDate:React.Dispatch
     const handleClick = ()=>{
         setDate(null)
     }
+    const clickX = ()=>{
+        setDate(null)
+    }
     const remind = useChangeRemind()
     const [chooseday,setChooseday] = useState<any>({year:item.item.year,month:item.item.month,day:item.item.day})
     const [hours,setHours] = useState<number[]>([])
@@ -43,6 +46,7 @@ export default function DateMask({item,setDate}:{item:any,setDate:React.Dispatch
     return(
         <div className={styles.mask} onClick={handleClick}>
             <div className={styles.container} onClick={StopPropogation}>
+                <div className={styles.x} onClick={clickX}>X</div>
                 <div className={styles.remark}>*建議先和顧客溝通再進行修改</div>
                 <div className={styles.title}>修改預約時間</div>
                 <div className={styles.timeContainer}>

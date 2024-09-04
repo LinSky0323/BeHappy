@@ -18,8 +18,9 @@ export default function DisplayBlock({data}:{data:any}){
         const list = document.querySelector("#displayBlock__listContainer")
         const title = document.querySelector("#displayBlock__titleContainer")
         if(list && title){
-            list.scrollBy({left:1000*gap,behavior:"smooth"})
-            title.scrollBy({left:150*gap,behavior:"smooth"})
+            if(window.innerWidth>800){list.scrollBy({left:1000*gap,behavior:"smooth"})}
+            else if(window.innerWidth>600){list.scrollBy({left:500*gap,behavior:"smooth"})}
+            else {list.scrollBy({left:200*gap,behavior:"smooth"})}title.scrollBy({left:150*gap,behavior:"smooth"})
             setHighLight(index)
         }
     }

@@ -61,3 +61,42 @@
 .highCircle{
     background-color: rgb(200,200,200);
 }
+@media(max-width:800px){
+    .listContainer{
+        width: 500px;
+    }
+    .list{
+        width:500px;
+        min-width: 500px;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 60px;
+        justify-content: space-between;
+    }
+    .titleContainer{
+        top:5px;
+        left:50px;
+    }
+    .circleContainer{
+        top:600px;
+    }
+}
+@media(max-width:600px){
+    .container{
+        height: 1200px;
+    }
+    .listContainer{
+        width: 200px;
+    }
+    .list{
+        width:200px;
+        min-width:200px;
+        display:grid;
+        grid-template-columns: 1fr ;
+        margin-top: 60px;
+        justify-content: space-between;
+    }
+    .circleContainer{
+        top:1200px;
+    }
+}

@@ -1,3 +1,6 @@
+.bigcontainer{
+    display: flex;
+}
 .remind{
     font-size: 14px;
     font-weight: 500;
@@ -93,4 +96,12 @@
     position: absolute;
     right: 5px;
     bottom:25px ;
+}
+@media(max-width:800px){
+    .bigcontainer{
+        flex-direction: column;
+    }
+    .form{
+        margin-left:10px;
+    }
 }

@@ -1,0 +1,28 @@
+.container{
+    width: 100%;
+    position: relative;
+}
+.remark{
+    position: absolute;
+    top:3px;
+    right: 10vw;
+    font-size: 14px;
+    font-weight: 700;
+    color: hsl(0, 100%, 68%);;
+}
+.remark2{
+    position: absolute;
+    top:20px;
+    right: 10vw;
+    font-size: 14px;
+    font-weight: 700;
+    color: hsl(0, 100%, 68%);;
+}
+@media(max-width:600px){
+    .remark{
+        top:-25px;
+    }
+    .remark2{
+        top:-8px;
+    }
+}

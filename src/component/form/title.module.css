@@ -4,3 +4,8 @@
     margin-left:50px ;
     color:rgb(220,220,220)
 }
+@media(max-width:500px){
+    .h2{
+        margin-left: 20px;
+    }
+}

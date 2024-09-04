@@ -127,3 +127,49 @@
 .date__today{
     background-color: antiquewhite;
 }
+
+@media(max-width:800px){
+    .account__container{
+        width:334px;
+        margin:10px;
+        margin-top: 50px;
+    }
+    .data__list{
+        margin-right: 10px;
+    }
+    .date__container{
+        width:334px;
+        margin:auto;
+        margin-top: 5px;
+    }
+    .date__container div {
+        width:41px;
+        padding:3px;
+    }
+}
+@media(max-width:650px){
+    .account__containerIn{
+        width:334px;
+        margin:10px;
+        margin-top: 50px;
+    }
+    .data__list{
+        margin-right: 10px;
+    }
+    .date__containerIn{
+        width:334px;
+        margin:auto;
+        margin-top: 5px;
+    }
+    .date__containerIn div {
+        width:41px;
+        padding:3px;
+    }
+    .date__week{
+        height:20px;
+    }
+    .date__item{
+        height:30px;
+    }
+    
+}
