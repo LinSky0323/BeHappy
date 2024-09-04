@@ -82,6 +82,7 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
                     body: `<h1>Hello ${writerName}</h1>
                     <h3>您收到一筆來自${profile.name}的預約</h3>
                     <h3>預約時間是${submitData.year}年${submitData.month}月${submitData.day}日</h3>
+                    <h3>預約項目是「${submitData.items}」</h3>
                     <h4>詳細情形請至<a href="${window.location.origin}/user/${submitData.trade}/bookingList">網站</a>查詢</h4>`,
                   }),
             })

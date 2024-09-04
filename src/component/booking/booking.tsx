@@ -7,7 +7,7 @@ import { usePersonPageDispatch, usePersonPageSelector } from "@/lib/store/hooks"
 import { addbookingList, delbookingList, selectbookingList, setbookingListTime } from "@/lib/store/features/personPageSlices"
 import { useState } from "react"
 import { checkAuth } from "@/lib/firebase/firaAuth"
-import { getParamsId, getProfile, setBookingItem } from "@/lib/firebase/firestore"
+import { getParamsId, getProfile } from "@/lib/firebase/firestore"
 import { useParams } from "next/navigation"
 import PushMask from "../mask/pushMask/page"
 import RemindMask from "../mask/remindMask/page"
@@ -29,7 +29,14 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
         const uid = await getParamsId(id) as string
         try{
             const res = await checkAuth() as any
-            const profile = await getProfile(res.uid)
+        }
+        catch{
+            setOpenRemind("請先登入會員才能預約")
+            return
+        }
+        try{
+            const profileUid = localStorage.getItem("uid") as string
+            const profile = await getProfile(profileUid)
             let acounts = 0
             if(totalTime === -1){acounts = 1}
             else if (totalTime > 0){acounts = totalTime/0.5}
@@ -54,7 +61,7 @@ const CheckList = ({data,timeList}:{data:any,timeList:any})=>{
             }
             if(!submitHour.length){return}
             const submitData = {
-                guest:res.uid,
+                guest:profileUid,
                 trade:uid,
                 items,
                 submitHour,
