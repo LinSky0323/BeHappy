@@ -8,7 +8,7 @@
     color:rgb(200,200,200);
 }
 .identity{
-    position: absolute;
+    position: fixed;
     z-index: 101;
     top:81px;
     right:10vw;

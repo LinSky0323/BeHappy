@@ -24,3 +24,8 @@
 .X{
     background-color: rgb(120,120,120);
 }
+@media(max-width:500px){
+    .button{
+        font-size: 12px;
+    }
+}
