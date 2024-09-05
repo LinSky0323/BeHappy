@@ -7,6 +7,7 @@ import StartBtn from "@/component/button/startButton/page";
 import localFont from 'next/font/local'
 import MyDisplay from "@/component/mydisplay/page";
 import TeachTrade from "@/component/teachtrade/page";
+import Homepage from "@/component/homepage/page";
 
 const myFont = localFont({ src: './ChenYuluoyanThin.ttf' })
 
@@ -19,7 +20,7 @@ export default  function Home() {
 
   return (
     <main className={styles.container}>
-      <div className={styles.block}>
+      {/* <div className={styles.block}>
         <div className={styles.imgContainer}>
           <Image alt="背景" src="/background.jpg" fill style={{ objectFit: 'cover' }}/>
         </div>
@@ -43,7 +44,8 @@ export default  function Home() {
         <div className={`${styles.text2} ${myFont.className}`}>也能做出一棟城堡！</div>
         <StartBtn/>
         <div className={styles.bl}></div>
-      </div>
+      </div> */}
+      <Homepage/>
       <MyDisplay/>
       <TeachTrade/>
     </main>

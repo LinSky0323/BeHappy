@@ -1,0 +1,168 @@
+.container{
+    position: relative;
+    width:100%;
+    height: 100vh;
+    background-color: #424141;
+    background-image: url("/stardust.png");
+}
+.castle{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    bottom:0;
+    z-index: 0;
+}
+.startbtn{
+    position: absolute;
+    top:60%;
+    left:50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}   
+.btnmask{
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    width:200px;
+    height: 50px;
+    background-color: yellow;
+    filter:blur(10px);
+    animation: bling 1s ease-in-out  infinite;
+}
+.arrow{
+    position: absolute;
+    bottom:110px;
+    left:50%;
+    z-index: 10;
+}
+.light{
+    width: 50px;
+    height: 100px;
+    background-color: rgb(179, 181, 38);
+    filter:blur(2px);
+    position: absolute;
+    bottom: 15px;
+    left:50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+.door{
+    width: 50px;
+    height: 100px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    bottom: 15px;
+    left:calc(50% - 25px);
+    z-index: 2;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border:1px solid rgba(229, 246, 168,0.5);
+    transform-origin: left bottom;
+    cursor: pointer;
+}
+.gearContainer{
+    position: absolute;
+    width:100%;
+    height: 150px;
+    bottom: 5px;
+}
+.gearContainer1{
+    position: absolute;
+    width:200px;
+    height: 150px;
+    left:calc(50% - 275px);
+    bottom: 5px;
+}
+.gearContainer2{
+    position: absolute;
+    width:200px;
+    height: 150px;
+    left:calc(50% + 30px);
+    bottom: 5px;
+}
+
+.gear1{
+    position: absolute;
+    bottom:8px;
+    left:72px;
+    z-index: 3;
+    transform-origin: center center;
+
+}
+.gear2{
+    position: absolute;
+    bottom:35px;
+    left:145px;
+    z-index: 3;
+
+}
+.gear3{
+    position: absolute;
+    bottom:5px;
+    left:200px;
+    z-index: 3;
+
+}
+.gear4{
+    position: absolute;
+    bottom:5px;
+    left:0;
+    z-index: 3;
+
+}
+.gear5{
+    position: absolute;
+    bottom:35px;
+    left:20px;
+    z-index: 3;
+
+}
+.gear6{
+    position: absolute;
+    bottom:8px;
+    left:92px;
+    z-index: 3;
+
+}
+.content{
+    position: absolute;
+    bottom:10px;
+    left:50%;
+    z-index: 4;
+    color: rgb(200,170,45);
+    font-weight: 700;
+}
+@keyframes bling{
+    from{opacity: 0;}
+    50%{opacity: 1;}
+    to{opacity: 0;}
+}
+
+.title{
+    z-index: 10;
+    width: calc(100% - 30px);
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding-left:20px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    top: 0;
+    background-color: rgba(49, 49, 49, 0.8);
+    align-items: center;
+    opacity: 1;
+    animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+.h1{
+    margin: 0;
+    color:rgb(200,170,45)
+}
+.btn{
+    color:rgb(200,170,45);
+    font-weight: 700;
+    position: relative;
+    z-index: 15;
+}

@@ -18,7 +18,7 @@ export default function MyDisplay(){
             return{
                 opacity,
                 loop:{
-                    reverse:true
+                    reverse:true,
                 },
                 config: config.slow,
                 delay:3000 

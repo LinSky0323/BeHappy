@@ -1,21 +1,21 @@
 .start{
-    color:white;
-    position: absolute;
-    top:50vh;
-    left: calc(50vw - 100px);
+    position: relative;
+    color:black;
     width:200px;
     height: 50px;
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 700;
     border:none;
     text-align: center;
-    z-index: 0;
-    opacity: 0;
+    z-index: 8;
+    opacity: 1;
     cursor: pointer;
-    animation: fadeIn 1s ease-in-out 0.5s forwards;
-    background: linear-gradient(to right,rgb(113, 41, 246),rgb(90, 90, 248),blue);
+    background-color: rgb(200,170,45);
+    background-image: url("/stardust.png");
 }
-@keyframes fadeIn{
-    from{opacity: 0;}
-    to{opacity: 1;}
+.start:hover{
+    color:rgb(229, 246, 168);
+}
+.start:active{
+    transform: scale(0.9);
 }
