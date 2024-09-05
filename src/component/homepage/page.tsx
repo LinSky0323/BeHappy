@@ -13,6 +13,7 @@ const leftto = ()=>({transform:"rotate(1080deg)",config:{duration:5500}})
 const rightto = ()=>({transform:"rotate(-1080deg)",config:{duration:5500}})
 const contentfrom = ()=>({scale:0,y:0,x:0,z:0})
 const contentto = ()=>({scale:4,y:-400,x:-250,z:100,config: { tension: 100, friction: 50 },delay:2000})
+const contentto800 = ()=>({scale:4,y:-400,x:-100,z:100,config: { tension: 100, friction: 50 },delay:2000})
 const castlefrom = ()=>({opacity:1})
 const castleto = ()=>({opacity:0.3,delay:3000,config:{duration:3000}})
 const startfrom = ()=>({opacity:0})
@@ -41,7 +42,8 @@ export default function Homepage(){
         setgear4.start(leftto())
         setgear5.start(rightto())
         setgear6.start(leftto())
-        setContent.start(contentto())
+        if(window.innerWidth<800){setContent.start(contentto800())}
+        else{setContent.start(contentto())}
         setCastle.start(castleto())
         setStart.start(startto())
         setArrow.stop()
