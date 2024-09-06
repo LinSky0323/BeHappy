@@ -2,8 +2,8 @@
 import styles from "./page.module.css"
 import BigButton from "@/component/button/bigButton/page"
 
-const guestNavList = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"我的預約",id:"mybookingitem",img:"/bookingItem.png"},{name:"訊息",id:"message",img:"/message.png"}]
-const tradeNavlist = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"建立網頁",id:"build",img:"/build.png"},{name:"訂單確認",id:"bookingList",img:"/schedule.png"},{name:"訊息",id:"message",img:"/message.png"}]
+const guestNavList = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"我的預約",id:"mybookingitem",img:"/bookingItem.png"}]
+const tradeNavlist = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"建立網頁",id:"build",img:"/build.png"},{name:"訂單確認",id:"bookingList",img:"/schedule.png"}]
 export default function User(){
     const identity = Number(sessionStorage.getItem("identity"))
 

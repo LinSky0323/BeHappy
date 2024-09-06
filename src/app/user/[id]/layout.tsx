@@ -9,8 +9,8 @@ import RemindMask from "@/component/mask/remindMask/page";
 import {useSpring,animated } from "@react-spring/web"
 
 
-const guestNavList = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"我的預約",id:"mybookingitem",img:"/bookingItem.png"},{name:"訊息",id:"message",img:"/message.png"}]
-const tradeNavlist = [{name:"個人資料",id:"userProfile",img:"/profile.png"},{name:"建立網頁",id:"build",img:"/build.png"},{name:"訂單確認",id:"bookingList",img:"/schedule.png"},{name:"訊息",id:"message",img:"/message.png"}]
+const guestNavList = [{name:"個人資料",id:"userProfile",img:"/profile.png",list:[{name:"個人資料",id:"userProfile"},{name:"帳戶資訊",id:"userProfile/acount"}]},{name:"我的預約",id:"mybookingitem",img:"/bookingItem.png",list:[{name:"預約清單",id:"mybookingitem"},{name:"交易記錄",id:"mybookingitem/record"}]}]
+const tradeNavlist = [{name:"個人資料",id:"userProfile",img:"/profile.png",list:[{name:"個人資料",id:"userProfile"},{name:"帳戶資訊",id:"userProfile/acount"}]},{name:"建立網頁",id:"build",img:"/build.png",list:[{name:"網頁主題",id:"build/buildtitle"},{name:"簡介",id:"build/buildintroduce"},{name:"產品展示",id:"build/builddisplay"},{name:"預約項目",id:"build/builditem"},{name:"可預約時間",id:"build/buildtime"},{name:"網址",id:"build/buildid"},{name:"完成",id:"build/buildcomplete"}]},{name:"訂單確認",id:"bookingList",img:"/schedule.png",list:[{name:"預約管理",id:"bookingList"},{name:"預約記錄",id:"bookingList/record"}]}]
 const from = ()=>({x:0})
 const to = ()=>({x:38})
 export default function UserLayout({children,}: Readonly<{children: React.ReactNode;}>) {
