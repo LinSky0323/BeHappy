@@ -1,0 +1,41 @@
+.container{
+    width: auto;
+    position: relative;
+}
+.remark{
+    position: absolute;
+    top:3px;
+    right:0;
+    font-size: 14px;
+    font-weight: 700;
+    color: hsl(0, 100%, 68%);;
+}
+.remark2{
+    position: absolute;
+    top:20px;
+    right:0;
+    font-size: 14px;
+    font-weight: 700;
+    color: hsl(0, 100%, 68%);;
+}
+.btnContainer{
+    display: flex;
+    width:800px;
+    margin-left: 50px;
+    margin-top: 50px;
+    justify-content: space-between;
+}
+@media(max-width:800px){
+    .btnContainer{
+        width:90%;
+        margin-left: 5%;
+    }
+}
+@media(max-width:600px){
+    .remark{
+        top:0px;
+    }
+    .remark2{
+        top:15px;
+    }
+}

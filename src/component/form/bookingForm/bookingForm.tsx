@@ -92,6 +92,7 @@ export default function BookingForm(){
                     
                 </div>
             </form>
+            <div className={styles.tableContainer}>
             <table className={styles.table}>
                 <thead>
                     <tr>
@@ -112,6 +113,7 @@ export default function BookingForm(){
                     ))}
                 </tbody>
             </table>
+            </div>
         </section>
     )
 }

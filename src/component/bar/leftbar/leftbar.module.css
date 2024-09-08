@@ -1,9 +1,6 @@
 .container{
     min-width: 100px;
-    border-left:1px solid rgb(165, 137, 105) ; 
-    height: 100%;  
     font-size: 18px; 
-    margin-right: 100px;
 }
 
 .a{
@@ -53,11 +50,10 @@
 .btn:hover{
     background-color: rgb(228, 238, 118);
 }
-@media(max-width:800px){
+@media(max-width:850px){
     .container{
         position: absolute;
         left:-100px;
-        top:-65px;
         transition: left 0.3s ease-in;
         background-color: #424141;
         background-image: url("/stardust.png");

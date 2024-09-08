@@ -232,7 +232,7 @@ export default function DisplayForm(){
                     </div>
                     </>}
         <div className={styles.tapContainer}>
-            <div>請選擇種類:</div><div className={styles.taplist}  ref={tapRef}>
+            <div style={{width:"300px"}}>請選擇種類:</div><div className={styles.taplist}  ref={tapRef}>
             {tapList && tapList.map((item,index)=>(         
                     <div onClick={()=>clickTap(item,index)} key={index} className={`${styles.tap} ${styles[`${TapColor[index%4]}`]} ${index===highTap[1] && styles.high}`}>
                         {item}<div className={`${styles.delTap} ${index===highTap[1] && styles.highDelTap}`} onClick={(e)=>checkDelTap(index,e)}>x</div>

@@ -75,7 +75,7 @@ export default function IdForm(){
                 {paramsIdwrite?<SubmitButton name="確認"/>:null}
                 {paramsIdRemind.state && <div className={styles.remind}>{paramsIdRemind.state}</div>}
             </form>
-            <div className={styles.btnContainer}><LastButton url="buildtime"/><div><NextButton url="buildcomplete"/></div></div>
+            <div className={styles.btnContainer}><LastButton url="build_time"/><div><NextButton url="build_complete"/></div></div>
             </>
         )
 }

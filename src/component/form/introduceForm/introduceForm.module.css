@@ -69,24 +69,22 @@
 .btn1{
     position: absolute;
     top:200px;
-    left:650px;
+    right:0;
 }
 .btn2{
     position: absolute;
-    bottom: 80px;
-    left:650px;
+    top:375px;
+    right:0;
 }
 
 @media(max-width:800px){
     .btn1{
         position: absolute;
         top:200px;
-        left:450px;
     }
     .btn2{
         position: absolute;
-        bottom: 80px;
-        left:450px;
+        top:375px;
     }
 }
 
@@ -95,14 +93,14 @@
         margin-left: 0px;
         flex-direction: column;
         align-items: center;
+        gap:5px;
+        margin-top: 20px;
     }
     .btn1{
-        top:270px;
-        left:290px;
+        top:250px;
     }
     .btn2{
-        bottom:60px;
-        left:290px;
+        top:430px;
     }
     .btnContainer{
         width:90%;

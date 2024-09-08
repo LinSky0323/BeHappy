@@ -148,7 +148,7 @@ export default function IntroduceForm(){
             
             {contentRemind.state && <div className={styles.remind}>{contentRemind.state}</div>}
         </form>
-        <div className={styles.btnContainer}><LastButton url="buildtitle"/><div onClick={clickNext}><NextButton url="builddisplay"/></div></div>
+        <div className={styles.btnContainer}><LastButton url="build_title"/><div onClick={clickNext}><NextButton url="build_display"/></div></div>
         </>
     )
 }

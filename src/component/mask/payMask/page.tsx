@@ -2,7 +2,7 @@
 import FormTitle from "@/component/form/title"
 import styles from "./page.module.css"
 import Script from "next/script"
-import { useEffect, useRef, useState } from "react"
+import { SetStateAction, useEffect, useRef, useState } from "react"
 import { useFormState } from "react-dom"
 import { getProfile, levelup } from "@/lib/firebase/firestore"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
@@ -13,7 +13,7 @@ import { selectProfileList } from "@/lib/store/features/profileSlices"
 
 const money = 300
 
-export default function PayMask(){
+export default function PayMask({setOpen}:{setOpen:React.Dispatch<SetStateAction<boolean>>}){
     const profileData = useProfileSelector(selectProfileList)
     const route = useRouter()
     const pathname = usePathname()
@@ -127,7 +127,7 @@ export default function PayMask(){
                         if(result==="Pay success"){
                             levelup(uid).then(()=>{
                                 localStorage.setItem("level","1")
-                                route.push(pathname.split("/").slice(0,4).join("/")+"/acount")
+                                route.push(pathname.split("/").slice(0,4).join("/"))
                             })
                         }
                     })
@@ -135,7 +135,7 @@ export default function PayMask(){
     }
     const [state,formAction] = useFormState(pay,null)
     const handleCLick = ()=>{
-        route.back()
+        setOpen(false)
     }
     return(
         <div className={styles.mask} onClick={handleCLick}>

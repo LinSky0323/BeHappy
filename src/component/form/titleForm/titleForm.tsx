@@ -94,7 +94,7 @@ export default function TitleForm(){
                 {buildList.writerName?<SubmitButton name={writeriswrite?"送出":"修改"}/>:null}
                 {writerRemind.state && <div className={styles.remind}>{writerRemind.state}</div>}
             </form>
-            <div className={styles.btnContainer}><LastButton url=""/><div onClick={clickNext}><NextButton url="buildintroduce"/></div></div>
+            <div className={styles.btnContainer}><LastButton url="build_home"/><div onClick={clickNext}><NextButton url="build_introduce"/></div></div>
             </>
         )
 }

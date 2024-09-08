@@ -103,5 +103,9 @@
     }
     .form{
         margin-left:10px;
+        margin-top: 10px;
+    }
+    .headImg{
+        margin-top: 0;
     }
 }

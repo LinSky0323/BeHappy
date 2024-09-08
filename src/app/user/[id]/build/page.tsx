@@ -1,11 +1,10 @@
 "use client"
-import Header from "@/component/header/header";
 import { useUserBuildDispatch, useUserBuildSelector } from "@/lib/store/hooks";
-import styles from "./page.module.css"
-import { useEffect } from "react";
+import styles from "./build.module.css"
+import { useEffect, useState } from "react";
 import { getListData } from "@/lib/firebase/firestore";
 import { selectBuildList, setBuildList } from "@/lib/store/features/userBuildSlices";
-import { useParams, useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 
 export default function Build(){
     const route = useRouter()
@@ -20,14 +19,22 @@ export default function Build(){
     },[])
     const buildList  = useUserBuildSelector(selectBuildList)
     const handleClick = ()=>{
-        const uid = localStorage.getItem("uid")
-        route.push(`/user/${uid}/build/buildtitle`)
+        const targetDiv = document.querySelector("#build_title")
+        const scrollDiv = document.querySelector("#scrollContainer")
+        if(targetDiv && scrollDiv){
+            const high = targetDiv.getBoundingClientRect().top
+            scrollDiv.scrollTo({
+                top:high-145,
+                behavior:"smooth"
+            })
+        }
     }
+    
     return(
         <>
-        <main className={styles.title} >
+        <div className={styles.title} >
             <div onClick={handleClick} className={styles.content}>開始創建/編輯您的網頁！</div>
-        </main>
+        </div>
         </>      
     )
 }

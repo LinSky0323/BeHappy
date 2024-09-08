@@ -1,20 +1,20 @@
 "use client"
 import styles from "./page.module.css"
-import { usePathname, useRouter } from "next/navigation"
 
 export function NextButton({url}:{url:string}){
-    const path = usePathname()
-    const p = path.split("/")
-    let ans = ""
-    if(p[4]){
-        p[4] = url
-        ans = p.slice(0,5).join("/")
-    }
-    const route = useRouter()
-    
-    const handleClick = ()=>{
-        route.push(ans)
 
+    const handleClick = ()=>{
+        const targetDiv = document.querySelector(`#${url}`)
+        const scrollDiv = document.querySelector("#scrollContainer")
+        if(targetDiv && scrollDiv){
+            const high = targetDiv.getBoundingClientRect().top
+            const now = scrollDiv.scrollTop
+            console.log(now,high)
+            scrollDiv.scrollTo({
+                top:now+high-145,
+                behavior:"smooth"
+            })
+        }
     }
     return(
         <button className={styles.button} onClick={handleClick}>下一步</button>

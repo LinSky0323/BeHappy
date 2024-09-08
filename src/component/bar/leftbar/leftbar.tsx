@@ -1,7 +1,7 @@
 "use client"
 import { useParams, usePathname, useRouter } from "next/navigation"
 import styles from "./leftbar.module.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function LeftBar({list,path}:{list:{name:string,id:string}[],path:string}){
     const route = useRouter()
@@ -9,10 +9,22 @@ export default function LeftBar({list,path}:{list:{name:string,id:string}[],path
     const P = usePathname()
     const pathname = P.split("/")[4]
     const [open,setOpen] = useState(false)
+    
     const handleClick = (id:string,e:React.MouseEvent<HTMLDivElement>)=>{
         e.preventDefault()
-        route.push(`/user/${url.id}/${path}/${id}`)
-        setOpen(false)
+        const targetDiv = document.querySelector(`#${id}`)
+        const scrollContainer = document.querySelector("#scrollContainer")
+        if(targetDiv && scrollContainer){
+            const targetHigh = targetDiv.getBoundingClientRect().top
+            const now = scrollContainer.scrollTop
+            scrollContainer.scrollTo({
+                top:now+targetHigh-145,
+                behavior:"smooth"
+            })
+            
+        }
+        // route.push(`/user/${url.id}/${path}/${id}`)
+        // setOpen(false)
     } 
     const clickOpen = ()=>{
         setOpen(!open)

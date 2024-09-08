@@ -1,0 +1,10 @@
+.container{
+    width: auto;
+}
+.btnContainer{
+    display: flex;
+    width:800px;
+    margin-left: 50px;
+    margin-top: 50px;
+    justify-content: space-between;
+}
