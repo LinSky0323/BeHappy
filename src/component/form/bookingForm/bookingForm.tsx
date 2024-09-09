@@ -38,15 +38,15 @@ export default function BookingForm(){
             remind.setRemind("請輸入項目名稱")
             return
         }
-        if(!itemPrice || Number.isNaN(itemPrice)){
+        if(itemPrice && Number.isNaN(itemPrice)){
             remind.setRemind("費用請輸入數字")
             return
         }
-        if(!itemTime || Number.isNaN(itemTime)){
+        if(itemTime && Number.isNaN(itemTime)){
             remind.setRemind("時間請輸入數字")
             return
         }
-        if(itemTime % 0.5 !== 0){
+        if(itemTime && itemTime % 0.5 !== 0){
             remind.setRemind("以0.5hr為單位")
             return
         }
