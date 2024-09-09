@@ -52,15 +52,15 @@
 }
 .GImgContainer:nth-child(1){
     width: 50%;
-    left: 10%;
+    left: 5%;
     top:30%;
-    transform: rotate(-30deg);
+    transform: rotate(-25deg);
 }
 .GImgContainer:nth-child(2){
     width: 50%;
-    left: 40%;
-    top:40%;
-    transform: rotate(-30deg);
+    left: 35%;
+    top:35%;
+    transform: rotate(-25deg);
 }
 @media(max-width:1200px){
     .img{
