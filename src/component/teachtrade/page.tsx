@@ -11,7 +11,7 @@ const cards = ["/I8.png","/I7.png","/I6.png","/I5.png","/I4.png","/I3.png","/I2.
 
 export default function TeachTrade(){
     const ref = useRef<HTMLElement|null>(null)
-    
+    const [isClick,setIsClick] = useState(false)
     const to = (i: number) => ({
         x: 50,
         y: 20,
@@ -96,36 +96,43 @@ export default function TeachTrade(){
         }
     }) 
     const clickRow = ()=>{
-        gone.add(gone.size+1)
-        api.start((i)=>{
-            if (cards.length-gone.size !== i) return
-            return({
-                x:200+window.innerWidth,
-                rot:10,
-                scale:1.1,
-                delay: undefined,
-                config:{ friction: 50, tension: 200}
+        if(isClick===false){
+            setIsClick(true)
+            gone.add(gone.size+1)
+            api.start((i)=>{
+                if (cards.length-gone.size !== i) return
+                return({
+                    x:200+window.innerWidth,
+                    rot:10,
+                    scale:1.1,
+                    delay: undefined,
+                    config:{ friction: 50, tension: 200}
+                })
             })
-        })
-        if(gone.size === cards.length){
-            if(window.innerWidth>1200){
-                setTimeout(()=>{
-                    gone.clear()
-                    api.start((i)=>to(i))
-                },600)
+            if(gone.size === cards.length){
+                if(window.innerWidth>1200){
+                    setTimeout(()=>{
+                        gone.clear()
+                        api.start((i)=>to(i))
+                    },600)
+                }
+                else{
+                    setTimeout(()=>{
+                        gone.clear()
+                        api.start((i)=>to2(i))
+                    },600)
+                }
             }
-            else{
-                setTimeout(()=>{
-                    gone.clear()
-                    api.start((i)=>to2(i))
-                },600)
+            setTimeout(()=>{
+                setIsClick(false)
+            },600)
             }
-        }
+        
     }
     return(
     <section className={styles.container} ref={ref}>
             <div className={styles.title}>使用引導</div>
-            <div className={styles.row} onClick={clickRow}>向右滑動<br/>{">>>"}</div>
+            <div className={styles.row} onClick={clickRow}>向右滑動 {" >>>"}</div>
             {props.map(({x,y,rot,scale},index)=>(       
                  <animated.div key={index}  className={styles.card} {...bind(index)} style={{x,y,transform: interpolate([rot, scale], trans),}}>
                      <div className={styles.imgContainer} style={{touchAction:"none",pointerEvents: "none"}}><Image  alt="教學" src={cards[index]} fill sizes="100%" style={{objectFit:"cover"}}/></div>

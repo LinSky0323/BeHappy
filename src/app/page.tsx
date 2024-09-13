@@ -1,9 +1,13 @@
 
 import styles from "./page.module.css"
 import localFont from 'next/font/local'
-import MyDisplay from "@/component/mydisplay/page";
 import TeachTrade from "@/component/teachtrade/page";
 import Homepage from "@/component/homepage/page";
+import Sign from "@/component/sign/sign";
+import StickyBar from "@/component/bar/stickybar/page";
+import TradeDisplay from "@/component/mydisplay/tradedisplay/page";
+import GuestDisplay from "@/component/mydisplay/gusetdisplay/page";
+import Start from "@/component/start/page";
 const myFont = localFont({ src: './ChenYuluoyanThin.ttf' })
 
 
@@ -15,9 +19,12 @@ export default  function Home() {
 
   return (
     <main className={styles.container}>
+      <StickyBar/>
       <Homepage/>
-      <MyDisplay/>
+      <TradeDisplay/>
+      <GuestDisplay/>
       <TeachTrade/>
+      <Start/>
     </main>
   );
 }

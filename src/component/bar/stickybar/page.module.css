@@ -1,0 +1,47 @@
+.container{
+    position: fixed;
+    background:linear-gradient(to right top,rgba(255, 253, 188, 0.5),rgba(255, 255, 93, 0.5),rgba(255,255,100,0.5),rgba(255,255,50,0.5));
+    width:110px;
+    height: 33px;
+    padding:0px 10px 0px 10px;
+    top:10px;
+    right:10vw;
+    color:white;
+    font-weight: 700;
+    font-size: 15px;
+    z-index: 999;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 3px rgba(255,255,255,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+.c1{
+    width:80px;
+    padding: 3px;
+    right:calc(10vw + 80px);
+}
+.c2{
+    width:60px;
+    padding: 3px;
+}
+.container:hover{
+    background:linear-gradient(to right top,rgba(255, 255, 255, 0.9),rgba(255, 255,230, 0.9),rgba(255,255,200,0.9),rgba(255,255,50,0.9));
+    color:rgb(160,140,40);
+}
+.bling{
+    width:40px;
+    height:100%;
+    clip-path: polygon(20% 0%, 80% 0%,60% 100%,0% 100% );
+    background-color: rgba(255, 254, 171, 0.6);
+    position: absolute;
+    left:-50px;
+    animation : bling 6s ease-in-out 1s infinite;
+}
+@keyframes bling{
+    from{transform: translateX(0);}
+    30%{transform: translateX(200px);}
+    to{transform: translateX(200px);}
+}

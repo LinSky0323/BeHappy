@@ -8,5 +8,6 @@ body{
     flex-direction: column;
     min-height: 100vh;
     scrollbar-color: rgb(220,220,220) rgb(80,80,80);
+    overflow-x: hidden;
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

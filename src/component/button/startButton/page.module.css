@@ -10,14 +10,33 @@
     z-index: 8;
     opacity: 1;
     cursor: pointer;
-    background-color: rgb(200,170,45);
-    background-image: url("/stardust.png");
+    background: linear-gradient(to top right,rgba(255, 247, 188, 0.5), rgba(255, 255, 93, 0.5), rgba(255, 255, 100, 0.5), rgba(255, 255, 50, 0.5));
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 5px rgba(255,255,255,0.6);
+    color:rgb(255,255,255);
+    overflow: hidden;
 }
 .start:hover{
-    color:rgb(229, 246, 168);
+    background:linear-gradient(to right top,rgba(255, 255, 255, 0.9),rgba(255, 255,230, 0.9),rgba(255,255,200,0.9),rgba(255,255,50,0.9));
+    color:rgb(160,140,40);
 }
 .start:active{
     transform: scale(0.9);
+}
+.bling{
+    width:40px;
+    height:50px;
+    clip-path: polygon(20% 0%, 80% 0%,60% 100%,0% 100% );
+    background-color: rgba(255, 254, 171, 0.6);
+    position: absolute;
+    top:0;
+    left:-50px;
+    animation : bling 6s ease-in-out 1s infinite;
+}
+@keyframes bling{
+    from{transform: translateX(0);}
+    30%{transform: translateX(300px);}
+    to{transform: translateX(300px);}
 }
 @media(max-width:800px){
     .start{

@@ -65,7 +65,8 @@
     color:rgb(220,220,220)
 }
 .input::placeholder{
-    color:rgb(220,220,220)
+    color:rgb(150,150,150);
+    font-size: 12px;
 }
 .input:focus{
     outline: none;

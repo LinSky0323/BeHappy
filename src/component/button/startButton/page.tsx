@@ -41,5 +41,8 @@ export default function StartBtn(){
         }
         
     }
-    return(<animated.button className={styles.start} ref = {ref} style={{transform:to([props.x,props.y,props.s],(x,y,s)=>trans(x,y,s))}} onClick={click} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>立刻開始使用！</animated.button>)
+    return(<animated.button className={styles.start} ref = {ref} style={{transform:to([props.x,props.y,props.s],(x,y,s)=>trans(x,y,s))}} onClick={click} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+        <div className={styles.bling}></div>
+        立刻開始使用！
+        </animated.button>)
 }
