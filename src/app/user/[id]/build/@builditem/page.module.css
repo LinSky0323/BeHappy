@@ -18,13 +18,7 @@
     font-weight: 700;
     color: hsl(0, 100%, 68%);;
 }
-.btnContainer{
-    display: flex;
-    width:800px;
-    margin-left: 50px;
-    margin-top: 50px;
-    justify-content: space-between;
-}
+
 @media(max-width:800px){
     .btnContainer{
         width:90%;

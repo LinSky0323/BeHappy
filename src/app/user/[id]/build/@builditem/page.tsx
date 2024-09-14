@@ -12,7 +12,7 @@ export default function builditem(){
             <div className={styles.remark2}>*時間以半小時(0.5)為最小單位</div>
             <FormTitle name="編輯你可供預約的服務項目"/>
             <BookingForm/>
-            <div className={styles.btnContainer}><LastButton url="build_display"/><NextButton url="build_time"/></div>
+
         </div>
     )
 }

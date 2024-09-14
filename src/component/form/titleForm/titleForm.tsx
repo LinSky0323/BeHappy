@@ -75,26 +75,20 @@ export default function TitleForm(){
 
     const [titlestate,titleformAction] = useFormState(titlesubmit,null)
     const [namestate,nameformAction] = useFormState(namesubmit,null)
-    const clickNext = async()=>{
-        if(buildList.titleName && buildList.writerName)return
-        const titleName = titleinput.value
-        const writerName = writerinput.value
-        const submitData = {titleName,writerName}
-        await createListData(uid,submitData)
-    }
+
         return(
             <>
             <form className={styles.form} action={titleiswrite?titleformAction:titleUse}>
                 <label>網頁名稱：</label><input type="text" name="titleName" value={titleinput.value} onChange={titleinput.onChange} disabled={!titleiswrite}></input>
-                {buildList.titleName?<SubmitButton name={titleiswrite?"送出":"修改"}/>:null}
+                <SubmitButton name={titleiswrite?"送出":"修改"}/>
                 {titleRemind.state && <div className={styles.remind}>{titleRemind.state}</div>}
             </form>
             <form className={styles.form} action={writeriswrite?nameformAction:writerUse}>
                 <label>作者名稱：</label><input type="text" name="writerName"value={writerinput.value} onChange={writerinput.onChange} disabled={!writeriswrite} ></input>
-                {buildList.writerName?<SubmitButton name={writeriswrite?"送出":"修改"}/>:null}
+                <SubmitButton name={writeriswrite?"送出":"修改"}/>
                 {writerRemind.state && <div className={styles.remind}>{writerRemind.state}</div>}
             </form>
-            <div className={styles.btnContainer}><LastButton url="build_home"/><div onClick={clickNext}><NextButton url="build_introduce"/></div></div>
+
             </>
         )
 }

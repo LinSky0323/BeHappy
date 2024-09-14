@@ -12,7 +12,7 @@ export default function BuildDisplay(){
             <div className={styles.remark2}>*種類數量不限，但一種作品只能展示4張</div>
             <FormTitle name="編輯你要展示的作品集"/>
             <DisplayForm/>
-            <div className={styles.btnContainer}><LastButton url="build_introduce"/><NextButton url="build_item"/></div>
+           
         </div>
     )
 }

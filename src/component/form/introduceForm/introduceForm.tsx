@@ -117,16 +117,7 @@ export default function IntroduceForm(){
     const contentUse = ()=>{
         setContent(true)
     }
-    const clickNext = async()=>{
-        if(buildList.introduceContent?.length)return
-        const content = textinput.value
-        let introduceContent:any = []
-        if(content && typeof content === 'string'){
-            introduceContent = content.split("\n")
-        }
-        const submitData = {introduceContent}
-        await createListData(uid,submitData)
-    }
+
     return(
         <>
         <form className={styles.form} action={imageiswrite?imageAction:imageUse}>
@@ -144,11 +135,10 @@ export default function IntroduceForm(){
             <label>簡介內容：</label>
             <textarea name="introduceContent" rows={8} cols={30} className={styles.textarea} 
             value={textinput.value} onChange={textinput.onTextCgange} disabled={!contentiswrite}></textarea>
-            {buildList.introduceContent?.length ?<div className={styles.btn2}><SubmitButton name={contentiswrite?"送出":"修改"}/></div>:null}
+            <div className={styles.btn2}><SubmitButton name={contentiswrite?"送出":"修改"}/></div>
             
             {contentRemind.state && <div className={styles.remind}>{contentRemind.state}</div>}
         </form>
-        <div className={styles.btnContainer}><LastButton url="build_title"/><div onClick={clickNext}><NextButton url="build_display"/></div></div>
         </>
     )
 }

@@ -8,7 +8,6 @@
     color:rgb(200,200,200);
     height: 70vh;
     align-items: flex-start;
-    border-left:1px solid rgb(165, 137, 105) ;  
 }
 .identity{
     position: fixed;

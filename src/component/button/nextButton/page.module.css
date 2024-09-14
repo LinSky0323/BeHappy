@@ -1,28 +1,14 @@
 .button{
-    width:70px;
-    height:20px;
-    font-size: 15px;
-    background-color: rgb(200,200,200);
-    color:rgb(45,45,45);
-    border:0.5px solid black;
+    position: relative;
+    background-color: transparent;
+    width:100px;
+    height: 200px;
+    border:none;
     cursor: pointer;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    transition: transform 0.1s ease;
 }
 .button:hover{
-    box-shadow:1px 1px ;
-    transform: translate(-1px,-1px);
-    background-color: rgb(165, 137, 105);
-    color:rgb(220, 220, 220);
+    transform: scale(1.05);
 }
 .button:active{
     transform: scale(0.95)
-}
-@media(max-width:500px){
-    .button{
-        font-size: 12px;
-    }
 }
