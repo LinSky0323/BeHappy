@@ -64,7 +64,7 @@ export default function ScheduleRecord({list,chooseday,setChooseday}:{list:any,c
                 })}
                 {result.map((item,index)=>{
                     let hasbooking = false
-                    if(list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]){
+                    if(list && list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]){
                         Object.keys(list[thisYear][thisMonth][item]).map((key,index)=>{
                             if(Object.keys(list[thisYear][thisMonth][item][key]).length){
                                 hasbooking = true
@@ -76,7 +76,7 @@ export default function ScheduleRecord({list,chooseday,setChooseday}:{list:any,c
                     ${styles.date__itembooking} 
                     ${((parseInt(item)===Day.getDate()) && (thisMonth===Day.getMonth()+1)) && (thisYear===listYear) && styles.date__today} 
                     ${(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)>Day.getDate())))&& styles.delay}
-                    ${ (list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]) && styles.isset }
+                    ${ (list && list[thisYear] && list[thisYear][thisMonth] && list[thisYear][thisMonth][item]) && styles.isset }
                     ${ (chooseday.year === thisYear && chooseday.month === thisMonth && chooseday.day === item ) && styles.choose }
                     ${hasbooking && styles.hasbooking}`}
                     onClick={(delay ||(thisMonth===Day.getMonth()+1 && (parseInt(item)>=Day.getDate())))?undefined:(e)=>{handleClick(e,item)}} 

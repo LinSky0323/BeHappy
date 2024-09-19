@@ -62,7 +62,7 @@ export default function TeachTrade(){
         }
     },[])
     const bind = useDrag(({ args: [index], down, movement: [mx], direction: [xDir],velocity:[vx]},)=>{
-        // if(xDir>0)return
+        if(isClick)return
         const trigger = vx > 0.2
         if(!down && trigger) gone.add(index);
         api.start((i)=>{
@@ -97,8 +97,9 @@ export default function TeachTrade(){
     }) 
     const clickRow = ()=>{
         if(isClick===false){
+            console.log(gone)
             setIsClick(true)
-            gone.add(gone.size+1)
+            gone.add(cards.length-gone.size-1)
             api.start((i)=>{
                 if (cards.length-gone.size !== i) return
                 return({
@@ -125,7 +126,7 @@ export default function TeachTrade(){
             }
             setTimeout(()=>{
                 setIsClick(false)
-            },600)
+            },400)
             }
         
     }

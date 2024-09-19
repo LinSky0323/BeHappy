@@ -20,7 +20,6 @@ export default function BookingRecord(){
     const [booking,setBooking] = useState(bookingList)
     const [chooseday,setChooseday] = useState<any>({})
     const uid = localStorage.getItem("uid") as string
-
     useEffect(()=>{
         if(!Object.keys(timeList).length){
             getTimeData(uid).then((res:any)=>{
@@ -39,6 +38,7 @@ export default function BookingRecord(){
     const clickName = (guestUid:string)=>{
         setName(guestUid)
     }
+    console.log(typeof booking)
     return(
         <div>
             {name && <NameMask item = {name} setName = {setName}/>}
@@ -59,7 +59,7 @@ export default function BookingRecord(){
                     </thead>
                     <tbody>
                         {Object.keys(chooseday).length!==0 ?
-                            (booking.length ? booking.map((item:any,index:number)=>{
+                            (booking ? booking.map((item:any,index:number)=>{
                                 if(item.year === chooseday.year && item.month === chooseday.month && item.day === chooseday.day){
                                     return(
                                         <tr key={index}>
@@ -75,7 +75,7 @@ export default function BookingRecord(){
                                 return null
                             }):<tr></tr>)
                         :
-                            (booking.length ? booking.map((item:any,index:number)=>{
+                            (booking? booking.map((item:any,index:number)=>{
                                 if((item.year<Day.getFullYear()) || (item.year===Day.getFullYear()&&item.month<Day.getMonth()+1)||(item.year===Day.getFullYear()&&item.month===Day.getMonth()+1)&&item.day<Day.getDate()){
                                     return(
                                         <tr key={index}>
