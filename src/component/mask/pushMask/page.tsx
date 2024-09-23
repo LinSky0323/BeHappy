@@ -5,6 +5,7 @@ import { StopPropogation } from "@/lib/stopPropagation"
 import { useFormState, useFormStatus } from "react-dom"
 import { useChangeRemind } from "@/lib/hook/useChangeRemind"
 import { getProfile, pushBookingItem, setProfile } from "@/lib/firebase/firestore"
+import CheckPhone from "@/lib/checkPhone"
 
 
 export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch<SetStateAction<{}|null>>}){
@@ -26,7 +27,7 @@ export default function PushMask({push,setPush}:{push:any,setPush:React.Dispatch
             remind.setRemind("請正確填寫您的姓名")
             return
         }
-        if(!phone||phone.length!==10){
+        if(!phone||!CheckPhone(phone)){
             remind.setRemind("請正確填寫您的手機號碼(以 09 開頭)")
             return
         }
